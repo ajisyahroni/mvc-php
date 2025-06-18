@@ -35,27 +35,12 @@ $redirect_to = $this->redirect_to;
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label class="control-label" for="NISN">Nisn <span class="text-danger">*</span></label>
+                                            <span id="NISN-loading" style="display: none;">memuat . . .</span>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="">
-                                                <select required=""  id="ctrl-NISN" name="NISN"  placeholder="Select a value ..."    class="selectize" >
-                                                    <option value="">Select a value ...</option>
-                                                    <?php 
-                                                    $NISN_options = $comp_model -> kunjungan_uks_NISN_option_list();
-                                                    if(!empty($NISN_options)){
-                                                    foreach($NISN_options as $option){
-                                                    $value = (!empty($option['value']) ? $option['value'] : null);
-                                                    $label = (!empty($option['label']) ? $option['label'] : $value);
-                                                    $selected = $this->set_field_selected('NISN',$value, "");
-                                                    ?>
-                                                    <option <?php echo $selected; ?> value="<?php echo $value; ?>">
-                                                        <?php echo $label; ?>
-                                                    </option>
-                                                    <?php
-                                                    }
-                                                    }
-                                                    ?>
-                                                </select>
+                                                <input id="ctrl-NISN"  value="<?php  echo $this->set_field_value('NISN',""); ?>" type="text" placeholder="Enter NISN"  required="" name="NISN"  class="form-control " />
+                                            
                                             </div>
                                         </div>
                                     </div>
@@ -190,3 +175,55 @@ $redirect_to = $this->redirect_to;
                                         </div>
                                     </div>
                                 </section>
+
+<script>
+    const getDataByNisn = (nisn) => {
+        return fetch(`/api/simple_json?nisn=${nisn}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    return data.data;
+                } else {
+                    throw new Error(data.message || 'Data not found');
+                }
+            });
+    };
+    const debounce = (func, delay) => {
+                    let timeoutId;
+                    return (...args) => {
+                        clearTimeout(timeoutId);
+                        timeoutId = setTimeout(() => func(...args), delay);
+                    };
+                };
+    document
+        .getElementById("ctrl-NISN")
+        .addEventListener("input", function() {
+            const nisn = this.value;
+            if (nisn.length >= 3) { 
+                const fetchData = debounce((nisn) => {
+                    document.getElementById("NISN-loading").style.display = 'inline';
+                    document.getElementById("ctrl-Nama").value = '';
+                    document.getElementById("ctrl-Kelas").value = '';
+
+                    getDataByNisn(nisn)
+                        .then(data => {
+                            document.getElementById("ctrl-Nama").value = data.Nama || '';
+                            document.getElementById("ctrl-Kelas").value = data.Kelas || '';
+                        })
+                        .catch(error => {
+                            console.error('Error fetching data:', error);
+                        })
+                        .finally(() => {
+                            setTimeout(() => {
+                                document.getElementById("NISN-loading").style.display = 'none';
+                            }, 700);
+                        });
+                }, 300);
+
+                fetchData(nisn);
+            } else {
+                document.getElementById("ctrl-Nama").value = '';
+                document.getElementById("ctrl-Kelas").value = '';
+            }
+        });
+</script>
