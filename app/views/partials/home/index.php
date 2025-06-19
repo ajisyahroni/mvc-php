@@ -35,7 +35,10 @@ $current_page = $this->set_current_page_link();
                             {
                             label: 'Dataset 1',
                             borderColor:'rgba(255 , 255 , 255, 0.7)',
-                            backgroundColor:'rgba(0 , 64 , 128, 0.5)',
+                            backgroundColor: [
+                                '#007bff', // biru untuk Laki-laki
+                                '#e83e8c'  // pink untuk Perempuan
+                            ],
                             borderWidth:3,
                             data : <?php echo json_encode($chartdata['datasets'][0]); ?>,
                             }
@@ -106,7 +109,7 @@ $current_page = $this->set_current_page_link();
                             datasets : [
                             {
                             label: 'Dataset 1',
-                            backgroundColor:'rgba(0 , 0 , 64, 0.5)',
+                            backgroundColor: 'rgba(40, 167, 69, 0.7)', // hijau 
                             type:'',
                             borderWidth:3,
                             data : <?php echo json_encode($chartdata['datasets'][0]); ?>,
