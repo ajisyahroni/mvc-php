@@ -209,6 +209,13 @@ $redirect_to = $this->redirect_to;
                         .then(data => {
                             document.getElementById("ctrl-Nama").value = data.Nama || '';
                             document.getElementById("ctrl-Kelas").value = data.Kelas || '';
+                             // Auto-select Jenis Kelamin
+                            if (data.Jenis_Kelamin) {
+                                let jenisKelaminRadios = document.getElementsByName("Jenis_Kelamin");
+                                jenisKelaminRadios.forEach(radio => {
+                                    radio.checked = (radio.value === data.Jenis_Kelamin);
+                                });
+                            }
                         })
                         .catch(error => {
                             console.error('Error fetching data:', error);
