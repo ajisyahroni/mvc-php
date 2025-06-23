@@ -15,7 +15,7 @@ $redirect_to = $this->redirect_to;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Add New Peserta Smp</h4>
+                    <h4 class="record-title">Add New Peserta SMP</h4>
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@ $redirect_to = $this->redirect_to;
                                                 <div class="col-sm-8">
                                                     <div class="">
                                                         <?php
-                                                        $Jenis_Kelamin_options = Menu :: $Jenis_Kelamin;
+                                                        $Jenis_Kelamin_options = Menu :: $Jenis_Kelamin2;
                                                         if(!empty($Jenis_Kelamin_options)){
                                                         foreach($Jenis_Kelamin_options as $option){
                                                         $value = $option['value'];
@@ -139,28 +139,52 @@ $redirect_to = $this->redirect_to;
                                                         <div class="form-group ">
                                                             <div class="row">
                                                                 <div class="col-sm-4">
-                                                                    <label class="control-label" for="Alamat">Alamat <span class="text-danger">*</span></label>
+                                                                    <label class="control-label" for="Inklusi">Inklusi </label>
                                                                 </div>
                                                                 <div class="col-sm-8">
                                                                     <div class="">
-                                                                        <textarea placeholder="Enter Alamat" id="ctrl-Alamat"  required="" rows="5" name="Alamat" class=" form-control"><?php  echo $this->set_field_value('Alamat',""); ?></textarea>
-                                                                        <!--<div class="invalid-feedback animated bounceIn text-center">Please enter text</div>-->
+                                                                        <input id="ctrl-Inklusi"  value="<?php  echo $this->set_field_value('Inklusi',""); ?>" type="text" placeholder="Enter Inklusi"  name="Inklusi"  class="form-control " />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                            <div class="form-group ">
+                                                                <div class="row">
+                                                                    <div class="col-sm-4">
+                                                                        <label class="control-label" for="Alamat">Alamat <span class="text-danger">*</span></label>
+                                                                    </div>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="">
+                                                                            <textarea placeholder="Enter Alamat" id="ctrl-Alamat"  required="" rows="5" name="Alamat" class=" form-control"><?php  echo $this->set_field_value('Alamat',""); ?></textarea>
+                                                                            <!--<div class="invalid-feedback animated bounceIn text-center">Please enter text</div>-->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <div class="row">
+                                                                    <div class="col-sm-4">
+                                                                        <label class="control-label" for="SA">Sa </label>
+                                                                    </div>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="">
+                                                                            <input id="ctrl-SA"  value="<?php  echo $this->set_field_value('SA',""); ?>" type="text" placeholder="Enter Sa"  name="SA"  class="form-control " />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group form-submit-btn-holder text-center mt-3">
+                                                                <div class="form-ajax-status"></div>
+                                                                <button class="btn btn-primary" type="submit">
+                                                                    Submit
+                                                                    <i class="fa fa-send"></i>
+                                                                </button>
+                                                            </div>
+                                                        </form>
                                                     </div>
-                                                    <div class="form-group form-submit-btn-holder text-center mt-3">
-                                                        <div class="form-ajax-status"></div>
-                                                        <button class="btn btn-primary" type="submit">
-                                                            Submit
-                                                            <i class="fa fa-send"></i>
-                                                        </button>
-                                                    </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </section>
+                                </section>

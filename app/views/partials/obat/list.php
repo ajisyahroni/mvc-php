@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("obat/add");
-$can_edit = ACL::is_allowed("obat/edit");
-$can_view = ACL::is_allowed("obat/view");
-$can_delete = ACL::is_allowed("obat/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "list-page-" . random_str();
@@ -33,12 +26,10 @@ $show_pagination = $this->show_pagination;
                     <h4 class="record-title">Obat</h4>
                 </div>
                 <div class="col-sm-3 ">
-                    <?php if($can_add){ ?>
                     <a  class="btn btn btn-primary my-1" href="<?php print_link("obat/add") ?>">
                         <i class="fa fa-plus"></i>                              
                         Add New Obat 
                     </a>
-                    <?php } ?>
                 </div>
                 <div class="col-sm-4 ">
                     <form  class="search" action="<?php print_link('obat'); ?>" method="get">
@@ -116,20 +107,19 @@ $show_pagination = $this->show_pagination;
                                     <table class="table  table-striped table-sm text-left">
                                         <thead class="table-header bg-light">
                                             <tr>
-                                                <?php if($can_delete){ ?>
                                                 <th class="td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="toggle-check-all custom-control-input" type="checkbox" />
                                                         <span class="custom-control-label"></span>
                                                     </label>
                                                 </th>
-                                                <?php } ?>
                                                 <th class="td-sno">#</th>
+                                                <th  class="td-id_obat"> Id Obat</th>
                                                 <th  class="td-Nama_Obat"> Nama Obat</th>
+                                                <th  class="td-Jumlah"> Jumlah</th>
                                                 <th  class="td-Asal"> Asal</th>
                                                 <th  class="td-Tgl_masuk"> Tgl Masuk</th>
                                                 <th  class="td-Tgl_EXP"> Tgl Exp</th>
-                                                <th  class="td-id_obat"> Id Obat</th>
                                                 <th class="td-btn"></th>
                                             </tr>
                                         </thead>
@@ -145,17 +135,30 @@ $show_pagination = $this->show_pagination;
                                             $counter++;
                                             ?>
                                             <tr>
-                                                <?php if($can_delete){ ?>
                                                 <th class=" td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="optioncheck custom-control-input" name="optioncheck[]" value="<?php echo $data['id_obat'] ?>" type="checkbox" />
                                                             <span class="custom-control-label"></span>
                                                         </label>
                                                     </th>
-                                                    <?php } ?>
                                                     <th class="td-sno"><?php echo $counter; ?></th>
+                                                    <td class="td-id_obat">
+                                                        <span  data-value="<?php echo $data['id_obat']; ?>" 
+                                                            data-pk="<?php echo $data['id_obat'] ?>" 
+                                                            data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-name="id_obat" 
+                                                            data-title="Enter Id Obat" 
+                                                            data-placement="left" 
+                                                            data-toggle="click" 
+                                                            data-type="number" 
+                                                            data-mode="popover" 
+                                                            data-showbuttons="left" 
+                                                            class="is-editable" >
+                                                            <?php echo $data['id_obat']; ?> 
+                                                        </span>
+                                                    </td>
                                                     <td class="td-Nama_Obat">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Nama_Obat']; ?>" 
+                                                        <span  data-value="<?php echo $data['Nama_Obat']; ?>" 
                                                             data-pk="<?php echo $data['id_obat'] ?>" 
                                                             data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Nama_Obat" 
@@ -165,12 +168,27 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Nama_Obat']; ?> 
                                                         </span>
                                                     </td>
+                                                    <td class="td-Jumlah">
+                                                        <span  data-value="<?php echo $data['Jumlah']; ?>" 
+                                                            data-pk="<?php echo $data['id_obat'] ?>" 
+                                                            data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-name="Jumlah" 
+                                                            data-title="Enter Jumlah" 
+                                                            data-placement="left" 
+                                                            data-toggle="click" 
+                                                            data-type="number" 
+                                                            data-mode="popover" 
+                                                            data-showbuttons="left" 
+                                                            class="is-editable" >
+                                                            <?php echo $data['Jumlah']; ?> 
+                                                        </span>
+                                                    </td>
                                                     <td class="td-Asal">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Asal']; ?>" 
+                                                        <span  data-value="<?php echo $data['Asal']; ?>" 
                                                             data-pk="<?php echo $data['id_obat'] ?>" 
                                                             data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Asal" 
@@ -180,12 +198,12 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Asal']; ?> 
                                                         </span>
                                                     </td>
                                                     <td class="td-Tgl_masuk">
-                                                        <span <?php if($can_edit){ ?> data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
+                                                        <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                             data-value="<?php echo $data['Tgl_masuk']; ?>" 
                                                             data-pk="<?php echo $data['id_obat'] ?>" 
                                                             data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
@@ -196,12 +214,12 @@ $show_pagination = $this->show_pagination;
                                                             data-type="flatdatetimepicker" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Tgl_masuk']; ?> 
                                                         </span>
                                                     </td>
                                                     <td class="td-Tgl_EXP">
-                                                        <span <?php if($can_edit){ ?> data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
+                                                        <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                             data-value="<?php echo $data['Tgl_EXP']; ?>" 
                                                             data-pk="<?php echo $data['id_obat'] ?>" 
                                                             data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
@@ -212,42 +230,21 @@ $show_pagination = $this->show_pagination;
                                                             data-type="flatdatetimepicker" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Tgl_EXP']; ?> 
                                                         </span>
                                                     </td>
-                                                    <td class="td-id_obat">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['id_obat']; ?>" 
-                                                            data-pk="<?php echo $data['id_obat'] ?>" 
-                                                            data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="id_obat" 
-                                                            data-title="Enter Id Obat" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="number" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['id_obat']; ?> 
-                                                        </span>
-                                                    </td>
                                                     <th class="td-btn">
-                                                        <?php if($can_view){ ?>
                                                         <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("obat/view/$rec_id"); ?>">
                                                             <i class="fa fa-eye"></i> View
                                                         </a>
-                                                        <?php } ?>
-                                                        <?php if($can_edit){ ?>
                                                         <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("obat/edit/$rec_id"); ?>">
                                                             <i class="fa fa-edit"></i> Edit
                                                         </a>
-                                                        <?php } ?>
-                                                        <?php if($can_delete){ ?>
                                                         <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("obat/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                             <i class="fa fa-times"></i>
                                                             Delete
                                                         </a>
-                                                        <?php } ?>
                                                     </th>
                                                 </tr>
                                                 <?php 
@@ -277,11 +274,9 @@ $show_pagination = $this->show_pagination;
                                         <div class="row justify-content-center">    
                                             <div class="col-md-auto justify-content-center">    
                                                 <div class="p-3 d-flex justify-content-between">    
-                                                    <?php if($can_delete){ ?>
                                                     <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("obat/delete/{sel_ids}/?csrf_token=$csrf_token&redirect=$current_page"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
                                                         <i class="fa fa-times"></i> Delete Selected
                                                     </button>
-                                                    <?php } ?>
                                                     <div class="dropup export-btn-holder mx-1">
                                                         <button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fa fa-save"></i> Export

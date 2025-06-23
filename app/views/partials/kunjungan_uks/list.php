@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("kunjungan_uks/add");
-$can_edit = ACL::is_allowed("kunjungan_uks/edit");
-$can_view = ACL::is_allowed("kunjungan_uks/view");
-$can_delete = ACL::is_allowed("kunjungan_uks/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "list-page-" . random_str();
@@ -33,12 +26,10 @@ $show_pagination = $this->show_pagination;
                     <h4 class="record-title">Kunjungan UKS</h4>
                 </div>
                 <div class="col-sm-3 ">
-                    <?php if($can_add){ ?>
                     <a  class="btn btn btn-primary my-1" href="<?php print_link("kunjungan_uks/add") ?>">
                         <i class="fa fa-plus"></i>                              
                         Add New Kunjungan UKS 
                     </a>
-                    <?php } ?>
                 </div>
                 <div class="col-sm-4 ">
                     <form  class="search" action="<?php print_link('kunjungan_uks'); ?>" method="get">
@@ -99,298 +90,353 @@ $show_pagination = $this->show_pagination;
                             ?>
                         </div>
                     </div>
+                    <div class="col-md-3 ">
+                        <form method="get" action="<?php print_link($current_page) ?>" class="form filter-form">
+                            <div class="card mb-3">
+                                <div class="card-header h4 h4">Filter by Kunjungan Uks Tanggal</div>
+                                <div class="p-2">
+                                    <input class="form-control datepicker"  value="<?php echo $this->set_field_value('kunjungan_uks_Tanggal') ?>" type="datetime"  name="kunjungan_uks_Tanggal" placeholder="" data-enable-time="" data-date-format="Y-m-d" data-alt-format="M j, Y" data-inline="false" data-no-calendar="false" data-mode="range" />
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-group text-center">
+                                    <button class="btn btn-primary">Filter</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <?php
-        }
-        ?>
-        <div  class="">
-            <div class="container-fluid">
-                <div class="row ">
-                    <div class="col-md-12 comp-grid">
-                        <?php $this :: display_page_errors(); ?>
-                        <div  class=" animated fadeIn page-content">
-                            <div id="kunjungan_uks-list-records">
-                                <div id="page-report-body" class="table-responsive">
-                                    <table class="table  table-striped table-sm text-left">
-                                        <thead class="table-header bg-light">
-                                            <tr>
-                                                <?php if($can_delete){ ?>
-                                                <th class="td-checkbox">
-                                                    <label class="custom-control custom-checkbox custom-control-inline">
-                                                        <input class="toggle-check-all custom-control-input" type="checkbox" />
-                                                        <span class="custom-control-label"></span>
-                                                    </label>
-                                                </th>
-                                                <?php } ?>
-                                                <th class="td-sno">#</th>
-                                                <th  class="td-id"> Id</th>
-                                                <th  class="td-NISN"> Nisn</th>
-                                                <th  class="td-Nama"> Nama</th>
-                                                <th  class="td-Kelas"> Kelas</th>
-                                                <th  class="td-Jenis_Kelamin"> Jenis Kelamin</th>
-                                                <th  class="td-Tanggal"> Tanggal</th>
-                                                <th  class="td-Subjective"> Subjective</th>
-                                                <th  class="td-Objective"> Objective</th>
-                                                <th  class="td-Assesment"> Assesment</th>
-                                                <th  class="td-Plan"> Plan</th>
-                                                <th class="td-btn"></th>
-                                            </tr>
-                                        </thead>
-                                        <?php
-                                        if(!empty($records)){
-                                        ?>
-                                        <tbody class="page-data" id="page-data-<?php echo $page_element_id; ?>">
-                                            <!--record-->
-                                            <?php
-                                            $counter = 0;
-                                            foreach($records as $data){
-                                            $rec_id = (!empty($data['id']) ? urlencode($data['id']) : null);
-                                            $counter++;
-                                            ?>
-                                            <tr>
-                                                <?php if($can_delete){ ?>
-                                                <th class=" td-checkbox">
-                                                    <label class="custom-control custom-checkbox custom-control-inline">
-                                                        <input class="optioncheck custom-control-input" name="optioncheck[]" value="<?php echo $data['id'] ?>" type="checkbox" />
+            <?php
+            }
+            ?>
+            <div  class="">
+                <div class="container-fluid">
+                    <div class="row ">
+                        <div class="col-md-12 comp-grid">
+                            <?php $this :: display_page_errors(); ?>
+                            <div class="filter-tags mb-2">
+                                <?php
+                                if(!empty($_GET['kunjungan_uks_Tanggal'])){
+                                ?>
+                                <div class="filter-chip card bg-light">
+                                    <b>Kunjungan Uks Tanggal :</b> 
+                                    <?php
+                                    $date_val = get_value('kunjungan_uks_Tanggal');
+                                    $formated_date = "";
+                                    if(str_contains('-to-', $date_val)){
+                                    //if value is a range date
+                                    $vals = explode('-to-' , str_replace(' ' , '' , $date_val));
+                                    $startdate = $vals[0];
+                                    $enddate = $vals[1];
+                                    $formated_date = format_date($startdate, 'jS F, Y') . ' <span class="text-muted">&#10148;</span> ' . format_date($enddate, 'jS F, Y');
+                                    }
+                                    elseif(str_contains(',', $date_val)){
+                                    //multi date values
+                                    $vals = explode(',' , str_replace(' ' , '' , $date_val));
+                                    $formated_arrs = array_map(function($date){return format_date($date, 'jS F, Y');}, $vals);
+                                    $formated_date = implode(' <span class="text-info">&#11161;</span> ', $formated_arrs);
+                                    }
+                                    else{
+                                    $formated_date = format_date($date_val, 'jS F, Y');
+                                    }
+                                    echo  $formated_date;
+                                    $remove_link = unset_get_value('kunjungan_uks_Tanggal', $this->route->page_url);
+                                    ?>
+                                    <a href="<?php print_link($remove_link); ?>" class="close-btn">
+                                        &times;
+                                    </a>
+                                </div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <div  class=" animated fadeIn page-content">
+                                <div id="kunjungan_uks-list-records">
+                                    <div id="page-report-body" class="table-responsive">
+                                        <table class="table  table-striped table-sm text-left">
+                                            <thead class="table-header bg-light">
+                                                <tr>
+                                                    <th class="td-checkbox">
+                                                        <label class="custom-control custom-checkbox custom-control-inline">
+                                                            <input class="toggle-check-all custom-control-input" type="checkbox" />
                                                             <span class="custom-control-label"></span>
                                                         </label>
                                                     </th>
-                                                    <?php } ?>
-                                                    <th class="td-sno"><?php echo $counter; ?></th>
-                                                    <td class="td-id"><a href="<?php print_link("kunjungan_uks/view/$data[id]") ?>"><?php echo $data['id']; ?></a></td>
-                                                    <td class="td-NISN">
-                                                        <a size="sm" class="btn btn-sm btn-primary page-modal" href="<?php print_link("mcu_tahunan/list/NISN/" . urlencode($data['NISN'])) ?>">
-                                                            <i class="fa fa-eye"></i> <?php echo $data['NISN'] ?>
-                                                        </a>
-                                                    </td>
-                                                    <td class="td-Nama">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Nama']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Nama" 
-                                                            data-title="Enter Nama" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="text" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Nama']; ?> 
-                                                        </span>
-                                                    </td>
-                                                    <td class="td-Kelas">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Kelas']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Kelas" 
-                                                            data-title="Enter Kelas" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="text" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Kelas']; ?> 
-                                                        </span>
-                                                    </td>
-                                                    <td class="td-Jenis_Kelamin">
-                                                        <span <?php if($can_edit){ ?> data-source='<?php echo json_encode_quote(Menu :: $Jenis_Kelamin); ?>' 
-                                                            data-value="<?php echo $data['Jenis_Kelamin']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Jenis_Kelamin" 
-                                                            data-title="Enter Jenis Kelamin" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="radiolist" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Jenis_Kelamin']; ?> 
-                                                        </span>
-                                                    </td>
-                                                    <td class="td-Tanggal">
-                                                        <span <?php if($can_edit){ ?> data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
-                                                            data-value="<?php echo $data['Tanggal']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Tanggal" 
-                                                            data-title="Enter Tanggal" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="flatdatetimepicker" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Tanggal']; ?> 
-                                                        </span>
-                                                    </td>
-                                                    <td class="td-Subjective">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Subjective']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Subjective" 
-                                                            data-title="Enter Subjective" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="text" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Subjective']; ?> 
-                                                        </span>
-                                                    </td>
-                                                    <td class="td-Objective">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Objective']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Objective" 
-                                                            data-title="Enter Objective" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="text" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Objective']; ?> 
-                                                        </span>
-                                                    </td>
-                                                    <td class="td-Assesment">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Assesment']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Assesment" 
-                                                            data-title="Enter Assesment" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="text" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Assesment']; ?> 
-                                                        </span>
-                                                    </td>
-                                                    <td class="td-Plan">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Plan']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Plan" 
-                                                            data-title="Enter Plan" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="text" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Plan']; ?> 
-                                                        </span>
-                                                    </td>
-                                                    <th class="td-btn">
-                                                        <?php if($can_view){ ?>
-                                                        <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("kunjungan_uks/view/$rec_id"); ?>">
-                                                            <i class="fa fa-eye"></i> View
-                                                        </a>
-                                                        <?php } ?>
-                                                        <?php if($can_edit){ ?>
-                                                        <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("kunjungan_uks/edit/$rec_id"); ?>">
-                                                            <i class="fa fa-edit"></i> Edit
-                                                        </a>
-                                                        <?php } ?>
-                                                        <?php if($can_delete){ ?>
-                                                        <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("kunjungan_uks/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
-                                                            <i class="fa fa-times"></i>
-                                                            Delete
-                                                        </a>
-                                                        <?php } ?>
-                                                    </th>
+                                                    <th class="td-sno">#</th>
+                                                    <th  class="td-id"> Id</th>
+                                                    <th  class="td-NISN"> Nisn</th>
+                                                    <th  class="td-Nama"> Nama</th>
+                                                    <th  class="td-Tingkat"> Tingkat</th>
+                                                    <th  class="td-Kelas"> Kelas</th>
+                                                    <th  class="td-Jenis_Kelamin"> Jenis Kelamin</th>
+                                                    <th  class="td-Tanggal"> Tanggal kunjungan</th>
+                                                    <th  class="td-Subjective"> Subjective</th>
+                                                    <th  class="td-Objective"> Objective</th>
+                                                    <th  class="td-Assesment"> Assesment</th>
+                                                    <th  class="td-Plan"> Plan</th>
+                                                    <th class="td-btn"></th>
                                                 </tr>
-                                                <?php 
+                                            </thead>
+                                            <?php
+                                            if(!empty($records)){
+                                            ?>
+                                            <tbody class="page-data" id="page-data-<?php echo $page_element_id; ?>">
+                                                <!--record-->
+                                                <?php
+                                                $counter = 0;
+                                                foreach($records as $data){
+                                                $rec_id = (!empty($data['id']) ? urlencode($data['id']) : null);
+                                                $counter++;
+                                                ?>
+                                                <tr>
+                                                    <th class=" td-checkbox">
+                                                        <label class="custom-control custom-checkbox custom-control-inline">
+                                                            <input class="optioncheck custom-control-input" name="optioncheck[]" value="<?php echo $data['id'] ?>" type="checkbox" />
+                                                                <span class="custom-control-label"></span>
+                                                            </label>
+                                                        </th>
+                                                        <th class="td-sno"><?php echo $counter; ?></th>
+                                                        <td class="td-id"><a href="<?php print_link("kunjungan_uks/view/$data[id]") ?>"><?php echo $data['id']; ?></a></td>
+                                                        <td class="td-NISN">
+                                                            <a size="sm" class="btn btn-sm btn-primary page-modal" href="<?php print_link("mcu_tahunan/list/NISN/" . urlencode($data['NISN'])) ?>">
+                                                                <i class="fa fa-eye"></i> <?php echo $data['NISN'] ?>
+                                                            </a>
+                                                        </td>
+                                                        <td class="td-Nama">
+                                                            <span  data-value="<?php echo $data['Nama']; ?>" 
+                                                                data-pk="<?php echo $data['id'] ?>" 
+                                                                data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
+                                                                data-name="Nama" 
+                                                                data-title="Enter Nama" 
+                                                                data-placement="left" 
+                                                                data-toggle="click" 
+                                                                data-type="text" 
+                                                                data-mode="popover" 
+                                                                data-showbuttons="left" 
+                                                                class="is-editable" >
+                                                                <?php echo $data['Nama']; ?> 
+                                                            </span>
+                                                        </td>
+                                                        <td class="td-Tingkat">
+                                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Tingkat); ?>' 
+                                                                data-value="<?php echo $data['Tingkat']; ?>" 
+                                                                data-pk="<?php echo $data['id'] ?>" 
+                                                                data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
+                                                                data-name="Tingkat" 
+                                                                data-title="Enter Tingkat" 
+                                                                data-placement="left" 
+                                                                data-toggle="click" 
+                                                                data-type="radiolist" 
+                                                                data-mode="popover" 
+                                                                data-showbuttons="left" 
+                                                                class="is-editable" >
+                                                                <?php echo $data['Tingkat']; ?> 
+                                                            </span>
+                                                        </td>
+                                                        <td class="td-Kelas">
+                                                            <span  data-value="<?php echo $data['Kelas']; ?>" 
+                                                                data-pk="<?php echo $data['id'] ?>" 
+                                                                data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
+                                                                data-name="Kelas" 
+                                                                data-title="Enter Kelas" 
+                                                                data-placement="left" 
+                                                                data-toggle="click" 
+                                                                data-type="text" 
+                                                                data-mode="popover" 
+                                                                data-showbuttons="left" 
+                                                                class="is-editable" >
+                                                                <?php echo $data['Kelas']; ?> 
+                                                            </span>
+                                                        </td>
+                                                        <td class="td-Jenis_Kelamin">
+                                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Jenis_Kelamin2); ?>' 
+                                                                data-value="<?php echo $data['Jenis_Kelamin']; ?>" 
+                                                                data-pk="<?php echo $data['id'] ?>" 
+                                                                data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
+                                                                data-name="Jenis_Kelamin" 
+                                                                data-title="Enter Jenis Kelamin" 
+                                                                data-placement="left" 
+                                                                data-toggle="click" 
+                                                                data-type="radiolist" 
+                                                                data-mode="popover" 
+                                                                data-showbuttons="left" 
+                                                                class="is-editable" >
+                                                                <?php echo $data['Jenis_Kelamin']; ?> 
+                                                            </span>
+                                                        </td>
+                                                        <td class="td-Tanggal">
+                                                            <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
+                                                                data-value="<?php echo $data['Tanggal']; ?>" 
+                                                                data-pk="<?php echo $data['id'] ?>" 
+                                                                data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
+                                                                data-name="Tanggal" 
+                                                                data-title="Enter Tanggal kunjungan" 
+                                                                data-placement="left" 
+                                                                data-toggle="click" 
+                                                                data-type="flatdatetimepicker" 
+                                                                data-mode="popover" 
+                                                                data-showbuttons="left" 
+                                                                class="is-editable" >
+                                                                <?php echo $data['Tanggal']; ?> 
+                                                            </span>
+                                                        </td>
+                                                        <td class="td-Subjective">
+                                                            <span  data-value="<?php echo $data['Subjective']; ?>" 
+                                                                data-pk="<?php echo $data['id'] ?>" 
+                                                                data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
+                                                                data-name="Subjective" 
+                                                                data-title="Enter Subjective" 
+                                                                data-placement="left" 
+                                                                data-toggle="click" 
+                                                                data-type="text" 
+                                                                data-mode="popover" 
+                                                                data-showbuttons="left" 
+                                                                class="is-editable" >
+                                                                <?php echo $data['Subjective']; ?> 
+                                                            </span>
+                                                        </td>
+                                                        <td class="td-Objective">
+                                                            <span  data-value="<?php echo $data['Objective']; ?>" 
+                                                                data-pk="<?php echo $data['id'] ?>" 
+                                                                data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
+                                                                data-name="Objective" 
+                                                                data-title="Enter Objective" 
+                                                                data-placement="left" 
+                                                                data-toggle="click" 
+                                                                data-type="text" 
+                                                                data-mode="popover" 
+                                                                data-showbuttons="left" 
+                                                                class="is-editable" >
+                                                                <?php echo $data['Objective']; ?> 
+                                                            </span>
+                                                        </td>
+                                                        <td class="td-Assesment">
+                                                            <span  data-value="<?php echo $data['Assesment']; ?>" 
+                                                                data-pk="<?php echo $data['id'] ?>" 
+                                                                data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
+                                                                data-name="Assesment" 
+                                                                data-title="Enter Assesment" 
+                                                                data-placement="left" 
+                                                                data-toggle="click" 
+                                                                data-type="text" 
+                                                                data-mode="popover" 
+                                                                data-showbuttons="left" 
+                                                                class="is-editable" >
+                                                                <?php echo $data['Assesment']; ?> 
+                                                            </span>
+                                                        </td>
+                                                        <td class="td-Plan">
+                                                            <span  data-value="<?php echo $data['Plan']; ?>" 
+                                                                data-pk="<?php echo $data['id'] ?>" 
+                                                                data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
+                                                                data-name="Plan" 
+                                                                data-title="Enter Plan" 
+                                                                data-placement="left" 
+                                                                data-toggle="click" 
+                                                                data-type="text" 
+                                                                data-mode="popover" 
+                                                                data-showbuttons="left" 
+                                                                class="is-editable" >
+                                                                <?php echo $data['Plan']; ?> 
+                                                            </span>
+                                                        </td>
+                                                        <th class="td-btn">
+                                                            <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("kunjungan_uks/view/$rec_id"); ?>">
+                                                                <i class="fa fa-eye"></i> View
+                                                            </a>
+                                                            <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("kunjungan_uks/edit/$rec_id"); ?>">
+                                                                <i class="fa fa-edit"></i> Edit
+                                                            </a>
+                                                            <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("kunjungan_uks/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
+                                                                <i class="fa fa-times"></i>
+                                                                Delete
+                                                            </a>
+                                                        </th>
+                                                    </tr>
+                                                    <?php 
+                                                    }
+                                                    ?>
+                                                    <!--endrecord-->
+                                                </tbody>
+                                                <tbody class="search-data" id="search-data-<?php echo $page_element_id; ?>"></tbody>
+                                                <?php
                                                 }
                                                 ?>
-                                                <!--endrecord-->
-                                            </tbody>
-                                            <tbody class="search-data" id="search-data-<?php echo $page_element_id; ?>"></tbody>
+                                            </table>
+                                            <?php 
+                                            if(empty($records)){
+                                            ?>
+                                            <h4 class="bg-light text-center border-top text-muted animated bounce  p-3">
+                                                <i class="fa fa-ban"></i> No record found
+                                            </h4>
                                             <?php
                                             }
                                             ?>
-                                        </table>
-                                        <?php 
-                                        if(empty($records)){
-                                        ?>
-                                        <h4 class="bg-light text-center border-top text-muted animated bounce  p-3">
-                                            <i class="fa fa-ban"></i> No record found
-                                        </h4>
+                                        </div>
                                         <?php
-                                        }
+                                        if( $show_footer && !empty($records)){
                                         ?>
-                                    </div>
-                                    <?php
-                                    if( $show_footer && !empty($records)){
-                                    ?>
-                                    <div class=" border-top mt-2">
-                                        <div class="row justify-content-center">    
-                                            <div class="col-md-auto justify-content-center">    
-                                                <div class="p-3 d-flex justify-content-between">    
-                                                    <?php if($can_delete){ ?>
-                                                    <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("kunjungan_uks/delete/{sel_ids}/?csrf_token=$csrf_token&redirect=$current_page"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
-                                                        <i class="fa fa-times"></i> Delete Selected
-                                                    </button>
-                                                    <?php } ?>
-                                                    <div class="dropup export-btn-holder mx-1">
-                                                        <button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <i class="fa fa-save"></i> Export
+                                        <div class=" border-top mt-2">
+                                            <div class="row justify-content-center">    
+                                                <div class="col-md-auto justify-content-center">    
+                                                    <div class="p-3 d-flex justify-content-between">    
+                                                        <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("kunjungan_uks/delete/{sel_ids}/?csrf_token=$csrf_token&redirect=$current_page"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
+                                                            <i class="fa fa-times"></i> Delete Selected
                                                         </button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <?php $export_print_link = $this->set_current_page_link(array('format' => 'print')); ?>
-                                                            <a class="dropdown-item export-link-btn" data-format="print" href="<?php print_link($export_print_link); ?>" target="_blank">
-                                                                <img src="<?php print_link('assets/images/print.png') ?>" class="mr-2" /> PRINT
-                                                                </a>
-                                                                <?php $export_pdf_link = $this->set_current_page_link(array('format' => 'pdf')); ?>
-                                                                <a class="dropdown-item export-link-btn" data-format="pdf" href="<?php print_link($export_pdf_link); ?>" target="_blank">
-                                                                    <img src="<?php print_link('assets/images/pdf.png') ?>" class="mr-2" /> PDF
+                                                        <div class="dropup export-btn-holder mx-1">
+                                                            <button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="fa fa-save"></i> Export
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <?php $export_print_link = $this->set_current_page_link(array('format' => 'print')); ?>
+                                                                <a class="dropdown-item export-link-btn" data-format="print" href="<?php print_link($export_print_link); ?>" target="_blank">
+                                                                    <img src="<?php print_link('assets/images/print.png') ?>" class="mr-2" /> PRINT
                                                                     </a>
-                                                                    <?php $export_word_link = $this->set_current_page_link(array('format' => 'word')); ?>
-                                                                    <a class="dropdown-item export-link-btn" data-format="word" href="<?php print_link($export_word_link); ?>" target="_blank">
-                                                                        <img src="<?php print_link('assets/images/doc.png') ?>" class="mr-2" /> WORD
+                                                                    <?php $export_pdf_link = $this->set_current_page_link(array('format' => 'pdf')); ?>
+                                                                    <a class="dropdown-item export-link-btn" data-format="pdf" href="<?php print_link($export_pdf_link); ?>" target="_blank">
+                                                                        <img src="<?php print_link('assets/images/pdf.png') ?>" class="mr-2" /> PDF
                                                                         </a>
-                                                                        <?php $export_csv_link = $this->set_current_page_link(array('format' => 'csv')); ?>
-                                                                        <a class="dropdown-item export-link-btn" data-format="csv" href="<?php print_link($export_csv_link); ?>" target="_blank">
-                                                                            <img src="<?php print_link('assets/images/csv.png') ?>" class="mr-2" /> CSV
+                                                                        <?php $export_word_link = $this->set_current_page_link(array('format' => 'word')); ?>
+                                                                        <a class="dropdown-item export-link-btn" data-format="word" href="<?php print_link($export_word_link); ?>" target="_blank">
+                                                                            <img src="<?php print_link('assets/images/doc.png') ?>" class="mr-2" /> WORD
                                                                             </a>
-                                                                            <?php $export_excel_link = $this->set_current_page_link(array('format' => 'excel')); ?>
-                                                                            <a class="dropdown-item export-link-btn" data-format="excel" href="<?php print_link($export_excel_link); ?>" target="_blank">
-                                                                                <img src="<?php print_link('assets/images/xsl.png') ?>" class="mr-2" /> EXCEL
+                                                                            <?php $export_csv_link = $this->set_current_page_link(array('format' => 'csv')); ?>
+                                                                            <a class="dropdown-item export-link-btn" data-format="csv" href="<?php print_link($export_csv_link); ?>" target="_blank">
+                                                                                <img src="<?php print_link('assets/images/csv.png') ?>" class="mr-2" /> CSV
                                                                                 </a>
+                                                                                <?php $export_excel_link = $this->set_current_page_link(array('format' => 'excel')); ?>
+                                                                                <a class="dropdown-item export-link-btn" data-format="excel" href="<?php print_link($export_excel_link); ?>" target="_blank">
+                                                                                    <img src="<?php print_link('assets/images/xsl.png') ?>" class="mr-2" /> EXCEL
+                                                                                    </a>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col">   
-                                                                    <?php
-                                                                    if($show_pagination == true){
-                                                                    $pager = new Pagination($total_records, $record_count);
-                                                                    $pager->route = $this->route;
-                                                                    $pager->show_page_count = true;
-                                                                    $pager->show_record_count = true;
-                                                                    $pager->show_page_limit =true;
-                                                                    $pager->limit_count = $this->limit_count;
-                                                                    $pager->show_page_number_list = true;
-                                                                    $pager->pager_link_range=5;
-                                                                    $pager->render();
-                                                                    }
-                                                                    ?>
+                                                                    <div class="col">   
+                                                                        <?php
+                                                                        if($show_pagination == true){
+                                                                        $pager = new Pagination($total_records, $record_count);
+                                                                        $pager->route = $this->route;
+                                                                        $pager->show_page_count = true;
+                                                                        $pager->show_record_count = true;
+                                                                        $pager->show_page_limit =true;
+                                                                        $pager->limit_count = $this->limit_count;
+                                                                        $pager->show_page_number_list = true;
+                                                                        $pager->pager_link_range=5;
+                                                                        $pager->render();
+                                                                        }
+                                                                        ?>
+                                                                    </div>
                                                                 </div>
                                                             </div>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                         </div>
-                                                        <?php
-                                                        }
-                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </section>
+                                </section>

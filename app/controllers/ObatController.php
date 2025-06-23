@@ -18,24 +18,26 @@ class ObatController extends SecureController{
 		$request = $this->request;
 		$db = $this->GetModel();
 		$tablename = $this->tablename;
-		$fields = array("Nama_Obat", 
+		$fields = array("id_obat", 
+			"Nama_Obat", 
+			"Jumlah", 
 			"Asal", 
 			"Tgl_masuk", 
-			"Tgl_EXP", 
-			"id_obat");
+			"Tgl_EXP");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
 		//search table record
 		if(!empty($request->search)){
 			$text = trim($request->search); 
 			$search_condition = "(
+				obat.id_obat LIKE ? OR 
 				obat.Nama_Obat LIKE ? OR 
+				obat.Jumlah LIKE ? OR 
 				obat.Asal LIKE ? OR 
 				obat.Tgl_masuk LIKE ? OR 
-				obat.Tgl_EXP LIKE ? OR 
-				obat.id_obat LIKE ?
+				obat.Tgl_EXP LIKE ?
 			)";
 			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%"
+				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
 			);
 			//setting search conditions
 			$db->where($search_condition, $search_params);
@@ -86,11 +88,12 @@ class ObatController extends SecureController{
 		$db = $this->GetModel();
 		$rec_id = $this->rec_id = urldecode($rec_id);
 		$tablename = $this->tablename;
-		$fields = array("Nama_Obat", 
+		$fields = array("id_obat", 
+			"Nama_Obat", 
+			"Jumlah", 
 			"Asal", 
 			"Tgl_masuk", 
-			"Tgl_EXP", 
-			"id_obat");
+			"Tgl_EXP");
 		if($value){
 			$db->where($rec_id, urldecode($value)); //select record based on field name
 		}
@@ -127,21 +130,21 @@ class ObatController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("Nama_Obat","Asal","Tgl_masuk","Tgl_EXP","id_obat");
+			$fields = $this->fields = array("Nama_Obat","Jumlah","Asal","Tgl_masuk","Tgl_EXP");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'Nama_Obat' => 'required',
+				'Jumlah' => 'required|numeric',
 				'Asal' => 'required',
 				'Tgl_masuk' => 'required',
 				'Tgl_EXP' => 'required',
-				'id_obat' => 'required|numeric',
 			);
 			$this->sanitize_array = array(
 				'Nama_Obat' => 'sanitize_string',
+				'Jumlah' => 'sanitize_string',
 				'Asal' => 'sanitize_string',
 				'Tgl_masuk' => 'sanitize_string',
 				'Tgl_EXP' => 'sanitize_string',
-				'id_obat' => 'sanitize_string',
 			);
 			$this->filter_vals = true; //set whether to remove empty fields
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
@@ -171,22 +174,24 @@ class ObatController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("Nama_Obat","Asal","Tgl_masuk","Tgl_EXP","id_obat");
+		$fields = $this->fields = array("id_obat","Nama_Obat","Jumlah","Asal","Tgl_masuk","Tgl_EXP");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
+				'id_obat' => 'required|numeric',
 				'Nama_Obat' => 'required',
+				'Jumlah' => 'required|numeric',
 				'Asal' => 'required',
 				'Tgl_masuk' => 'required',
 				'Tgl_EXP' => 'required',
-				'id_obat' => 'required|numeric',
 			);
 			$this->sanitize_array = array(
+				'id_obat' => 'sanitize_string',
 				'Nama_Obat' => 'sanitize_string',
+				'Jumlah' => 'sanitize_string',
 				'Asal' => 'sanitize_string',
 				'Tgl_masuk' => 'sanitize_string',
 				'Tgl_EXP' => 'sanitize_string',
-				'id_obat' => 'sanitize_string',
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
@@ -230,7 +235,7 @@ class ObatController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("Nama_Obat","Asal","Tgl_masuk","Tgl_EXP","id_obat");
+		$fields = $this->fields = array("id_obat","Nama_Obat","Jumlah","Asal","Tgl_masuk","Tgl_EXP");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -239,18 +244,20 @@ class ObatController extends SecureController{
 			$postdata[$fieldname] = $fieldvalue;
 			$postdata = $this->format_request_data($postdata);
 			$this->rules_array = array(
+				'id_obat' => 'required|numeric',
 				'Nama_Obat' => 'required',
+				'Jumlah' => 'required|numeric',
 				'Asal' => 'required',
 				'Tgl_masuk' => 'required',
 				'Tgl_EXP' => 'required',
-				'id_obat' => 'required|numeric',
 			);
 			$this->sanitize_array = array(
+				'id_obat' => 'sanitize_string',
 				'Nama_Obat' => 'sanitize_string',
+				'Jumlah' => 'sanitize_string',
 				'Asal' => 'sanitize_string',
 				'Tgl_masuk' => 'sanitize_string',
 				'Tgl_EXP' => 'sanitize_string',
-				'id_obat' => 'sanitize_string',
 			);
 			$this->filter_rules = true; //filter validation rules by excluding fields not in the formdata
 			$modeldata = $this->modeldata = $this->validate_form($postdata);

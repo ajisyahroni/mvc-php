@@ -52,11 +52,28 @@ $redirect_to = $this->redirect_to;
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <label class="control-label" for="Kegiatan">Kegiatan <span class="text-danger">*</span></label>
+                                                <label class="control-label" for="Kegiatan">Jenis Kegiatan <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <input id="ctrl-Kegiatan"  value="<?php  echo $data['Kegiatan']; ?>" type="text" placeholder="Enter Kegiatan"  required="" name="Kegiatan"  class="form-control " />
+                                                    <?php
+                                                    $Kegiatan_options = Menu :: $Kegiatan;
+                                                    $field_value = $data['Kegiatan'];
+                                                    if(!empty($Kegiatan_options)){
+                                                    foreach($Kegiatan_options as $option){
+                                                    $value = $option['value'];
+                                                    $label = $option['label'];
+                                                    //check if value is among checked options
+                                                    $checked = $this->check_form_field_checked($field_value, $value);
+                                                    ?>
+                                                    <label class="form-check option-btn">
+                                                        <input id="ctrl-Kegiatan" class="form-check-input" value="<?php echo $value ?>" <?php echo $checked ?> type="checkbox" required=""  name="Kegiatan[]" />
+                                                            <span class="form-check-label"><?php echo $label ?></span>
+                                                        </label>
+                                                        <?php
+                                                        }
+                                                        }
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>

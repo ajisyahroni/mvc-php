@@ -35,12 +35,27 @@ $redirect_to = $this->redirect_to;
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label class="control-label" for="NISN">Nisn <span class="text-danger">*</span></label>
-                                            <span id="NISN-loading" style="display: none;">memuat . . .</span>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="">
-                                                <input id="ctrl-NISN"  value="<?php  echo $this->set_field_value('NISN',""); ?>" type="text" placeholder="Enter NISN"  required="" name="NISN"  class="form-control " />
-                                            
+                                                <select required=""  id="ctrl-NISN" name="NISN"  placeholder="Select a value ..."    class="selectize" >
+                                                    <option value="">Select a value ...</option>
+                                                    <?php 
+                                                    $NISN_options = $comp_model -> kunjungan_uks_NISN_option_list();
+                                                    if(!empty($NISN_options)){
+                                                    foreach($NISN_options as $option){
+                                                    $value = (!empty($option['value']) ? $option['value'] : null);
+                                                    $label = (!empty($option['label']) ? $option['label'] : $value);
+                                                    $selected = $this->set_field_selected('NISN',$value, "");
+                                                    ?>
+                                                    <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+                                                        <?php echo $label; ?>
+                                                    </option>
+                                                    <?php
+                                                    }
+                                                    }
+                                                    ?>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -60,11 +75,27 @@ $redirect_to = $this->redirect_to;
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <label class="control-label" for="Kelas">Kelas <span class="text-danger">*</span></label>
+                                                <label class="control-label" for="Tingkat">Tingkat <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <input id="ctrl-Kelas"  value="<?php  echo $this->set_field_value('Kelas',""); ?>" type="text" placeholder="Enter Kelas"  required="" name="Kelas"  class="form-control " />
+                                                    <?php
+                                                    $Tingkat_options = Menu :: $Tingkat;
+                                                    if(!empty($Tingkat_options)){
+                                                    foreach($Tingkat_options as $option){
+                                                    $value = $option['value'];
+                                                    $label = $option['label'];
+                                                    //check if current option is checked option
+                                                    $checked = $this->set_field_checked('Tingkat', $value, "");
+                                                    ?>
+                                                    <label class="custom-control custom-radio custom-control-inline">
+                                                        <input id="ctrl-Tingkat" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Tingkat" />
+                                                            <span class="custom-control-label"><?php echo $label ?></span>
+                                                        </label>
+                                                        <?php
+                                                        }
+                                                        }
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -72,27 +103,11 @@ $redirect_to = $this->redirect_to;
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label class="control-label" for="Jenis_Kelamin">Jenis Kelamin <span class="text-danger">*</span></label>
+                                                    <label class="control-label" for="Kelas">Kelas <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="">
-                                                        <?php
-                                                        $Jenis_Kelamin_options = Menu :: $Jenis_Kelamin;
-                                                        if(!empty($Jenis_Kelamin_options)){
-                                                        foreach($Jenis_Kelamin_options as $option){
-                                                        $value = $option['value'];
-                                                        $label = $option['label'];
-                                                        //check if current option is checked option
-                                                        $checked = $this->set_field_checked('Jenis_Kelamin', $value, "");
-                                                        ?>
-                                                        <label class="custom-control custom-radio custom-control-inline">
-                                                            <input id="ctrl-Jenis_Kelamin" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Jenis_Kelamin" />
-                                                                <span class="custom-control-label"><?php echo $label ?></span>
-                                                            </label>
-                                                            <?php
-                                                            }
-                                                            }
-                                                            ?>
+                                                        <input id="ctrl-Kelas"  value="<?php  echo $this->set_field_value('Kelas',""); ?>" type="text" placeholder="Enter Kelas"  required="" name="Kelas"  class="form-control " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -100,14 +115,27 @@ $redirect_to = $this->redirect_to;
                                             <div class="form-group ">
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <label class="control-label" for="Tanggal">Tanggal <span class="text-danger">*</span></label>
+                                                        <label class="control-label" for="Jenis_Kelamin">Jenis Kelamin <span class="text-danger">*</span></label>
                                                     </div>
                                                     <div class="col-sm-8">
-                                                        <div class="input-group">
-                                                            <input id="ctrl-Tanggal" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('Tanggal',""); ?>" type="datetime" name="Tanggal" placeholder="Enter Tanggal" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                                                </div>
+                                                        <div class="">
+                                                            <?php
+                                                            $Jenis_Kelamin_options = Menu :: $Jenis_Kelamin2;
+                                                            if(!empty($Jenis_Kelamin_options)){
+                                                            foreach($Jenis_Kelamin_options as $option){
+                                                            $value = $option['value'];
+                                                            $label = $option['label'];
+                                                            //check if current option is checked option
+                                                            $checked = $this->set_field_checked('Jenis_Kelamin', $value, "");
+                                                            ?>
+                                                            <label class="custom-control custom-radio custom-control-inline">
+                                                                <input id="ctrl-Jenis_Kelamin" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Jenis_Kelamin" />
+                                                                    <span class="custom-control-label"><?php echo $label ?></span>
+                                                                </label>
+                                                                <?php
+                                                                }
+                                                                }
+                                                                ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -115,11 +143,14 @@ $redirect_to = $this->redirect_to;
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="Subjective">Subjective <span class="text-danger">*</span></label>
+                                                            <label class="control-label" for="Tanggal">Tanggal kunjungan <span class="text-danger">*</span></label>
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <div class="">
-                                                                <input id="ctrl-Subjective"  value="<?php  echo $this->set_field_value('Subjective',""); ?>" type="text" placeholder="Enter Subjective"  required="" name="Subjective"  class="form-control " />
+                                                            <div class="input-group">
+                                                                <input id="ctrl-Tanggal" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('Tanggal',""); ?>" type="datetime" name="Tanggal" placeholder="Enter Tanggal kunjungan" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -127,11 +158,11 @@ $redirect_to = $this->redirect_to;
                                                     <div class="form-group ">
                                                         <div class="row">
                                                             <div class="col-sm-4">
-                                                                <label class="control-label" for="Objective">Objective <span class="text-danger">*</span></label>
+                                                                <label class="control-label" for="Subjective">Subjective <span class="text-danger">*</span></label>
                                                             </div>
                                                             <div class="col-sm-8">
                                                                 <div class="">
-                                                                    <input id="ctrl-Objective"  value="<?php  echo $this->set_field_value('Objective',""); ?>" type="text" placeholder="Enter Objective"  required="" name="Objective"  class="form-control " />
+                                                                    <input id="ctrl-Subjective"  value="<?php  echo $this->set_field_value('Subjective',""); ?>" type="text" placeholder="Enter Subjective"  required="" name="Subjective"  class="form-control " />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -139,11 +170,11 @@ $redirect_to = $this->redirect_to;
                                                         <div class="form-group ">
                                                             <div class="row">
                                                                 <div class="col-sm-4">
-                                                                    <label class="control-label" for="Assesment">Assesment <span class="text-danger">*</span></label>
+                                                                    <label class="control-label" for="Objective">Objective <span class="text-danger">*</span></label>
                                                                 </div>
                                                                 <div class="col-sm-8">
                                                                     <div class="">
-                                                                        <input id="ctrl-Assesment"  value="<?php  echo $this->set_field_value('Assesment',""); ?>" type="text" placeholder="Enter Assesment"  required="" name="Assesment"  class="form-control " />
+                                                                        <input id="ctrl-Objective"  value="<?php  echo $this->set_field_value('Objective',""); ?>" type="text" placeholder="Enter Objective"  required="" name="Objective"  class="form-control " />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -151,79 +182,39 @@ $redirect_to = $this->redirect_to;
                                                             <div class="form-group ">
                                                                 <div class="row">
                                                                     <div class="col-sm-4">
-                                                                        <label class="control-label" for="Plan">Plan <span class="text-danger">*</span></label>
+                                                                        <label class="control-label" for="Assesment">Assesment <span class="text-danger">*</span></label>
                                                                     </div>
                                                                     <div class="col-sm-8">
                                                                         <div class="">
-                                                                            <input id="ctrl-Plan"  value="<?php  echo $this->set_field_value('Plan',""); ?>" type="text" placeholder="Enter Plan"  required="" name="Plan"  class="form-control " />
+                                                                            <input id="ctrl-Assesment"  value="<?php  echo $this->set_field_value('Assesment',""); ?>" type="text" placeholder="Enter Assesment"  required="" name="Assesment"  class="form-control " />
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="form-group form-submit-btn-holder text-center mt-3">
-                                                                <div class="form-ajax-status"></div>
-                                                                <button class="btn btn-primary" type="submit">
-                                                                    Submit
-                                                                    <i class="fa fa-send"></i>
-                                                                </button>
-                                                            </div>
-                                                        </form>
+                                                                <div class="form-group ">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-4">
+                                                                            <label class="control-label" for="Plan">Plan <span class="text-danger">*</span></label>
+                                                                        </div>
+                                                                        <div class="col-sm-8">
+                                                                            <div class="">
+                                                                                <input id="ctrl-Plan"  value="<?php  echo $this->set_field_value('Plan',""); ?>" type="text" placeholder="Enter Plan"  required="" name="Plan"  class="form-control " />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group form-submit-btn-holder text-center mt-3">
+                                                                    <div class="form-ajax-status"></div>
+                                                                    <button class="btn btn-primary" type="submit">
+                                                                        Submit
+                                                                        <i class="fa fa-send"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </section>
-
-<script>
-    const getDataByNisn = (nisn) => {
-        return fetch(`/api/simple_json?nisn=${nisn}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    return data.data;
-                } else {
-                    throw new Error(data.message || 'Data not found');
-                }
-            });
-    };
-    const debounce = (func, delay) => {
-                    let timeoutId;
-                    return (...args) => {
-                        clearTimeout(timeoutId);
-                        timeoutId = setTimeout(() => func(...args), delay);
-                    };
-                };
-    document
-        .getElementById("ctrl-NISN")
-        .addEventListener("input", function() {
-            const nisn = this.value;
-            if (nisn.length >= 3) { 
-                const fetchData = debounce((nisn) => {
-                    document.getElementById("NISN-loading").style.display = 'inline';
-                    document.getElementById("ctrl-Nama").value = '';
-                    document.getElementById("ctrl-Kelas").value = '';
-
-                    getDataByNisn(nisn)
-                        .then(data => {
-                            document.getElementById("ctrl-Nama").value = data.Nama || '';
-                            document.getElementById("ctrl-Kelas").value = data.Kelas || '';
-                        })
-                        .catch(error => {
-                            console.error('Error fetching data:', error);
-                        })
-                        .finally(() => {
-                            setTimeout(() => {
-                                document.getElementById("NISN-loading").style.display = 'none';
-                            }, 700);
-                        });
-                }, 300);
-
-                fetchData(nisn);
-            } else {
-                document.getElementById("ctrl-Nama").value = '';
-                document.getElementById("ctrl-Kelas").value = '';
-            }
-        });
-</script>
+                                    </section>

@@ -46,11 +46,11 @@ $redirect_to = $this->redirect_to;
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <label class="control-label" for="Asal">Asal <span class="text-danger">*</span></label>
+                                                <label class="control-label" for="Jumlah">Jumlah <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <input id="ctrl-Asal"  value="<?php  echo $this->set_field_value('Asal',""); ?>" type="text" placeholder="Enter Asal"  required="" name="Asal"  class="form-control " />
+                                                    <input id="ctrl-Jumlah"  value="<?php  echo $this->set_field_value('Jumlah',""); ?>" type="number" placeholder="Enter Jumlah" step="1"  required="" name="Jumlah"  class="form-control " />
                                                     </div>
                                                 </div>
                                             </div>
@@ -58,14 +58,11 @@ $redirect_to = $this->redirect_to;
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label class="control-label" for="Tgl_masuk">Tgl Masuk <span class="text-danger">*</span></label>
+                                                    <label class="control-label" for="Asal">Asal <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-sm-8">
-                                                    <div class="input-group">
-                                                        <input id="ctrl-Tgl_masuk" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('Tgl_masuk',""); ?>" type="datetime" name="Tgl_masuk" placeholder="Enter Tgl Masuk" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
-                                                            <div class="input-group-append">
-                                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                                            </div>
+                                                    <div class="">
+                                                        <input id="ctrl-Asal"  value="<?php  echo $this->set_field_value('Asal',""); ?>" type="text" placeholder="Enter Asal"  required="" name="Asal"  class="form-control " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -73,11 +70,11 @@ $redirect_to = $this->redirect_to;
                                             <div class="form-group ">
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <label class="control-label" for="Tgl_EXP">Tgl Exp <span class="text-danger">*</span></label>
+                                                        <label class="control-label" for="Tgl_masuk">Tgl Masuk <span class="text-danger">*</span></label>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="input-group">
-                                                            <input id="ctrl-Tgl_EXP" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('Tgl_EXP',""); ?>" type="datetime" name="Tgl_EXP" placeholder="Enter Tgl Exp" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
+                                                            <input id="ctrl-Tgl_masuk" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('Tgl_masuk',""); ?>" type="datetime" name="Tgl_masuk" placeholder="Enter Tgl Masuk" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                                 </div>
@@ -88,11 +85,14 @@ $redirect_to = $this->redirect_to;
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="id_obat">Id Obat <span class="text-danger">*</span></label>
+                                                            <label class="control-label" for="Tgl_EXP">Tgl Exp <span class="text-danger">*</span></label>
                                                         </div>
                                                         <div class="col-sm-8">
-                                                            <div class="">
-                                                                <input id="ctrl-id_obat"  value="<?php  echo $this->set_field_value('id_obat',""); ?>" type="number" placeholder="Enter Id Obat" step="1"  required="" name="id_obat"  class="form-control " />
+                                                            <div class="input-group">
+                                                                <input id="ctrl-Tgl_EXP" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('Tgl_EXP',""); ?>" type="datetime" name="Tgl_EXP" placeholder="Enter Tgl Exp" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>

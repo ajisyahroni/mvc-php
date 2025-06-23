@@ -1,4 +1,4 @@
-<div id="topbar" class="navbar navbar-expand-md fixed-top navbar-light bg-primary">
+<div id="topbar" class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?php print_link(HOME_PAGE) ?>">
             <img class="img-responsive" src="<?php print_link(SITE_LOGO); ?>" /> <?php echo SITE_NAME ?>
@@ -34,7 +34,7 @@
     <?php 
     if(user_login_status() == true ){ 
     ?>
-    <nav id="sidebar" class="navbar-light bg-primary">
+    <nav id="sidebar" class="navbar-dark bg-primary">
         <ul class="nav navbar-nav w-100 flex-column align-self-start">
             <li class="menu-profile text-center nav-item">
                 <a class="avatar" href="<?php print_link('account') ?>">
@@ -42,7 +42,6 @@
                 </a>
                 <h5 class="user-name">Hi 
                     <?php echo ucwords(USER_NAME); ?>
-                    <small class="text-muted"><?php echo ACL::$user_role; ?> </small>
                 </h5>
                 <div class="dropdown menu-dropdown">
                     <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

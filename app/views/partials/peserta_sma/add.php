@@ -15,7 +15,7 @@ $redirect_to = $this->redirect_to;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Add New Peserta Sma</h4>
+                    <h4 class="record-title">Add New Peserta SMA</h4>
                 </div>
             </div>
         </div>
@@ -79,7 +79,23 @@ $redirect_to = $this->redirect_to;
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <input id="ctrl-Jenis_Kelamin"  value="<?php  echo $this->set_field_value('Jenis_Kelamin',""); ?>" type="text" placeholder="Enter Jenis Kelamin"  required="" name="Jenis_Kelamin"  class="form-control " />
+                                                    <?php
+                                                    $Jenis_Kelamin_options = Menu :: $Jenis_Kelamin2;
+                                                    if(!empty($Jenis_Kelamin_options)){
+                                                    foreach($Jenis_Kelamin_options as $option){
+                                                    $value = $option['value'];
+                                                    $label = $option['label'];
+                                                    //check if current option is checked option
+                                                    $checked = $this->set_field_checked('Jenis_Kelamin', $value, "");
+                                                    ?>
+                                                    <label class="custom-control custom-radio custom-control-inline">
+                                                        <input id="ctrl-Jenis_Kelamin" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Jenis_Kelamin" />
+                                                            <span class="custom-control-label"><?php echo $label ?></span>
+                                                        </label>
+                                                        <?php
+                                                        }
+                                                        }
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -136,18 +152,30 @@ $redirect_to = $this->redirect_to;
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group form-submit-btn-holder text-center mt-3">
-                                                    <div class="form-ajax-status"></div>
-                                                    <button class="btn btn-primary" type="submit">
-                                                        Submit
-                                                        <i class="fa fa-send"></i>
-                                                    </button>
-                                                </div>
-                                            </form>
+                                                    <div class="form-group ">
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label" for="SA">Sa </label>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <div class="">
+                                                                    <input id="ctrl-SA"  value="<?php  echo $this->set_field_value('SA',""); ?>" type="text" placeholder="Enter Sa"  name="SA"  class="form-control " />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group form-submit-btn-holder text-center mt-3">
+                                                        <div class="form-ajax-status"></div>
+                                                        <button class="btn btn-primary" type="submit">
+                                                            Submit
+                                                            <i class="fa fa-send"></i>
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>

@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("mcu_tahunan/add");
-$can_edit = ACL::is_allowed("mcu_tahunan/edit");
-$can_view = ACL::is_allowed("mcu_tahunan/view");
-$can_delete = ACL::is_allowed("mcu_tahunan/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "view-page-" . random_str();
@@ -71,7 +64,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Nama">
                                         <th class="title"> Nama: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Nama']; ?>" 
+                                            <span  data-value="<?php echo $data['Nama']; ?>" 
                                                 data-pk="<?php echo $data['id_mcu'] ?>" 
                                                 data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
                                                 data-name="Nama" 
@@ -81,159 +74,15 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Nama']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-Kelas">
-                                        <th class="title"> Kelas: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Kelas']; ?>" 
-                                                data-pk="<?php echo $data['id_mcu'] ?>" 
-                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
-                                                data-name="Kelas" 
-                                                data-title="Enter Kelas" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['Kelas']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-Tanggal">
-                                        <th class="title"> Tanggal: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Tanggal']; ?>" 
-                                                data-pk="<?php echo $data['id_mcu'] ?>" 
-                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
-                                                data-name="Tanggal" 
-                                                data-title="Enter Tanggal" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['Tanggal']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-TB">
-                                        <th class="title"> Tb: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['TB']; ?>" 
-                                                data-pk="<?php echo $data['id_mcu'] ?>" 
-                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
-                                                data-name="TB" 
-                                                data-title="Enter Tb" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="number" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['TB']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-BB">
-                                        <th class="title"> Bb: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['BB']; ?>" 
-                                                data-pk="<?php echo $data['id_mcu'] ?>" 
-                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
-                                                data-name="BB" 
-                                                data-title="Enter Bb" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['BB']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-Goldar">
-                                        <th class="title"> Goldar: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Goldar']; ?>" 
-                                                data-pk="<?php echo $data['id_mcu'] ?>" 
-                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
-                                                data-name="Goldar" 
-                                                data-title="Enter Goldar" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['Goldar']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-Anggota_tubuh">
-                                        <th class="title"> Anggota Tubuh: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Anggota_tubuh']; ?>" 
-                                                data-pk="<?php echo $data['id_mcu'] ?>" 
-                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
-                                                data-name="Anggota_tubuh" 
-                                                data-title="Enter Anggota Tubuh" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['Anggota_tubuh']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-Masalah">
-                                        <th class="title"> Masalah: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Masalah']; ?>" 
-                                                data-pk="<?php echo $data['id_mcu'] ?>" 
-                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
-                                                data-name="Masalah" 
-                                                data-title="Enter Masalah" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['Masalah']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-Riwayat_kesehatan">
-                                        <th class="title"> Riwayat Kesehatan: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Riwayat_kesehatan']; ?>" 
-                                                data-pk="<?php echo $data['id_mcu'] ?>" 
-                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
-                                                data-name="Riwayat_kesehatan" 
-                                                data-title="Enter Riwayat Kesehatan" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['Riwayat_kesehatan']; ?> 
                                             </span>
                                         </td>
                                     </tr>
                                     <tr  class="td-Jenis_Kelamin">
                                         <th class="title"> Jenis Kelamin: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Jenis_Kelamin']; ?>" 
+                                            <span  data-value="<?php echo $data['Jenis_Kelamin']; ?>" 
                                                 data-pk="<?php echo $data['id_mcu'] ?>" 
                                                 data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
                                                 data-name="Jenis_Kelamin" 
@@ -243,8 +92,266 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Jenis_Kelamin']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Kelas">
+                                        <th class="title"> Kelas: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['Kelas']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Kelas" 
+                                                data-title="Enter Kelas" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Kelas']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Tanggal">
+                                        <th class="title"> Tanggal: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['Tanggal']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Tanggal" 
+                                                data-title="Enter Tanggal" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Tanggal']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-TB">
+                                        <th class="title"> Tb: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['TB']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="TB" 
+                                                data-title="Enter Tb" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="number" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['TB']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-BB">
+                                        <th class="title"> Bb: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['BB']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="BB" 
+                                                data-title="Enter Bb" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['BB']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Goldar">
+                                        <th class="title"> Goldar: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['Goldar']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Goldar" 
+                                                data-title="Enter Goldar" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Goldar']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Kepala">
+                                        <th class="title"> Kepala: </th>
+                                        <td class="value">
+                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Kepala); ?>' 
+                                                data-value="<?php echo $data['Kepala']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Kepala" 
+                                                data-title="Enter Kepala" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="radiolist" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Kepala']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Thorax">
+                                        <th class="title"> Thorax: </th>
+                                        <td class="value">
+                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Kepala); ?>' 
+                                                data-value="<?php echo $data['Thorax']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Thorax" 
+                                                data-title="Enter Thorax" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="radiolist" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Thorax']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Abdomen">
+                                        <th class="title"> Abdomen: </th>
+                                        <td class="value">
+                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Kepala); ?>' 
+                                                data-value="<?php echo $data['Abdomen']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Abdomen" 
+                                                data-title="Enter Abdomen" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="radiolist" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Abdomen']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Extremitas">
+                                        <th class="title"> Extremitas: </th>
+                                        <td class="value">
+                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Kepala); ?>' 
+                                                data-value="<?php echo $data['Extremitas']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Extremitas" 
+                                                data-title="Enter Extremitas" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="radiolist" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Extremitas']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Luka_terbuka">
+                                        <th class="title"> Luka Terbuka: </th>
+                                        <td class="value">
+                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Luka_terbuka); ?>' 
+                                                data-value="<?php echo $data['Luka_terbuka']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Luka_terbuka" 
+                                                data-title="Enter Luka Terbuka" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="radiolist" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Luka_terbuka']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Patah_tulang">
+                                        <th class="title"> Patah Tulang: </th>
+                                        <td class="value">
+                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Luka_terbuka); ?>' 
+                                                data-value="<?php echo $data['Patah_tulang']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Patah_tulang" 
+                                                data-title="Enter Patah Tulang" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="radiolist" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Patah_tulang']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Masalah">
+                                        <th class="title"> Masalah: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['Masalah']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Masalah" 
+                                                data-title="Enter Masalah" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Masalah']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Riwayat_kesehatan">
+                                        <th class="title"> Riwayat Kesehatan: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['Riwayat_kesehatan']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Riwayat_kesehatan" 
+                                                data-title="Enter Riwayat Kesehatan" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Riwayat_kesehatan']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Hasil_penunjang">
+                                        <th class="title"> Hasil Penunjang: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['Hasil_penunjang']; ?>" 
+                                                data-pk="<?php echo $data['id_mcu'] ?>" 
+                                                data-url="<?php print_link("mcu_tahunan/editfield/" . urlencode($data['id_mcu'])); ?>" 
+                                                data-name="Hasil_penunjang" 
+                                                data-title="Browse..." 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Hasil_penunjang']; ?> 
                                             </span>
                                         </td>
                                     </tr>
@@ -280,16 +387,12 @@ $show_export_btn = $this->show_export_btn;
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <?php if($can_edit){ ?>
                                                 <a class="btn btn-sm btn-info"  href="<?php print_link("mcu_tahunan/edit/$rec_id"); ?>">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <?php } ?>
-                                                <?php if($can_delete){ ?>
                                                 <a class="btn btn-sm btn-danger record-delete-btn mx-1"  href="<?php print_link("mcu_tahunan/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                     <i class="fa fa-times"></i> Delete
                                                 </a>
-                                                <?php } ?>
                                             </div>
                                             <?php
                                             }

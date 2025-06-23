@@ -101,6 +101,22 @@ class SharedController extends BaseController{
 	}
 
 	/**
+     * getcount_kunjunganuks Model Action
+     * @return Value
+     */
+	function getcount_kunjunganuks(){
+		$db = $this->GetModel();
+		$sqltext = "SELECT COUNT(*) AS num FROM kunjungan_uks";
+		$queryparams = null;
+		$val = $db->rawQueryValue($sqltext, $queryparams);
+		
+		if(is_array($val)){
+			return $val[0];
+		}
+		return $val;
+	}
+
+	/**
 	* doughnutchart_kunjunganuksberdasarkangender Model Action
 	* @return array
 	*/
@@ -125,26 +141,10 @@ class SharedController extends BaseController{
 	}
 
 	/**
-     * getcount_kunjunganuks Model Action
-     * @return Value
-     */
-	function getcount_kunjunganuks(){
-		$db = $this->GetModel();
-		$sqltext = "SELECT COUNT(*) AS num FROM kunjungan_uks";
-		$queryparams = null;
-		$val = $db->rawQueryValue($sqltext, $queryparams);
-		
-		if(is_array($val)){
-			return $val[0];
-		}
-		return $val;
-	}
-
-	/**
-	* barchart_perhari Model Action
+	* piechart_kunjunganuksberdasarkankelompok Model Action
 	* @return array
 	*/
-	function barchart_perhari(){
+	function piechart_kunjunganuksberdasarkankelompok(){
 		
 		$db = $this->GetModel();
 		$chart_data = array(
@@ -153,11 +153,59 @@ class SharedController extends BaseController{
 		);
 		
 		//set query result for dataset 1
-		$sqltext = "SELECT  COUNT(ku.NISN) AS count_of_NISN, DAY(ku.Tanggal) AS day_of_Tanggal FROM kunjungan_uks AS ku GROUP BY day_of_Tanggal";
+		$sqltext = "SELECT  COUNT(ku.NISN) AS count_of_NISN, ku.Tingkat FROM kunjungan_uks AS ku GROUP BY ku.Tingkat";
 		$queryparams = null;
 		$dataset1 = $db->rawQuery($sqltext, $queryparams);
-		$dataset_data =  array_column($dataset1, 'count_of_Nama');
-		$dataset_labels =  array_column($dataset1, 'day_of_Tanggal');
+		$dataset_data =  array_column($dataset1, 'count_of_NISN');
+		$dataset_labels =  array_column($dataset1, 'Tingkat');
+		$chart_data["labels"] = array_unique(array_merge($chart_data["labels"], $dataset_labels));
+		$chart_data["datasets"][] = $dataset_data;
+
+		return $chart_data;
+	}
+
+	/**
+	* barchart_kunjunganpertanggal Model Action
+	* @return array
+	*/
+	function barchart_kunjunganpertanggal(){
+		
+		$db = $this->GetModel();
+		$chart_data = array(
+			"labels"=> array(),
+			"datasets"=> array(),
+		);
+		
+		//set query result for dataset 1
+		$sqltext = "SELECT  COUNT(ku.NISN) AS count_of_NISN, DAY(ku.Tanggal) AS date_of_Tanggal FROM kunjungan_uks AS ku GROUP BY date_of_Tanggal";
+		$queryparams = null;
+		$dataset1 = $db->rawQuery($sqltext, $queryparams);
+		$dataset_data =  array_column($dataset1, 'count_of_NISN');
+		$dataset_labels =  array_column($dataset1, 'date_of_Tanggal');
+		$chart_data["labels"] = array_unique(array_merge($chart_data["labels"], $dataset_labels));
+		$chart_data["datasets"][] = $dataset_data;
+
+		return $chart_data;
+	}
+
+	/**
+	* piechart_keluhan Model Action
+	* @return array
+	*/
+	function piechart_keluhan(){
+		
+		$db = $this->GetModel();
+		$chart_data = array(
+			"labels"=> array(),
+			"datasets"=> array(),
+		);
+		
+		//set query result for dataset 1
+		$sqltext = "SELECT  COUNT(ku.NISN) AS count_of_NISN, ku.Subjective FROM kunjungan_uks AS ku GROUP BY ku.Subjective";
+		$queryparams = null;
+		$dataset1 = $db->rawQuery($sqltext, $queryparams);
+		$dataset_data =  array_column($dataset1, 'count_of_NISN');
+		$dataset_labels =  array_column($dataset1, 'Subjective');
 		$chart_data["labels"] = array_unique(array_merge($chart_data["labels"], $dataset_labels));
 		$chart_data["datasets"][] = $dataset_data;
 

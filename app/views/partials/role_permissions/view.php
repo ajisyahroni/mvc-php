@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("role_permissions/add");
-$can_edit = ACL::is_allowed("role_permissions/edit");
-$can_view = ACL::is_allowed("role_permissions/view");
-$can_delete = ACL::is_allowed("role_permissions/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "view-page-" . random_str();
@@ -59,7 +52,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-role_id">
                                         <th class="title"> Role Id: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['role_id']; ?>" 
+                                            <span  data-value="<?php echo $data['role_id']; ?>" 
                                                 data-pk="<?php echo $data['permission_id'] ?>" 
                                                 data-url="<?php print_link("role_permissions/editfield/" . urlencode($data['permission_id'])); ?>" 
                                                 data-name="role_id" 
@@ -69,7 +62,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="number" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['role_id']; ?> 
                                             </span>
                                         </td>
@@ -77,7 +70,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-page_name">
                                         <th class="title"> Page Name: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['page_name']; ?>" 
+                                            <span  data-value="<?php echo $data['page_name']; ?>" 
                                                 data-pk="<?php echo $data['permission_id'] ?>" 
                                                 data-url="<?php print_link("role_permissions/editfield/" . urlencode($data['permission_id'])); ?>" 
                                                 data-name="page_name" 
@@ -87,7 +80,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['page_name']; ?> 
                                             </span>
                                         </td>
@@ -95,7 +88,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-action_name">
                                         <th class="title"> Action Name: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['action_name']; ?>" 
+                                            <span  data-value="<?php echo $data['action_name']; ?>" 
                                                 data-pk="<?php echo $data['permission_id'] ?>" 
                                                 data-url="<?php print_link("role_permissions/editfield/" . urlencode($data['permission_id'])); ?>" 
                                                 data-name="action_name" 
@@ -105,7 +98,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['action_name']; ?> 
                                             </span>
                                         </td>
@@ -142,16 +135,12 @@ $show_export_btn = $this->show_export_btn;
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <?php if($can_edit){ ?>
                                                 <a class="btn btn-sm btn-info"  href="<?php print_link("role_permissions/edit/$rec_id"); ?>">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <?php } ?>
-                                                <?php if($can_delete){ ?>
                                                 <a class="btn btn-sm btn-danger record-delete-btn mx-1"  href="<?php print_link("role_permissions/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                     <i class="fa fa-times"></i> Delete
                                                 </a>
-                                                <?php } ?>
                                             </div>
                                             <?php
                                             }

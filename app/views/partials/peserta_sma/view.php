@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("peserta_sma/add");
-$can_edit = ACL::is_allowed("peserta_sma/edit");
-$can_view = ACL::is_allowed("peserta_sma/view");
-$can_delete = ACL::is_allowed("peserta_sma/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "view-page-" . random_str();
@@ -67,7 +60,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Nama">
                                         <th class="title"> Nama: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Nama']; ?>" 
+                                            <span  data-value="<?php echo $data['Nama']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("peserta_sma/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Nama" 
@@ -77,7 +70,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Nama']; ?> 
                                             </span>
                                         </td>
@@ -85,17 +78,18 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Jenis_Kelamin">
                                         <th class="title"> Jenis Kelamin: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Jenis_Kelamin']; ?>" 
+                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Jenis_Kelamin2); ?>' 
+                                                data-value="<?php echo $data['Jenis_Kelamin']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("peserta_sma/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Jenis_Kelamin" 
                                                 data-title="Enter Jenis Kelamin" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
-                                                data-type="text" 
+                                                data-type="radiolist" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Jenis_Kelamin']; ?> 
                                             </span>
                                         </td>
@@ -103,7 +97,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Kelas">
                                         <th class="title"> Kelas: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Kelas']; ?>" 
+                                            <span  data-value="<?php echo $data['Kelas']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("peserta_sma/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Kelas" 
@@ -113,7 +107,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Kelas']; ?> 
                                             </span>
                                         </td>
@@ -121,7 +115,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-TTL">
                                         <th class="title"> Ttl: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
+                                            <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                 data-value="<?php echo $data['TTL']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("peserta_sma/editfield/" . urlencode($data['id'])); ?>" 
@@ -132,7 +126,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="flatdatetimepicker" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['TTL']; ?> 
                                             </span>
                                         </td>
@@ -140,7 +134,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Alergi">
                                         <th class="title"> Alergi: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Alergi']; ?>" 
+                                            <span  data-value="<?php echo $data['Alergi']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("peserta_sma/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Alergi" 
@@ -150,7 +144,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Alergi']; ?> 
                                             </span>
                                         </td>
@@ -158,7 +152,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Alamat">
                                         <th class="title"> Alamat: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-pk="<?php echo $data['id'] ?>" 
+                                            <span  data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("peserta_sma/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Alamat" 
                                                 data-title="Enter Alamat" 
@@ -167,8 +161,26 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="textarea" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Alamat']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-SA">
+                                        <th class="title"> Sa: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['SA']; ?>" 
+                                                data-pk="<?php echo $data['id'] ?>" 
+                                                data-url="<?php print_link("peserta_sma/editfield/" . urlencode($data['id'])); ?>" 
+                                                data-name="SA" 
+                                                data-title="Enter Sa" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['SA']; ?> 
                                             </span>
                                         </td>
                                     </tr>
@@ -204,16 +216,12 @@ $show_export_btn = $this->show_export_btn;
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <?php if($can_edit){ ?>
                                                 <a class="btn btn-sm btn-info"  href="<?php print_link("peserta_sma/edit/$rec_id"); ?>">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <?php } ?>
-                                                <?php if($can_delete){ ?>
                                                 <a class="btn btn-sm btn-danger record-delete-btn mx-1"  href="<?php print_link("peserta_sma/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                     <i class="fa fa-times"></i> Delete
                                                 </a>
-                                                <?php } ?>
                                             </div>
                                             <?php
                                             }

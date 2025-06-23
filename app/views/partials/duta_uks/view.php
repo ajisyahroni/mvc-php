@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("duta_uks/add");
-$can_edit = ACL::is_allowed("duta_uks/edit");
-$can_view = ACL::is_allowed("duta_uks/view");
-$can_delete = ACL::is_allowed("duta_uks/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "view-page-" . random_str();
@@ -59,7 +52,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Nama">
                                         <th class="title"> Nama: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Nama']; ?>" 
+                                            <span  data-value="<?php echo $data['Nama']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("duta_uks/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Nama" 
@@ -69,7 +62,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Nama']; ?> 
                                             </span>
                                         </td>
@@ -77,7 +70,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Kelas">
                                         <th class="title"> Kelas: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Kelas']; ?>" 
+                                            <span  data-value="<?php echo $data['Kelas']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("duta_uks/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Kelas" 
@@ -87,7 +80,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Kelas']; ?> 
                                             </span>
                                         </td>
@@ -95,7 +88,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Jenis_Kelamin">
                                         <th class="title"> Jenis Kelamin: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-source='<?php echo json_encode_quote(Menu :: $Jenis_Kelamin); ?>' 
+                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Jenis_Kelamin); ?>' 
                                                 data-value="<?php echo $data['Jenis_Kelamin']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("duta_uks/editfield/" . urlencode($data['id'])); ?>" 
@@ -106,7 +99,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="select" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Jenis_Kelamin']; ?> 
                                             </span>
                                         </td>
@@ -114,7 +107,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-No_HP">
                                         <th class="title"> No Hp: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['No_HP']; ?>" 
+                                            <span  data-value="<?php echo $data['No_HP']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("duta_uks/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="No_HP" 
@@ -124,7 +117,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="number" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['No_HP']; ?> 
                                             </span>
                                         </td>
@@ -161,16 +154,12 @@ $show_export_btn = $this->show_export_btn;
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <?php if($can_edit){ ?>
                                                 <a class="btn btn-sm btn-info"  href="<?php print_link("duta_uks/edit/$rec_id"); ?>">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <?php } ?>
-                                                <?php if($can_delete){ ?>
                                                 <a class="btn btn-sm btn-danger record-delete-btn mx-1"  href="<?php print_link("duta_uks/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                     <i class="fa fa-times"></i> Delete
                                                 </a>
-                                                <?php } ?>
                                             </div>
                                             <?php
                                             }

@@ -8,7 +8,7 @@
                     <div class="col-md-8 comp-grid">
                         <div class=""><div></div>
                             </div><div class=""><div><center>
-                        <img src="assets/images/logo.png" width="200" height="240"/></center></div></div>
+                        <img src="assets/images/fixx.png" width="200" height="240"/></center></div></div>
                     </div>
                     <div class="col-md-4 comp-grid">
                         <?php $this :: display_page_errors(); ?>
@@ -53,10 +53,6 @@
                                         </button>
                                     </div>
                                     <hr />
-                                    <div class="text-center">
-                                        Don't Have an Account? <a href="<?php print_link("index/register") ?>" class="btn btn-success">Register
-                                        <i class="fa fa-user"></i></a>
-                                    </div>
                                 </form>
                             </div>
                         </div>

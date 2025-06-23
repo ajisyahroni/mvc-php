@@ -21,15 +21,21 @@ class Mcu_tahunanController extends SecureController{
 		$fields = array("id_mcu", 
 			"NISN", 
 			"Nama", 
+			"Jenis_Kelamin", 
 			"Kelas", 
 			"Tanggal", 
 			"TB", 
 			"BB", 
 			"Goldar", 
-			"Anggota_tubuh", 
+			"Kepala", 
+			"Thorax", 
+			"Abdomen", 
+			"Extremitas", 
+			"Luka_terbuka", 
+			"Patah_tulang", 
 			"Masalah", 
 			"Riwayat_kesehatan", 
-			"Jenis_Kelamin");
+			"Hasil_penunjang");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
 		//search table record
 		if(!empty($request->search)){
@@ -38,18 +44,24 @@ class Mcu_tahunanController extends SecureController{
 				mcu_tahunan.id_mcu LIKE ? OR 
 				mcu_tahunan.NISN LIKE ? OR 
 				mcu_tahunan.Nama LIKE ? OR 
+				mcu_tahunan.Jenis_Kelamin LIKE ? OR 
 				mcu_tahunan.Kelas LIKE ? OR 
 				mcu_tahunan.Tanggal LIKE ? OR 
 				mcu_tahunan.TB LIKE ? OR 
 				mcu_tahunan.BB LIKE ? OR 
 				mcu_tahunan.Goldar LIKE ? OR 
-				mcu_tahunan.Anggota_tubuh LIKE ? OR 
+				mcu_tahunan.Kepala LIKE ? OR 
+				mcu_tahunan.Thorax LIKE ? OR 
+				mcu_tahunan.Abdomen LIKE ? OR 
+				mcu_tahunan.Extremitas LIKE ? OR 
+				mcu_tahunan.Luka_terbuka LIKE ? OR 
+				mcu_tahunan.Patah_tulang LIKE ? OR 
 				mcu_tahunan.Masalah LIKE ? OR 
 				mcu_tahunan.Riwayat_kesehatan LIKE ? OR 
-				mcu_tahunan.Jenis_Kelamin LIKE ?
+				mcu_tahunan.Hasil_penunjang LIKE ?
 			)";
 			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
+				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
 			);
 			//setting search conditions
 			$db->where($search_condition, $search_params);
@@ -103,15 +115,21 @@ class Mcu_tahunanController extends SecureController{
 		$fields = array("id_mcu", 
 			"NISN", 
 			"Nama", 
+			"Jenis_Kelamin", 
 			"Kelas", 
 			"Tanggal", 
 			"TB", 
 			"BB", 
 			"Goldar", 
-			"Anggota_tubuh", 
+			"Kepala", 
+			"Thorax", 
+			"Abdomen", 
+			"Extremitas", 
+			"Luka_terbuka", 
+			"Patah_tulang", 
 			"Masalah", 
 			"Riwayat_kesehatan", 
-			"Jenis_Kelamin");
+			"Hasil_penunjang");
 		if($value){
 			$db->where($rec_id, urldecode($value)); //select record based on field name
 		}
@@ -148,31 +166,42 @@ class Mcu_tahunanController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("NISN","Nama","Kelas","Tanggal","TB","BB","Goldar","Anggota_tubuh","Masalah","Riwayat_kesehatan","Jenis_Kelamin");
+			$fields = $this->fields = array("NISN","Nama","Jenis_Kelamin","Kelas","Tanggal","TB","BB","Goldar","Kepala","Thorax","Abdomen","Extremitas","Luka_terbuka","Patah_tulang","Masalah","Riwayat_kesehatan","Hasil_penunjang");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'NISN' => 'required|numeric',
 				'Nama' => 'required',
+				'Jenis_Kelamin' => 'required',
 				'Kelas' => 'required',
 				'TB' => 'required|numeric',
 				'BB' => 'required',
 				'Goldar' => 'required',
-				'Anggota_tubuh' => 'required',
+				'Kepala' => 'required',
+				'Thorax' => 'required',
+				'Abdomen' => 'required',
+				'Extremitas' => 'required',
+				'Luka_terbuka' => 'required',
+				'Patah_tulang' => 'required',
 				'Masalah' => 'required',
 				'Riwayat_kesehatan' => 'required',
-				'Jenis_Kelamin' => 'required',
 			);
 			$this->sanitize_array = array(
 				'NISN' => 'sanitize_string',
 				'Nama' => 'sanitize_string',
+				'Jenis_Kelamin' => 'sanitize_string',
 				'Kelas' => 'sanitize_string',
 				'TB' => 'sanitize_string',
 				'BB' => 'sanitize_string',
 				'Goldar' => 'sanitize_string',
-				'Anggota_tubuh' => 'sanitize_string',
+				'Kepala' => 'sanitize_string',
+				'Thorax' => 'sanitize_string',
+				'Abdomen' => 'sanitize_string',
+				'Extremitas' => 'sanitize_string',
+				'Luka_terbuka' => 'sanitize_string',
+				'Patah_tulang' => 'sanitize_string',
 				'Masalah' => 'sanitize_string',
 				'Riwayat_kesehatan' => 'sanitize_string',
-				'Jenis_Kelamin' => 'sanitize_string',
+				'Hasil_penunjang' => 'sanitize_string',
 			);
 			$this->filter_vals = true; //set whether to remove empty fields
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
@@ -203,32 +232,43 @@ class Mcu_tahunanController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id_mcu","NISN","Nama","Kelas","Tanggal","TB","BB","Goldar","Anggota_tubuh","Masalah","Riwayat_kesehatan","Jenis_Kelamin");
+		$fields = $this->fields = array("id_mcu","NISN","Nama","Jenis_Kelamin","Kelas","Tanggal","TB","BB","Goldar","Kepala","Thorax","Abdomen","Extremitas","Luka_terbuka","Patah_tulang","Masalah","Riwayat_kesehatan","Hasil_penunjang");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'NISN' => 'required|numeric',
 				'Nama' => 'required',
+				'Jenis_Kelamin' => 'required',
 				'Kelas' => 'required',
 				'TB' => 'required|numeric',
 				'BB' => 'required',
 				'Goldar' => 'required',
-				'Anggota_tubuh' => 'required',
+				'Kepala' => 'required',
+				'Thorax' => 'required',
+				'Abdomen' => 'required',
+				'Extremitas' => 'required',
+				'Luka_terbuka' => 'required',
+				'Patah_tulang' => 'required',
 				'Masalah' => 'required',
 				'Riwayat_kesehatan' => 'required',
-				'Jenis_Kelamin' => 'required',
 			);
 			$this->sanitize_array = array(
 				'NISN' => 'sanitize_string',
 				'Nama' => 'sanitize_string',
+				'Jenis_Kelamin' => 'sanitize_string',
 				'Kelas' => 'sanitize_string',
 				'TB' => 'sanitize_string',
 				'BB' => 'sanitize_string',
 				'Goldar' => 'sanitize_string',
-				'Anggota_tubuh' => 'sanitize_string',
+				'Kepala' => 'sanitize_string',
+				'Thorax' => 'sanitize_string',
+				'Abdomen' => 'sanitize_string',
+				'Extremitas' => 'sanitize_string',
+				'Luka_terbuka' => 'sanitize_string',
+				'Patah_tulang' => 'sanitize_string',
 				'Masalah' => 'sanitize_string',
 				'Riwayat_kesehatan' => 'sanitize_string',
-				'Jenis_Kelamin' => 'sanitize_string',
+				'Hasil_penunjang' => 'sanitize_string',
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			$modeldata['Tanggal'] = date_now();
@@ -273,7 +313,7 @@ class Mcu_tahunanController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id_mcu","NISN","Nama","Kelas","Tanggal","TB","BB","Goldar","Anggota_tubuh","Masalah","Riwayat_kesehatan","Jenis_Kelamin");
+		$fields = $this->fields = array("id_mcu","NISN","Nama","Jenis_Kelamin","Kelas","Tanggal","TB","BB","Goldar","Kepala","Thorax","Abdomen","Extremitas","Luka_terbuka","Patah_tulang","Masalah","Riwayat_kesehatan","Hasil_penunjang");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -284,26 +324,37 @@ class Mcu_tahunanController extends SecureController{
 			$this->rules_array = array(
 				'NISN' => 'required|numeric',
 				'Nama' => 'required',
+				'Jenis_Kelamin' => 'required',
 				'Kelas' => 'required',
 				'TB' => 'required|numeric',
 				'BB' => 'required',
 				'Goldar' => 'required',
-				'Anggota_tubuh' => 'required',
+				'Kepala' => 'required',
+				'Thorax' => 'required',
+				'Abdomen' => 'required',
+				'Extremitas' => 'required',
+				'Luka_terbuka' => 'required',
+				'Patah_tulang' => 'required',
 				'Masalah' => 'required',
 				'Riwayat_kesehatan' => 'required',
-				'Jenis_Kelamin' => 'required',
 			);
 			$this->sanitize_array = array(
 				'NISN' => 'sanitize_string',
 				'Nama' => 'sanitize_string',
+				'Jenis_Kelamin' => 'sanitize_string',
 				'Kelas' => 'sanitize_string',
 				'TB' => 'sanitize_string',
 				'BB' => 'sanitize_string',
 				'Goldar' => 'sanitize_string',
-				'Anggota_tubuh' => 'sanitize_string',
+				'Kepala' => 'sanitize_string',
+				'Thorax' => 'sanitize_string',
+				'Abdomen' => 'sanitize_string',
+				'Extremitas' => 'sanitize_string',
+				'Luka_terbuka' => 'sanitize_string',
+				'Patah_tulang' => 'sanitize_string',
 				'Masalah' => 'sanitize_string',
 				'Riwayat_kesehatan' => 'sanitize_string',
-				'Jenis_Kelamin' => 'sanitize_string',
+				'Hasil_penunjang' => 'sanitize_string',
 			);
 			$this->filter_rules = true; //filter validation rules by excluding fields not in the formdata
 			$modeldata = $this->modeldata = $this->validate_form($postdata);

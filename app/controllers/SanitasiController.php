@@ -20,12 +20,9 @@ class SanitasiController extends SecureController{
 		$tablename = $this->tablename;
 		$fields = array("id", 
 			"Tanggal_Inspeksi", 
-			"Sumber_Air", 
-			"Tempat_Cuci_Tangan", 
+			"Jenis_kegiatan", 
 			"Toilet", 
-			"Kantin", 
-			"Tempat_Sampah", 
-			"Lahan_Terbuka_Hijau");
+			"Peserta");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
 		//search table record
 		if(!empty($request->search)){
@@ -33,15 +30,12 @@ class SanitasiController extends SecureController{
 			$search_condition = "(
 				sanitasi.id LIKE ? OR 
 				sanitasi.Tanggal_Inspeksi LIKE ? OR 
-				sanitasi.Sumber_Air LIKE ? OR 
-				sanitasi.Tempat_Cuci_Tangan LIKE ? OR 
+				sanitasi.Jenis_kegiatan LIKE ? OR 
 				sanitasi.Toilet LIKE ? OR 
-				sanitasi.Kantin LIKE ? OR 
-				sanitasi.Tempat_Sampah LIKE ? OR 
-				sanitasi.Lahan_Terbuka_Hijau LIKE ?
+				sanitasi.Peserta LIKE ?
 			)";
 			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
+				"%$text%","%$text%","%$text%","%$text%","%$text%"
 			);
 			//setting search conditions
 			$db->where($search_condition, $search_params);
@@ -94,12 +88,9 @@ class SanitasiController extends SecureController{
 		$tablename = $this->tablename;
 		$fields = array("id", 
 			"Tanggal_Inspeksi", 
-			"Sumber_Air", 
-			"Tempat_Cuci_Tangan", 
+			"Jenis_kegiatan", 
 			"Toilet", 
-			"Kantin", 
-			"Tempat_Sampah", 
-			"Lahan_Terbuka_Hijau");
+			"Peserta");
 		if($value){
 			$db->where($rec_id, urldecode($value)); //select record based on field name
 		}
@@ -136,25 +127,19 @@ class SanitasiController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("Tanggal_Inspeksi","Sumber_Air","Tempat_Cuci_Tangan","Toilet","Kantin","Tempat_Sampah","Lahan_Terbuka_Hijau");
+			$fields = $this->fields = array("Tanggal_Inspeksi","Jenis_kegiatan","Toilet","Peserta");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'Tanggal_Inspeksi' => 'required',
-				'Sumber_Air' => 'required',
-				'Tempat_Cuci_Tangan' => 'required',
+				'Jenis_kegiatan' => 'required',
 				'Toilet' => 'required',
-				'Kantin' => 'required',
-				'Tempat_Sampah' => 'required',
-				'Lahan_Terbuka_Hijau' => 'required',
+				'Peserta' => 'required',
 			);
 			$this->sanitize_array = array(
 				'Tanggal_Inspeksi' => 'sanitize_string',
-				'Sumber_Air' => 'sanitize_string',
-				'Tempat_Cuci_Tangan' => 'sanitize_string',
+				'Jenis_kegiatan' => 'sanitize_string',
 				'Toilet' => 'sanitize_string',
-				'Kantin' => 'sanitize_string',
-				'Tempat_Sampah' => 'sanitize_string',
-				'Lahan_Terbuka_Hijau' => 'sanitize_string',
+				'Peserta' => 'sanitize_string',
 			);
 			$this->filter_vals = true; //set whether to remove empty fields
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
@@ -184,26 +169,20 @@ class SanitasiController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id","Tanggal_Inspeksi","Sumber_Air","Tempat_Cuci_Tangan","Toilet","Kantin","Tempat_Sampah","Lahan_Terbuka_Hijau");
+		$fields = $this->fields = array("id","Tanggal_Inspeksi","Jenis_kegiatan","Toilet","Peserta");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'Tanggal_Inspeksi' => 'required',
-				'Sumber_Air' => 'required',
-				'Tempat_Cuci_Tangan' => 'required',
+				'Jenis_kegiatan' => 'required',
 				'Toilet' => 'required',
-				'Kantin' => 'required',
-				'Tempat_Sampah' => 'required',
-				'Lahan_Terbuka_Hijau' => 'required',
+				'Peserta' => 'required',
 			);
 			$this->sanitize_array = array(
 				'Tanggal_Inspeksi' => 'sanitize_string',
-				'Sumber_Air' => 'sanitize_string',
-				'Tempat_Cuci_Tangan' => 'sanitize_string',
+				'Jenis_kegiatan' => 'sanitize_string',
 				'Toilet' => 'sanitize_string',
-				'Kantin' => 'sanitize_string',
-				'Tempat_Sampah' => 'sanitize_string',
-				'Lahan_Terbuka_Hijau' => 'sanitize_string',
+				'Peserta' => 'sanitize_string',
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
@@ -247,7 +226,7 @@ class SanitasiController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id","Tanggal_Inspeksi","Sumber_Air","Tempat_Cuci_Tangan","Toilet","Kantin","Tempat_Sampah","Lahan_Terbuka_Hijau");
+		$fields = $this->fields = array("id","Tanggal_Inspeksi","Jenis_kegiatan","Toilet","Peserta");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -257,21 +236,15 @@ class SanitasiController extends SecureController{
 			$postdata = $this->format_request_data($postdata);
 			$this->rules_array = array(
 				'Tanggal_Inspeksi' => 'required',
-				'Sumber_Air' => 'required',
-				'Tempat_Cuci_Tangan' => 'required',
+				'Jenis_kegiatan' => 'required',
 				'Toilet' => 'required',
-				'Kantin' => 'required',
-				'Tempat_Sampah' => 'required',
-				'Lahan_Terbuka_Hijau' => 'required',
+				'Peserta' => 'required',
 			);
 			$this->sanitize_array = array(
 				'Tanggal_Inspeksi' => 'sanitize_string',
-				'Sumber_Air' => 'sanitize_string',
-				'Tempat_Cuci_Tangan' => 'sanitize_string',
+				'Jenis_kegiatan' => 'sanitize_string',
 				'Toilet' => 'sanitize_string',
-				'Kantin' => 'sanitize_string',
-				'Tempat_Sampah' => 'sanitize_string',
-				'Lahan_Terbuka_Hijau' => 'sanitize_string',
+				'Peserta' => 'sanitize_string',
 			);
 			$this->filter_rules = true; //filter validation rules by excluding fields not in the formdata
 			$modeldata = $this->modeldata = $this->validate_form($postdata);

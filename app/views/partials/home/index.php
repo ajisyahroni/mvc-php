@@ -5,10 +5,33 @@ $current_page = $this->set_current_page_link();
 ?>
 <div>
     <div  class="bg-light p-3 mb-3">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row ">
                 <div class="col-md-12 comp-grid">
-                    <h4 >The Dashboard</h4>
+                    <h4 >Jumlah Kunjungan Siswa di UKS BMD</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-3 col-sm-4 comp-grid">
+                    <?php $rec_count = $comp_model->getcount_kunjunganuks();  ?>
+                    <a class="animated zoomIn record-count card bg-light text-dark"  href="<?php print_link("kunjungan_uks/") ?>">
+                        <div class="row">
+                            <div class="col-2">
+                                <i class="fa fa-globe"></i>
+                            </div>
+                            <div class="col-10">
+                                <div class="flex-column justify-content align-center">
+                                    <div class="title">Kunjungan UKS</div>
+                                    <small class=""></small>
+                                </div>
+                            </div>
+                            <h4 class="value"><strong><?php echo $rec_count; ?></strong></h4>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -17,7 +40,7 @@ $current_page = $this->set_current_page_link();
         <div class="container">
             <div class="row ">
                 <div class="col-sm-6 comp-grid">
-                    <div class="card card-body">
+                    <div class="bg-light">
                         <?php 
                         $chartdata = $comp_model->doughnutchart_kunjunganuksberdasarkangender();
                         ?>
@@ -33,9 +56,9 @@ $current_page = $this->set_current_page_link();
                             labels : <?php echo json_encode($chartdata['labels']); ?>,
                             datasets : [
                             {
-                            label: 'Dataset 1',
+                            label: 'Gender',
                             borderColor:'rgba(255 , 255 , 255, 0.7)',
-                            backgroundColor:'rgba(0 , 64 , 128, 0.5)',
+                            backgroundColor:'rgba(0 , 128 , 192, 0.5)',
                             borderWidth:3,
                             data : <?php echo json_encode($chartdata['datasets'][0]); ?>,
                             }
@@ -71,34 +94,17 @@ $current_page = $this->set_current_page_link();
                         </script>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-4 comp-grid">
-                    <?php $rec_count = $comp_model->getcount_kunjunganuks();  ?>
-                    <a class="animated zoomIn record-count card bg-light text-dark"  href="<?php print_link("kunjungan_uks/") ?>">
-                        <div class="row">
-                            <div class="col-2">
-                                <i class="fa fa-globe"></i>
-                            </div>
-                            <div class="col-10">
-                                <div class="flex-column justify-content align-center">
-                                    <div class="title">Kunjungan Uks</div>
-                                    <small class=""></small>
-                                </div>
-                            </div>
-                            <h4 class="value"><strong><?php echo $rec_count; ?></strong></h4>
-                        </div>
-                    </a>
-                </div>
                 <div class="col-md-6 comp-grid">
                     <div class="card card-body">
                         <?php 
-                        $chartdata = $comp_model->barchart_perhari();
+                        $chartdata = $comp_model->piechart_kunjunganuksberdasarkankelompok();
                         ?>
                         <div>
-                            <h4>perhari</h4>
+                            <h4>Kunjungan UKS berdasarkan kelompok</h4>
                             <small class="text-muted"></small>
                         </div>
                         <hr />
-                        <canvas id="barchart_perhari"></canvas>
+                        <canvas id="piechart_kunjunganuksberdasarkankelompok"></canvas>
                         <script>
                             $(function (){
                             var chartData = {
@@ -106,14 +112,76 @@ $current_page = $this->set_current_page_link();
                             datasets : [
                             {
                             label: 'Dataset 1',
-                            backgroundColor:'rgba(0 , 0 , 64, 0.5)',
+                            backgroundColor:'rgba(0 , 128 , 128, 0.5)',
+                            borderWidth:3,
+                            data : <?php echo json_encode($chartdata['datasets'][0]); ?>,
+                            }
+                            ]
+                            }
+                            var ctx = document.getElementById('piechart_kunjunganuksberdasarkankelompok');
+                            var chart = new Chart(ctx, {
+                            type:'pie',
+                            data: chartData,
+                            options: {
+                            responsive: true,
+                            scales: {
+                            yAxes: [{
+                            ticks:{display: false},
+                            gridLines:{display: false},
+                            scaleLabel: {
+                            display: true,
+                            labelString: ""
+                            }
+                            }],
+                            xAxes: [{
+                            ticks:{display: false},
+                            gridLines:{display: false},
+                            scaleLabel: {
+                            display: true,
+                            labelString: ""
+                            }
+                            }],
+                            },
+                            }
+                            ,
+                            })});
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-12 comp-grid">
+                </div>
+                <div class="col-sm-8 comp-grid">
+                    <div class="card card-body">
+                        <?php 
+                        $chartdata = $comp_model->barchart_kunjunganpertanggal();
+                        ?>
+                        <div>
+                            <h4>Kunjungan per tanggal</h4>
+                            <small class="text-muted">Bulan MEI</small>
+                        </div>
+                        <hr />
+                        <canvas id="barchart_kunjunganpertanggal"></canvas>
+                        <script>
+                            $(function (){
+                            var chartData = {
+                            labels : <?php echo json_encode($chartdata['labels']); ?>,
+                            datasets : [
+                            {
+                            label: 'Kunjungan per tanggal',
+                            backgroundColor:'rgba(64 , 0 , 64, 0.5)',
                             type:'',
                             borderWidth:3,
                             data : <?php echo json_encode($chartdata['datasets'][0]); ?>,
                             }
                             ]
                             }
-                            var ctx = document.getElementById('barchart_perhari');
+                            var ctx = document.getElementById('barchart_kunjunganpertanggal');
                             var chart = new Chart(ctx, {
                             type:'bar',
                             data: chartData,
@@ -141,6 +209,76 @@ $current_page = $this->set_current_page_link();
                             labelString: ""
                             }
                             }]
+                            },
+                            }
+                            ,
+                            })});
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-12 comp-grid">
+                    <div class=""><div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="">
+        <div class="container">
+            <div class="row ">
+                <div class="col-sm-8 comp-grid">
+                    <div class="card card-body">
+                        <?php 
+                        $chartdata = $comp_model->piechart_keluhan();
+                        ?>
+                        <div>
+                            <h4>Keluhan </h4>
+                            <small class="text-muted"></small>
+                        </div>
+                        <hr />
+                        <canvas id="piechart_keluhan"></canvas>
+                        <script>
+                            $(function (){
+                            var chartData = {
+                            labels : <?php echo json_encode($chartdata['labels']); ?>,
+                            datasets : [
+                            {
+                            label: 'Dataset 1',
+                            backgroundColor:'rgba(255 , 128 , 64, 0.5)',
+                            borderWidth:3,
+                            data : <?php echo json_encode($chartdata['datasets'][0]); ?>,
+                            }
+                            ]
+                            }
+                            var ctx = document.getElementById('piechart_keluhan');
+                            var chart = new Chart(ctx, {
+                            type:'pie',
+                            data: chartData,
+                            options: {
+                            responsive: true,
+                            scales: {
+                            yAxes: [{
+                            ticks:{display: false},
+                            gridLines:{display: false},
+                            scaleLabel: {
+                            display: true,
+                            labelString: ""
+                            }
+                            }],
+                            xAxes: [{
+                            ticks:{display: false},
+                            gridLines:{display: false},
+                            scaleLabel: {
+                            display: true,
+                            labelString: ""
+                            }
+                            }],
                             },
                             }
                             ,

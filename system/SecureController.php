@@ -10,7 +10,7 @@ class SecureController extends BaseController{
 		$exclude_pages = array();
 		$url = Router :: $page_url;
 		$url = str_ireplace("/index", "/list", $url);
-		$acl = new ACL;
+		
 		if(!empty($url)){
 			$url_segment =$url_segment = explode("/" , rtrim($url , "/")) ;
 			$controller = strtolower(!empty($url_segment[0]) ? $url_segment[0] : null);
@@ -19,8 +19,7 @@ class SecureController extends BaseController{
 			if(!in_array($page , $exclude_pages)){
 				if($this->authenticate_user()){
 					
-					$page = Router::$page_url; //current page path
-					$this->status = ACL::GetPageAccess($page); 
+					$this->status = AUTHORIZED; 
 
 				}
 				else{

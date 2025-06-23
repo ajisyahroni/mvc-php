@@ -24,7 +24,7 @@
 			Html ::  page_css('blueimp-gallery.css');
 		?>
 				<?php 
-			Html ::  page_css('bootstrap-theme-literia-seagreen-rounded.css');
+			Html ::  page_css('bootstrap-theme-literia-nice-round.css');
 			Html ::  page_css('custom-style.css');
 		?>
 		<?php

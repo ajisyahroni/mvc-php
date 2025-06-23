@@ -64,7 +64,7 @@ $redirect_to = $this->redirect_to;
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label class="control-label" for="Materi">Materi <span class="text-danger">*</span></label>
+                                                    <label class="control-label" for="Materi">Topik <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="">
@@ -78,9 +78,9 @@ $redirect_to = $this->redirect_to;
                                                         //check if value is among checked options
                                                         $checked = $this->check_form_field_checked($field_value, $value);
                                                         ?>
-                                                        <label class="custom-control custom-checkbox custom-control-inline option-btn">
-                                                            <input id="ctrl-Materi" class="custom-control-input" value="<?php echo $value ?>" <?php echo $checked ?> type="checkbox" required=""  name="Materi[]" />
-                                                                <span class="custom-control-label"><?php echo $label ?></span>
+                                                        <label class="form-check option-btn">
+                                                            <input id="ctrl-Materi" class="form-check-input" value="<?php echo $value ?>" <?php echo $checked ?> type="checkbox" required=""  name="Materi[]" />
+                                                                <span class="form-check-label"><?php echo $label ?></span>
                                                             </label>
                                                             <?php
                                                             }

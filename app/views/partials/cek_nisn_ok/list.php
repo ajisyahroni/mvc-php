@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("cek_nisn_ok/add");
-$can_edit = ACL::is_allowed("cek_nisn_ok/edit");
-$can_view = ACL::is_allowed("cek_nisn_ok/view");
-$can_delete = ACL::is_allowed("cek_nisn_ok/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "list-page-" . random_str();
@@ -148,11 +141,9 @@ $show_pagination = $this->show_pagination;
                                                 <th class="td-sno"><?php echo $counter; ?></th>
                                                 <td class="td-id"><a href="<?php print_link("cek_nisn_ok/view/$data[id]") ?>"><?php echo $data['id']; ?></a></td>
                                                 <th class="td-btn">
-                                                    <?php if($can_view){ ?>
                                                     <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("cek_nisn_ok/view/$rec_id"); ?>">
                                                         <i class="fa fa-eye"></i> View
                                                     </a>
-                                                    <?php } ?>
                                                 </th>
                                             </tr>
                                             <?php 

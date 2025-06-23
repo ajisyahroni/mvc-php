@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("obat/add");
-$can_edit = ACL::is_allowed("obat/edit");
-$can_view = ACL::is_allowed("obat/view");
-$can_delete = ACL::is_allowed("obat/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "view-page-" . random_str();
@@ -52,10 +45,28 @@ $show_export_btn = $this->show_export_btn;
                             <table class="table table-hover table-borderless table-striped">
                                 <!-- Table Body Start -->
                                 <tbody class="page-data" id="page-data-<?php echo $page_element_id; ?>">
+                                    <tr  class="td-id_obat">
+                                        <th class="title"> Id Obat: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['id_obat']; ?>" 
+                                                data-pk="<?php echo $data['id_obat'] ?>" 
+                                                data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
+                                                data-name="id_obat" 
+                                                data-title="Enter Id Obat" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="number" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['id_obat']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
                                     <tr  class="td-Nama_Obat">
                                         <th class="title"> Nama Obat: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Nama_Obat']; ?>" 
+                                            <span  data-value="<?php echo $data['Nama_Obat']; ?>" 
                                                 data-pk="<?php echo $data['id_obat'] ?>" 
                                                 data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Nama_Obat" 
@@ -65,15 +76,33 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Nama_Obat']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Jumlah">
+                                        <th class="title"> Jumlah: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['Jumlah']; ?>" 
+                                                data-pk="<?php echo $data['id_obat'] ?>" 
+                                                data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
+                                                data-name="Jumlah" 
+                                                data-title="Enter Jumlah" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="number" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Jumlah']; ?> 
                                             </span>
                                         </td>
                                     </tr>
                                     <tr  class="td-Asal">
                                         <th class="title"> Asal: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Asal']; ?>" 
+                                            <span  data-value="<?php echo $data['Asal']; ?>" 
                                                 data-pk="<?php echo $data['id_obat'] ?>" 
                                                 data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Asal" 
@@ -83,7 +112,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Asal']; ?> 
                                             </span>
                                         </td>
@@ -91,7 +120,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Tgl_masuk">
                                         <th class="title"> Tgl Masuk: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
+                                            <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                 data-value="<?php echo $data['Tgl_masuk']; ?>" 
                                                 data-pk="<?php echo $data['id_obat'] ?>" 
                                                 data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
@@ -102,7 +131,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="flatdatetimepicker" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Tgl_masuk']; ?> 
                                             </span>
                                         </td>
@@ -110,7 +139,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Tgl_EXP">
                                         <th class="title"> Tgl Exp: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
+                                            <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                 data-value="<?php echo $data['Tgl_EXP']; ?>" 
                                                 data-pk="<?php echo $data['id_obat'] ?>" 
                                                 data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
@@ -121,26 +150,8 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="flatdatetimepicker" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Tgl_EXP']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr  class="td-id_obat">
-                                        <th class="title"> Id Obat: </th>
-                                        <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['id_obat']; ?>" 
-                                                data-pk="<?php echo $data['id_obat'] ?>" 
-                                                data-url="<?php print_link("obat/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="id_obat" 
-                                                data-title="Enter Id Obat" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="number" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
-                                                <?php echo $data['id_obat']; ?> 
                                             </span>
                                         </td>
                                     </tr>
@@ -176,16 +187,12 @@ $show_export_btn = $this->show_export_btn;
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <?php if($can_edit){ ?>
                                                 <a class="btn btn-sm btn-info"  href="<?php print_link("obat/edit/$rec_id"); ?>">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <?php } ?>
-                                                <?php if($can_delete){ ?>
                                                 <a class="btn btn-sm btn-danger record-delete-btn mx-1"  href="<?php print_link("obat/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                     <i class="fa fa-times"></i> Delete
                                                 </a>
-                                                <?php } ?>
                                             </div>
                                             <?php
                                             }

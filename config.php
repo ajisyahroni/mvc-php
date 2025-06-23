@@ -34,8 +34,8 @@ define("FORBIDDEN", 403);
 // Application Files and Directories 
 define("IMG_DIR",  "assets/images/");
 define("FONTS_DIR",  "assets/fonts/");
-define("SITE_FAVICON", IMG_DIR . "__sitefavicon");
-define("SITE_LOGO", IMG_DIR . "__sitelogo");
+define("SITE_FAVICON", IMG_DIR . "favicon.ico");
+define("SITE_LOGO", IMG_DIR . "logo.png");
 
 define("CSS_DIR", SITE_ADDR . "assets/css/");
 define("JS_DIR", SITE_ADDR . "assets/js/");
@@ -84,12 +84,12 @@ define("DEFAULT_EMAIL", "");
 define("DEFAULT_EMAIL_ACCOUNT_NAME", "");
 
 // Database Configuration Settings
-define("DB_HOST", "db"); // Use host.docker.internal for Docker containers
+define("DB_HOST", "db");
 define("DB_USERNAME", "root");
 define("DB_PASSWORD", "root_password");
 define("DB_NAME", "hi_mulia");
 define("DB_TYPE", "mysql");
-define("DB_PORT", "3306");
+define("DB_PORT", "");
 define("DB_CHARSET", "utf8");
 
 define("MAX_RECORD_COUNT", 20); //Default Max Records to Retrieve  per Page
@@ -100,4 +100,3 @@ define('USER_ID',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'user_
 define('USER_NAME',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'user_data']['Username'] : null ));
 define('USER_EMAIL',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'user_data']['Email'] : null ));
 
-define('USER_ROLE',(isset($_SESSION[APP_ID.'user_data']) ? $_SESSION[APP_ID.'user_data']['user_role_id'] : null ));

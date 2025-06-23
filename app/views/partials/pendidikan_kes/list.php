@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("pendidikan_kes/add");
-$can_edit = ACL::is_allowed("pendidikan_kes/edit");
-$can_view = ACL::is_allowed("pendidikan_kes/view");
-$can_delete = ACL::is_allowed("pendidikan_kes/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "list-page-" . random_str();
@@ -33,12 +26,10 @@ $show_pagination = $this->show_pagination;
                     <h4 class="record-title">Pendidikan Kesehatan</h4>
                 </div>
                 <div class="col-sm-3 ">
-                    <?php if($can_add){ ?>
                     <a  class="btn btn btn-primary my-1" href="<?php print_link("pendidikan_kes/add") ?>">
                         <i class="fa fa-plus"></i>                              
                         Add New Pendidikan Kes 
                     </a>
-                    <?php } ?>
                 </div>
                 <div class="col-sm-4 ">
                     <form  class="search" action="<?php print_link('pendidikan_kes'); ?>" method="get">
@@ -116,19 +107,17 @@ $show_pagination = $this->show_pagination;
                                     <table class="table  table-striped table-sm text-left">
                                         <thead class="table-header bg-light">
                                             <tr>
-                                                <?php if($can_delete){ ?>
                                                 <th class="td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="toggle-check-all custom-control-input" type="checkbox" />
                                                         <span class="custom-control-label"></span>
                                                     </label>
                                                 </th>
-                                                <?php } ?>
                                                 <th class="td-sno">#</th>
                                                 <th  class="td-id"> Id</th>
                                                 <th  class="td-Nama_Kegiatan"> Nama Kegiatan</th>
                                                 <th  class="td-Tanggal"> Tanggal</th>
-                                                <th  class="td-Materi"> Materi</th>
+                                                <th  class="td-Materi"> Topik</th>
                                                 <th  class="td-Peserta"> Peserta</th>
                                                 <th  class="td-Pembicara"> Pembicara</th>
                                                 <th  class="td-Deskripsi_Kegiatan"> Deskripsi Kegiatan</th>
@@ -147,18 +136,16 @@ $show_pagination = $this->show_pagination;
                                             $counter++;
                                             ?>
                                             <tr>
-                                                <?php if($can_delete){ ?>
                                                 <th class=" td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="optioncheck custom-control-input" name="optioncheck[]" value="<?php echo $data['id'] ?>" type="checkbox" />
                                                             <span class="custom-control-label"></span>
                                                         </label>
                                                     </th>
-                                                    <?php } ?>
                                                     <th class="td-sno"><?php echo $counter; ?></th>
                                                     <td class="td-id"><a href="<?php print_link("pendidikan_kes/view/$data[id]") ?>"><?php echo $data['id']; ?></a></td>
                                                     <td class="td-Nama_Kegiatan">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Nama_Kegiatan']; ?>" 
+                                                        <span  data-value="<?php echo $data['Nama_Kegiatan']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("pendidikan_kes/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Nama_Kegiatan" 
@@ -168,12 +155,12 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Nama_Kegiatan']; ?> 
                                                         </span>
                                                     </td>
                                                     <td class="td-Tanggal">
-                                                        <span <?php if($can_edit){ ?> data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
+                                                        <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                             data-value="<?php echo $data['Tanggal']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("pendidikan_kes/editfield/" . urlencode($data['id'])); ?>" 
@@ -184,28 +171,28 @@ $show_pagination = $this->show_pagination;
                                                             data-type="flatdatetimepicker" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Tanggal']; ?> 
                                                         </span>
                                                     </td>
                                                     <td class="td-Materi">
-                                                        <span <?php if($can_edit){ ?> data-source='<?php echo json_encode_quote(Menu :: $Materi); ?>' 
+                                                        <span  data-source='<?php echo json_encode_quote(Menu :: $Materi); ?>' 
                                                             data-value="<?php echo $data['Materi']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("pendidikan_kes/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Materi" 
-                                                            data-title="Enter Materi" 
+                                                            data-title="Enter Topik" 
                                                             data-placement="left" 
                                                             data-toggle="click" 
                                                             data-type="checklist" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Materi']; ?> 
                                                         </span>
                                                     </td>
                                                     <td class="td-Peserta">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Peserta']; ?>" 
+                                                        <span  data-value="<?php echo $data['Peserta']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("pendidikan_kes/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Peserta" 
@@ -215,12 +202,12 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Peserta']; ?> 
                                                         </span>
                                                     </td>
                                                     <td class="td-Pembicara">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Pembicara']; ?>" 
+                                                        <span  data-value="<?php echo $data['Pembicara']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("pendidikan_kes/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Pembicara" 
@@ -230,12 +217,12 @@ $show_pagination = $this->show_pagination;
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Pembicara']; ?> 
                                                         </span>
                                                     </td>
                                                     <td class="td-Deskripsi_Kegiatan">
-                                                        <span <?php if($can_edit){ ?> data-pk="<?php echo $data['id'] ?>" 
+                                                        <span  data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("pendidikan_kes/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Deskripsi_Kegiatan" 
                                                             data-title="Enter Deskripsi Kegiatan" 
@@ -244,27 +231,21 @@ $show_pagination = $this->show_pagination;
                                                             data-type="textarea" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Deskripsi_Kegiatan']; ?> 
                                                         </span>
                                                     </td>
                                                     <th class="td-btn">
-                                                        <?php if($can_view){ ?>
                                                         <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("pendidikan_kes/view/$rec_id"); ?>">
                                                             <i class="fa fa-eye"></i> View
                                                         </a>
-                                                        <?php } ?>
-                                                        <?php if($can_edit){ ?>
                                                         <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("pendidikan_kes/edit/$rec_id"); ?>">
                                                             <i class="fa fa-edit"></i> Edit
                                                         </a>
-                                                        <?php } ?>
-                                                        <?php if($can_delete){ ?>
                                                         <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("pendidikan_kes/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                             <i class="fa fa-times"></i>
                                                             Delete
                                                         </a>
-                                                        <?php } ?>
                                                     </th>
                                                 </tr>
                                                 <?php 
@@ -294,11 +275,9 @@ $show_pagination = $this->show_pagination;
                                         <div class="row justify-content-center">    
                                             <div class="col-md-auto justify-content-center">    
                                                 <div class="p-3 d-flex justify-content-between">    
-                                                    <?php if($can_delete){ ?>
                                                     <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("pendidikan_kes/delete/{sel_ids}/?csrf_token=$csrf_token&redirect=$current_page"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
                                                         <i class="fa fa-times"></i> Delete Selected
                                                     </button>
-                                                    <?php } ?>
                                                     <div class="dropup export-btn-holder mx-1">
                                                         <button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fa fa-save"></i> Export

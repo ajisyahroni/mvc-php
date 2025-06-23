@@ -49,11 +49,27 @@ $redirect_to = $this->redirect_to;
                                     <div class="form-group ">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <label class="control-label" for="Kegiatan">Kegiatan <span class="text-danger">*</span></label>
+                                                <label class="control-label" for="Kegiatan">Jenis Kegiatan <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <input id="ctrl-Kegiatan"  value="<?php  echo $this->set_field_value('Kegiatan',""); ?>" type="text" placeholder="Enter Kegiatan"  required="" name="Kegiatan"  class="form-control " />
+                                                    <?php
+                                                    $Kegiatan_options = Menu :: $Kegiatan;
+                                                    if(!empty($Kegiatan_options)){
+                                                    foreach($Kegiatan_options as $option){
+                                                    $value = $option['value'];
+                                                    $label = $option['label'];
+                                                    //check if current option is checked option
+                                                    $checked = $this->set_field_checked('Kegiatan', $value, "");
+                                                    ?>
+                                                    <label class="form-check option-btn">
+                                                        <input id="ctrl-Kegiatan" class="form-check-input" value="<?php echo $value ?>" <?php echo $checked ?> type="checkbox" required=""  name="Kegiatan[]" />
+                                                            <span class="form-check-label"><?php echo $label ?></span>
+                                                        </label>
+                                                        <?php
+                                                        }
+                                                        }
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>

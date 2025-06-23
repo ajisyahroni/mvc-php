@@ -23,7 +23,7 @@ class Menu{
 		
 		array(
 			'path' => 'peserta_uks', 
-			'label' => 'Peserta Uks', 
+			'label' => 'Peserta UKS', 
 			'icon' => '<i class="fa fa-users "></i>','submenu' => array(
 		array(
 			'path' => 'peserta_smp', 
@@ -34,6 +34,12 @@ class Menu{
 		array(
 			'path' => 'peserta_sma', 
 			'label' => 'Peserta SMA', 
+			'icon' => ''
+		),
+		
+		array(
+			'path' => 'peserta_karyawan', 
+			'label' => 'Peserta Guru dan Karyawan', 
 			'icon' => ''
 		)
 	)
@@ -57,7 +63,7 @@ class Menu{
 		
 		array(
 			'path' => 'sanitasi', 
-			'label' => 'Sanitasi Lingkungan', 
+			'label' => 'Pembinaan Lingkungan Sehat', 
 			'icon' => ''
 		)
 	)
@@ -103,6 +109,12 @@ class Menu{
 			'path' => 'roles', 
 			'label' => 'Roles', 
 			'icon' => ''
+		),
+		
+		array(
+			'path' => 'cek_nisn', 
+			'label' => 'Cek NISN', 
+			'icon' => ''
 		)
 	);
 		
@@ -118,46 +130,172 @@ class Menu{
 			"label" => "Perempuan", 
 		),);
 		
-			public static $Materi = array(
+			public static $Kepala = array(
 		array(
-			"value" => "Kesehatan Reproduksi", 
-			"label" => "Kesehatan Reproduksi", 
+			"value" => "DBN", 
+			"label" => "DBN", 
 		),
 		array(
-			"value" => "Gizi", 
-			"label" => "Gizi", 
+			"value" => "Abnormal", 
+			"label" => "Abnormal", 
+		),);
+		
+			public static $Luka_terbuka = array(
+		array(
+			"value" => "-", 
+			"label" => "-", 
+		),
+		array(
+			"value" => "+", 
+			"label" => "+", 
+		),);
+		
+			public static $Tingkat = array(
+		array(
+			"value" => "SMP", 
+			"label" => "SMP", 
+		),
+		array(
+			"value" => "SMA", 
+			"label" => "SMA", 
+		),
+		array(
+			"value" => "Karyawan", 
+			"label" => "Karyawan", 
+		),);
+		
+			public static $Jenis_Kelamin2 = array(
+		array(
+			"value" => "Laki-Laki", 
+			"label" => "Laki-Laki", 
+		),
+		array(
+			"value" => "Perempuan", 
+			"label" => "Perempuan", 
+		),);
+		
+			public static $Materi = array(
+		array(
+			"value" => "Pendidikan Kesehatan Reproduksi", 
+			"label" => "Pendidikan Kesehatan Reproduksi", 
+		),
+		array(
+			"value" => "Pendidikan  Gizi", 
+			"label" => "Pendidikan  Gizi", 
 		),
 		array(
 			"value" => "Kebersihan Diri", 
 			"label" => "Kebersihan Diri", 
 		),
 		array(
-			"value" => "PHBS", 
-			"label" => "PHBS", 
+			"value" => "Pembiasaan Aktivitas Fisik", 
+			"label" => "Pembiasaan Aktivitas Fisik", 
 		),
 		array(
-			"value" => "Sanitasi", 
-			"label" => "Sanitasi", 
+			"value" => "Pendidikan Keterampilan Hidup Sehat (PKHS)", 
+			"label" => "Pendidikan Keterampilan Hidup Sehat (PKHS)", 
+		),
+		array(
+			"value" => "Pembinaan Kader Kesehatan Sekolah", 
+			"label" => "Pembinaan Kader Kesehatan Sekolah", 
+		),
+		array(
+			"value" => "Pendidikan Sanitasi", 
+			"label" => "Pendidikan Sanitasi", 
 		),
 		array(
 			"value" => "Kesehatan Mental", 
 			"label" => "Kesehatan Mental", 
 		),
 		array(
-			"value" => "NAPZA", 
-			"label" => "NAPZA", 
+			"value" => "Bahaya NAPZA", 
+			"label" => "Bahaya NAPZA", 
 		),
 		array(
 			"value" => "Kekerasan dan Kecelakaan", 
 			"label" => "Kekerasan dan Kecelakaan", 
 		),
 		array(
-			"value" => "IMS dan HHIV AIDS", 
-			"label" => "IMS dan HHIV AIDS", 
+			"value" => "IMS dan HIV AIDS", 
+			"label" => "IMS dan HIV AIDS", 
+		),
+		array(
+			"value" => "Penyakit Menular", 
+			"label" => "Penyakit Menular", 
 		),
 		array(
 			"value" => "Penyakit Tidak Menular", 
 			"label" => "Penyakit Tidak Menular", 
+		),);
+		
+			public static $Kegiatan = array(
+		array(
+			"value" => "Pemeriksaan Kesehatan", 
+			"label" => "Pemeriksaan Kesehatan", 
+		),
+		array(
+			"value" => "Pemeriksaan Anemia", 
+			"label" => "Pemeriksaan Anemia", 
+		),
+		array(
+			"value" => "Pemeriksaan Fisik, Glukosa, Kolestrol, Asam Urat", 
+			"label" => "Pemeriksaan Fisik, Glukosa, Kolestrol, Asam Urat", 
+		),
+		array(
+			"value" => "Pemberian Tablet Tambah Darah (TTD)", 
+			"label" => "Pemberian Tablet Tambah Darah (TTD)", 
+		),
+		array(
+			"value" => "P3K", 
+			"label" => "P3K", 
+		),
+		array(
+			"value" => "Konseling Kesehatan", 
+			"label" => "Konseling Kesehatan", 
+		),);
+		
+			public static $Jenis_kegiatan = array(
+		array(
+			"value" => "Pengelolaan Sanitasi Sekolah", 
+			"label" => "Pengelolaan Sanitasi Sekolah", 
+		),
+		array(
+			"value" => "Pemanfaatan Perkarangan Sekolah", 
+			"label" => "Pemanfaatan Perkarangan Sekolah", 
+		),
+		array(
+			"value" => "Pemberantasan Sarang Nyamuk", 
+			"label" => "Pemberantasan Sarang Nyamuk", 
+		),
+		array(
+			"value" => "Pembinaan Kantin dan PKL Sekitar Sekolah", 
+			"label" => "Pembinaan Kantin dan PKL Sekitar Sekolah", 
+		),
+		array(
+			"value" => "Penerapan Kawasan Tanpa Rokok, Narkoba, Kekerasan, dan Pornografi", 
+			"label" => "Penerapan Kawasan Tanpa Rokok, Narkoba, Kekerasan, dan Pornografi", 
+		),);
+		
+			public static $Toilet = array(
+		array(
+			"value" => "Terpisah", 
+			"label" => "Terpisah", 
+		),
+		array(
+			"value" => "Tersedia air", 
+			"label" => "Tersedia air", 
+		),
+		array(
+			"value" => "Tersedia sabun", 
+			"label" => "Tersedia sabun", 
+		),
+		array(
+			"value" => "Tidak licin", 
+			"label" => "Tidak licin", 
+		),
+		array(
+			"value" => "Tidak menggenang", 
+			"label" => "Tidak menggenang", 
 		),);
 		
 }

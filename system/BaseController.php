@@ -159,6 +159,17 @@ class BaseController{
 			"uploadDir" => "uploads/files/"
 		);
 		
+		$this->file_upload_settings['Hasil_penunjang'] = array(
+			"title" => "{{random}}",
+			"extensions" => "",
+			"limit" => "1",
+			"filesize" => "3",
+			"returnfullpath" => true,
+			"filenameprefix" => "",
+			"uploadDir" => "uploads/files/"
+		);
+	
+
 		$this->file_upload_settings['Hasil'] = array(
 			"title" => "{{random}}",
 			"extensions" => "",

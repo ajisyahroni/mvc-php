@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("cek_nisn_ok/add");
-$can_edit = ACL::is_allowed("cek_nisn_ok/edit");
-$can_view = ACL::is_allowed("cek_nisn_ok/view");
-$can_delete = ACL::is_allowed("cek_nisn_ok/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "view-page-" . random_str();

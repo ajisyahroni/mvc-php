@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("sanitasi/add");
-$can_edit = ACL::is_allowed("sanitasi/edit");
-$can_view = ACL::is_allowed("sanitasi/view");
-$can_delete = ACL::is_allowed("sanitasi/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "list-page-" . random_str();
@@ -30,15 +23,13 @@ $show_pagination = $this->show_pagination;
         <div class="container-fluid">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Sanitasi Lingkungan</h4>
+                    <h4 class="record-title">Pembinaan Lingkungan Sehat</h4>
                 </div>
                 <div class="col-sm-3 ">
-                    <?php if($can_add){ ?>
                     <a  class="btn btn btn-primary my-1" href="<?php print_link("sanitasi/add") ?>">
                         <i class="fa fa-plus"></i>                              
                         Add New Sanitasi 
                     </a>
-                    <?php } ?>
                 </div>
                 <div class="col-sm-4 ">
                     <form  class="search" action="<?php print_link('sanitasi'); ?>" method="get">
@@ -116,23 +107,18 @@ $show_pagination = $this->show_pagination;
                                     <table class="table  table-striped table-sm text-left">
                                         <thead class="table-header bg-light">
                                             <tr>
-                                                <?php if($can_delete){ ?>
                                                 <th class="td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="toggle-check-all custom-control-input" type="checkbox" />
                                                         <span class="custom-control-label"></span>
                                                     </label>
                                                 </th>
-                                                <?php } ?>
                                                 <th class="td-sno">#</th>
                                                 <th  class="td-id"> Id</th>
-                                                <th  class="td-Tanggal_Inspeksi"> Tanggal Inspeksi</th>
-                                                <th  class="td-Sumber_Air"> Sumber Air</th>
-                                                <th  class="td-Tempat_Cuci_Tangan"> Tempat Cuci Tangan</th>
+                                                <th  class="td-Tanggal_Inspeksi"> Tanggal </th>
+                                                <th  class="td-Jenis_kegiatan"> Jenis Kegiatan</th>
                                                 <th  class="td-Toilet"> Toilet</th>
-                                                <th  class="td-Kantin"> Kantin</th>
-                                                <th  class="td-Tempat_Sampah"> Tempat Sampah</th>
-                                                <th  class="td-Lahan_Terbuka_Hijau"> Lahan Terbuka Hijau</th>
+                                                <th  class="td-Peserta"> Peserta</th>
                                                 <th class="td-btn"></th>
                                             </tr>
                                         </thead>
@@ -148,138 +134,88 @@ $show_pagination = $this->show_pagination;
                                             $counter++;
                                             ?>
                                             <tr>
-                                                <?php if($can_delete){ ?>
                                                 <th class=" td-checkbox">
                                                     <label class="custom-control custom-checkbox custom-control-inline">
                                                         <input class="optioncheck custom-control-input" name="optioncheck[]" value="<?php echo $data['id'] ?>" type="checkbox" />
                                                             <span class="custom-control-label"></span>
                                                         </label>
                                                     </th>
-                                                    <?php } ?>
                                                     <th class="td-sno"><?php echo $counter; ?></th>
                                                     <td class="td-id"><a href="<?php print_link("sanitasi/view/$data[id]") ?>"><?php echo $data['id']; ?></a></td>
                                                     <td class="td-Tanggal_Inspeksi">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Tanggal_Inspeksi']; ?>" 
+                                                        <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
+                                                            data-value="<?php echo $data['Tanggal_Inspeksi']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("sanitasi/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Tanggal_Inspeksi" 
-                                                            data-title="Enter Tanggal Inspeksi" 
+                                                            data-title="Enter Tanggal " 
                                                             data-placement="left" 
                                                             data-toggle="click" 
-                                                            data-type="text" 
+                                                            data-type="flatdatetimepicker" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Tanggal_Inspeksi']; ?> 
                                                         </span>
                                                     </td>
-                                                    <td class="td-Sumber_Air">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Sumber_Air']; ?>" 
+                                                    <td class="td-Jenis_kegiatan">
+                                                        <span  data-source='<?php echo json_encode_quote(Menu :: $Jenis_kegiatan); ?>' 
+                                                            data-value="<?php echo $data['Jenis_kegiatan']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("sanitasi/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Sumber_Air" 
-                                                            data-title="Enter Sumber Air" 
+                                                            data-name="Jenis_kegiatan" 
+                                                            data-title="Enter Jenis Kegiatan" 
                                                             data-placement="left" 
                                                             data-toggle="click" 
-                                                            data-type="text" 
+                                                            data-type="checklist" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Sumber_Air']; ?> 
-                                                        </span>
-                                                    </td>
-                                                    <td class="td-Tempat_Cuci_Tangan">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Tempat_Cuci_Tangan']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("sanitasi/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Tempat_Cuci_Tangan" 
-                                                            data-title="Enter Tempat Cuci Tangan" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="text" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Tempat_Cuci_Tangan']; ?> 
+                                                            class="is-editable" >
+                                                            <?php echo $data['Jenis_kegiatan']; ?> 
                                                         </span>
                                                     </td>
                                                     <td class="td-Toilet">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Toilet']; ?>" 
+                                                        <span  data-source='<?php echo json_encode_quote(Menu :: $Toilet); ?>' 
+                                                            data-value="<?php echo $data['Toilet']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("sanitasi/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="Toilet" 
-                                                            data-title="Enter Toilet" 
+                                                            data-title="Enter Instruktur" 
                                                             data-placement="left" 
                                                             data-toggle="click" 
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
+                                                            class="is-editable" >
                                                             <?php echo $data['Toilet']; ?> 
                                                         </span>
                                                     </td>
-                                                    <td class="td-Kantin">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Kantin']; ?>" 
+                                                    <td class="td-Peserta">
+                                                        <span  data-value="<?php echo $data['Peserta']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("sanitasi/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Kantin" 
-                                                            data-title="Enter Kantin" 
+                                                            data-name="Peserta" 
+                                                            data-title="Enter Peserta" 
                                                             data-placement="left" 
                                                             data-toggle="click" 
                                                             data-type="text" 
                                                             data-mode="popover" 
                                                             data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Kantin']; ?> 
-                                                        </span>
-                                                    </td>
-                                                    <td class="td-Tempat_Sampah">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Tempat_Sampah']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("sanitasi/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Tempat_Sampah" 
-                                                            data-title="Enter Tempat Sampah" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="text" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Tempat_Sampah']; ?> 
-                                                        </span>
-                                                    </td>
-                                                    <td class="td-Lahan_Terbuka_Hijau">
-                                                        <span <?php if($can_edit){ ?> data-value="<?php echo $data['Lahan_Terbuka_Hijau']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("sanitasi/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Lahan_Terbuka_Hijau" 
-                                                            data-title="Enter Lahan Terbuka Hijau" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="text" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" <?php } ?>>
-                                                            <?php echo $data['Lahan_Terbuka_Hijau']; ?> 
+                                                            class="is-editable" >
+                                                            <?php echo $data['Peserta']; ?> 
                                                         </span>
                                                     </td>
                                                     <th class="td-btn">
-                                                        <?php if($can_view){ ?>
                                                         <a class="btn btn-sm btn-success has-tooltip" title="View Record" href="<?php print_link("sanitasi/view/$rec_id"); ?>">
                                                             <i class="fa fa-eye"></i> View
                                                         </a>
-                                                        <?php } ?>
-                                                        <?php if($can_edit){ ?>
                                                         <a class="btn btn-sm btn-info has-tooltip" title="Edit This Record" href="<?php print_link("sanitasi/edit/$rec_id"); ?>">
                                                             <i class="fa fa-edit"></i> Edit
                                                         </a>
-                                                        <?php } ?>
-                                                        <?php if($can_delete){ ?>
                                                         <a class="btn btn-sm btn-danger has-tooltip record-delete-btn" title="Delete this record" href="<?php print_link("sanitasi/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                             <i class="fa fa-times"></i>
                                                             Delete
                                                         </a>
-                                                        <?php } ?>
                                                     </th>
                                                 </tr>
                                                 <?php 
@@ -309,11 +245,9 @@ $show_pagination = $this->show_pagination;
                                         <div class="row justify-content-center">    
                                             <div class="col-md-auto justify-content-center">    
                                                 <div class="p-3 d-flex justify-content-between">    
-                                                    <?php if($can_delete){ ?>
                                                     <button data-prompt-msg="Are you sure you want to delete these records?" data-display-style="modal" data-url="<?php print_link("sanitasi/delete/{sel_ids}/?csrf_token=$csrf_token&redirect=$current_page"); ?>" class="btn btn-sm btn-danger btn-delete-selected d-none">
                                                         <i class="fa fa-times"></i> Delete Selected
                                                     </button>
-                                                    <?php } ?>
                                                     <div class="dropup export-btn-holder mx-1">
                                                         <button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fa fa-save"></i> Export

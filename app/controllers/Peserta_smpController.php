@@ -25,7 +25,9 @@ class Peserta_smpController extends SecureController{
 			"Kelas", 
 			"TTL", 
 			"Alergi", 
-			"Alamat");
+			"Inklusi", 
+			"Alamat", 
+			"SA");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
 		//search table record
 		if(!empty($request->search)){
@@ -38,10 +40,12 @@ class Peserta_smpController extends SecureController{
 				peserta_smp.Kelas LIKE ? OR 
 				peserta_smp.TTL LIKE ? OR 
 				peserta_smp.Alergi LIKE ? OR 
-				peserta_smp.Alamat LIKE ?
+				peserta_smp.Inklusi LIKE ? OR 
+				peserta_smp.Alamat LIKE ? OR 
+				peserta_smp.SA LIKE ?
 			)";
 			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
+				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
 			);
 			//setting search conditions
 			$db->where($search_condition, $search_params);
@@ -99,7 +103,9 @@ class Peserta_smpController extends SecureController{
 			"Kelas", 
 			"TTL", 
 			"Alergi", 
-			"Alamat");
+			"Inklusi", 
+			"Alamat", 
+			"SA");
 		if($value){
 			$db->where($rec_id, urldecode($value)); //select record based on field name
 		}
@@ -136,7 +142,7 @@ class Peserta_smpController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("NISN","Nama","Jenis_Kelamin","Kelas","TTL","Alergi","Alamat");
+			$fields = $this->fields = array("NISN","Nama","Jenis_Kelamin","Kelas","TTL","Alergi","Inklusi","Alamat","SA");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'NISN' => 'required',
@@ -154,7 +160,9 @@ class Peserta_smpController extends SecureController{
 				'Kelas' => 'sanitize_string',
 				'TTL' => 'sanitize_string',
 				'Alergi' => 'sanitize_string',
+				'Inklusi' => 'sanitize_string',
 				'Alamat' => 'sanitize_string',
+				'SA' => 'sanitize_string',
 			);
 			$this->filter_vals = true; //set whether to remove empty fields
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
@@ -184,7 +192,7 @@ class Peserta_smpController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id","NISN","Nama","Jenis_Kelamin","Kelas","TTL","Alergi","Alamat");
+		$fields = $this->fields = array("id","NISN","Nama","Jenis_Kelamin","Kelas","TTL","Alergi","Inklusi","Alamat","SA");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
@@ -203,7 +211,9 @@ class Peserta_smpController extends SecureController{
 				'Kelas' => 'sanitize_string',
 				'TTL' => 'sanitize_string',
 				'Alergi' => 'sanitize_string',
+				'Inklusi' => 'sanitize_string',
 				'Alamat' => 'sanitize_string',
+				'SA' => 'sanitize_string',
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
@@ -247,7 +257,7 @@ class Peserta_smpController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id","NISN","Nama","Jenis_Kelamin","Kelas","TTL","Alergi","Alamat");
+		$fields = $this->fields = array("id","NISN","Nama","Jenis_Kelamin","Kelas","TTL","Alergi","Inklusi","Alamat","SA");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -271,7 +281,9 @@ class Peserta_smpController extends SecureController{
 				'Kelas' => 'sanitize_string',
 				'TTL' => 'sanitize_string',
 				'Alergi' => 'sanitize_string',
+				'Inklusi' => 'sanitize_string',
 				'Alamat' => 'sanitize_string',
+				'SA' => 'sanitize_string',
 			);
 			$this->filter_rules = true; //filter validation rules by excluding fields not in the formdata
 			$modeldata = $this->modeldata = $this->validate_form($postdata);

@@ -21,6 +21,7 @@ class Kunjungan_uksController extends SecureController{
 		$fields = array("id", 
 			"NISN", 
 			"Nama", 
+			"Tingkat", 
 			"Kelas", 
 			"Jenis_Kelamin", 
 			"Tanggal", 
@@ -36,6 +37,7 @@ class Kunjungan_uksController extends SecureController{
 				kunjungan_uks.id LIKE ? OR 
 				kunjungan_uks.NISN LIKE ? OR 
 				kunjungan_uks.Nama LIKE ? OR 
+				kunjungan_uks.Tingkat LIKE ? OR 
 				kunjungan_uks.Kelas LIKE ? OR 
 				kunjungan_uks.Jenis_Kelamin LIKE ? OR 
 				kunjungan_uks.Tanggal LIKE ? OR 
@@ -45,7 +47,7 @@ class Kunjungan_uksController extends SecureController{
 				kunjungan_uks.Plan LIKE ?
 			)";
 			$search_params = array(
-				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
+				"%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%","%$text%"
 			);
 			//setting search conditions
 			$db->where($search_condition, $search_params);
@@ -62,6 +64,12 @@ class Kunjungan_uksController extends SecureController{
 		}
 		if($fieldname){
 			$db->where($fieldname , $fieldvalue); //filter by a single field name
+		}
+		if(!empty($request->kunjungan_uks_Tanggal)){
+			$vals = explode("-to-", str_replace(" ", "", $request->kunjungan_uks_Tanggal));
+			$startdate = $vals[0];
+			$enddate = $vals[1];
+			$db->where("kunjungan_uks.Tanggal BETWEEN '$startdate' AND '$enddate'");
 		}
 		$tc = $db->withTotalCount();
 		$records = $db->get($tablename, $pagination, $fields);
@@ -99,6 +107,7 @@ class Kunjungan_uksController extends SecureController{
 		$fields = array("id", 
 			"NISN", 
 			"Nama", 
+			"Tingkat", 
 			"Kelas", 
 			"Tanggal", 
 			"Subjective", 
@@ -142,11 +151,12 @@ class Kunjungan_uksController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("NISN","Nama","Kelas","Jenis_Kelamin","Tanggal","Subjective","Objective","Assesment","Plan");
+			$fields = $this->fields = array("NISN","Nama","Tingkat","Kelas","Jenis_Kelamin","Tanggal","Subjective","Objective","Assesment","Plan");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'NISN' => 'required',
 				'Nama' => 'required',
+				'Tingkat' => 'required',
 				'Kelas' => 'required',
 				'Jenis_Kelamin' => 'required',
 				'Tanggal' => 'required',
@@ -158,6 +168,7 @@ class Kunjungan_uksController extends SecureController{
 			$this->sanitize_array = array(
 				'NISN' => 'sanitize_string',
 				'Nama' => 'sanitize_string',
+				'Tingkat' => 'sanitize_string',
 				'Kelas' => 'sanitize_string',
 				'Jenis_Kelamin' => 'sanitize_string',
 				'Tanggal' => 'sanitize_string',
@@ -194,12 +205,13 @@ class Kunjungan_uksController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id","NISN","Nama","Kelas","Jenis_Kelamin","Tanggal","Subjective","Objective","Assesment","Plan");
+		$fields = $this->fields = array("id","NISN","Nama","Tingkat","Kelas","Jenis_Kelamin","Tanggal","Subjective","Objective","Assesment","Plan");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'NISN' => 'required',
 				'Nama' => 'required',
+				'Tingkat' => 'required',
 				'Kelas' => 'required',
 				'Jenis_Kelamin' => 'required',
 				'Tanggal' => 'required',
@@ -211,6 +223,7 @@ class Kunjungan_uksController extends SecureController{
 			$this->sanitize_array = array(
 				'NISN' => 'sanitize_string',
 				'Nama' => 'sanitize_string',
+				'Tingkat' => 'sanitize_string',
 				'Kelas' => 'sanitize_string',
 				'Jenis_Kelamin' => 'sanitize_string',
 				'Tanggal' => 'sanitize_string',
@@ -261,7 +274,7 @@ class Kunjungan_uksController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id","NISN","Nama","Kelas","Jenis_Kelamin","Tanggal","Subjective","Objective","Assesment","Plan");
+		$fields = $this->fields = array("id","NISN","Nama","Tingkat","Kelas","Jenis_Kelamin","Tanggal","Subjective","Objective","Assesment","Plan");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -272,6 +285,7 @@ class Kunjungan_uksController extends SecureController{
 			$this->rules_array = array(
 				'NISN' => 'required',
 				'Nama' => 'required',
+				'Tingkat' => 'required',
 				'Kelas' => 'required',
 				'Jenis_Kelamin' => 'required',
 				'Tanggal' => 'required',
@@ -283,6 +297,7 @@ class Kunjungan_uksController extends SecureController{
 			$this->sanitize_array = array(
 				'NISN' => 'sanitize_string',
 				'Nama' => 'sanitize_string',
+				'Tingkat' => 'sanitize_string',
 				'Kelas' => 'sanitize_string',
 				'Jenis_Kelamin' => 'sanitize_string',
 				'Tanggal' => 'sanitize_string',

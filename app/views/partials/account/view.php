@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("user/add");
-$can_edit = ACL::is_allowed("user/edit");
-$can_view = ACL::is_allowed("user/view");
-$can_delete = ACL::is_allowed("user/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "view-page-" . random_str();
@@ -103,7 +96,7 @@ $show_export_btn = $this->show_export_btn;
                                                     <tr  class="td-user_role_id">
                                                         <th class="title"> User Role Id: </th>
                                                         <td class="value">
-                                                            <span <?php if($can_edit){ ?> data-source='<?php print_link('api/json/account_user_role_id_option_list'); ?>' 
+                                                            <span  data-source='<?php print_link('api/json/account_user_role_id_option_list'); ?>' 
                                                                 data-value="<?php echo $data['user_role_id']; ?>" 
                                                                 data-pk="<?php echo $data['id_user'] ?>" 
                                                                 data-url="<?php print_link("user/editfield/" . urlencode($data['id_user'])); ?>" 
@@ -114,7 +107,7 @@ $show_export_btn = $this->show_export_btn;
                                                                 data-type="select" 
                                                                 data-mode="popover" 
                                                                 data-showbuttons="left" 
-                                                                class="is-editable" <?php } ?>>
+                                                                class="is-editable" >
                                                                 <?php echo $data['user_role_id']; ?> 
                                                             </span>
                                                         </td>

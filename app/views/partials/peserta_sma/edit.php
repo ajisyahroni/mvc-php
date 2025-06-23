@@ -83,7 +83,24 @@ $redirect_to = $this->redirect_to;
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="">
-                                                    <input id="ctrl-Jenis_Kelamin"  value="<?php  echo $data['Jenis_Kelamin']; ?>" type="text" placeholder="Enter Jenis Kelamin"  required="" name="Jenis_Kelamin"  class="form-control " />
+                                                    <?php
+                                                    $Jenis_Kelamin_options = Menu :: $Jenis_Kelamin2;
+                                                    $field_value = $data['Jenis_Kelamin'];
+                                                    if(!empty($Jenis_Kelamin_options)){
+                                                    foreach($Jenis_Kelamin_options as $option){
+                                                    $value = $option['value'];
+                                                    $label = $option['label'];
+                                                    //check if value is among checked options
+                                                    $checked = $this->check_form_field_checked($field_value, $value);
+                                                    ?>
+                                                    <label class="custom-control custom-radio custom-control-inline">
+                                                        <input id="ctrl-Jenis_Kelamin" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Jenis_Kelamin" />
+                                                            <span class="custom-control-label"><?php echo $label ?></span>
+                                                        </label>
+                                                        <?php
+                                                        }
+                                                        }
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,18 +157,30 @@ $redirect_to = $this->redirect_to;
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-ajax-status"></div>
-                                                <div class="form-group text-center">
-                                                    <button class="btn btn-primary" type="submit">
-                                                        Update
-                                                        <i class="fa fa-send"></i>
-                                                    </button>
-                                                </div>
-                                            </form>
+                                                    <div class="form-group ">
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label" for="SA">Sa </label>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <div class="">
+                                                                    <input id="ctrl-SA"  value="<?php  echo $data['SA']; ?>" type="text" placeholder="Enter Sa"  name="SA"  class="form-control " />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-ajax-status"></div>
+                                                    <div class="form-group text-center">
+                                                        <button class="btn btn-primary" type="submit">
+                                                            Update
+                                                            <i class="fa fa-send"></i>
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>

@@ -1,10 +1,3 @@
-<?php 
-//check if current user role is allowed access to the pages
-$can_add = ACL::is_allowed("pelayanan_kes/add");
-$can_edit = ACL::is_allowed("pelayanan_kes/edit");
-$can_view = ACL::is_allowed("pelayanan_kes/view");
-$can_delete = ACL::is_allowed("pelayanan_kes/delete");
-?>
 <?php
 $comp_model = new SharedController;
 $page_element_id = "view-page-" . random_str();
@@ -59,7 +52,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Tanggal">
                                         <th class="title"> Tanggal: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
+                                            <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                 data-value="<?php echo $data['Tanggal']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("pelayanan_kes/editfield/" . urlencode($data['id'])); ?>" 
@@ -70,25 +63,26 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="flatdatetimepicker" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Tanggal']; ?> 
                                             </span>
                                         </td>
                                     </tr>
                                     <tr  class="td-Kegiatan">
-                                        <th class="title"> Kegiatan: </th>
+                                        <th class="title"> Jenis Kegiatan: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Kegiatan']; ?>" 
+                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Kegiatan); ?>' 
+                                                data-value="<?php echo $data['Kegiatan']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("pelayanan_kes/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Kegiatan" 
-                                                data-title="Enter Kegiatan" 
+                                                data-title="Enter Jenis Kegiatan" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
-                                                data-type="text" 
+                                                data-type="checklist" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Kegiatan']; ?> 
                                             </span>
                                         </td>
@@ -96,7 +90,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Penyelenggara">
                                         <th class="title"> Penyelenggara: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Penyelenggara']; ?>" 
+                                            <span  data-value="<?php echo $data['Penyelenggara']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("pelayanan_kes/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Penyelenggara" 
@@ -106,7 +100,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Penyelenggara']; ?> 
                                             </span>
                                         </td>
@@ -114,7 +108,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Pemeriksa">
                                         <th class="title"> Pemeriksa: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Pemeriksa']; ?>" 
+                                            <span  data-value="<?php echo $data['Pemeriksa']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("pelayanan_kes/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Pemeriksa" 
@@ -124,7 +118,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Pemeriksa']; ?> 
                                             </span>
                                         </td>
@@ -132,7 +126,7 @@ $show_export_btn = $this->show_export_btn;
                                     <tr  class="td-Hasil">
                                         <th class="title"> Hasil: </th>
                                         <td class="value">
-                                            <span <?php if($can_edit){ ?> data-value="<?php echo $data['Hasil']; ?>" 
+                                            <span  data-value="<?php echo $data['Hasil']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("pelayanan_kes/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Hasil" 
@@ -142,7 +136,7 @@ $show_export_btn = $this->show_export_btn;
                                                 data-type="text" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
-                                                class="is-editable" <?php } ?>>
+                                                class="is-editable" >
                                                 <?php echo $data['Hasil']; ?> 
                                             </span>
                                         </td>
@@ -179,16 +173,12 @@ $show_export_btn = $this->show_export_btn;
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <?php if($can_edit){ ?>
                                                 <a class="btn btn-sm btn-info"  href="<?php print_link("pelayanan_kes/edit/$rec_id"); ?>">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
-                                                <?php } ?>
-                                                <?php if($can_delete){ ?>
                                                 <a class="btn btn-sm btn-danger record-delete-btn mx-1"  href="<?php print_link("pelayanan_kes/delete/$rec_id/?csrf_token=$csrf_token&redirect=$current_page"); ?>" data-prompt-msg="Are you sure you want to delete this record?" data-display-style="modal">
                                                     <i class="fa fa-times"></i> Delete
                                                 </a>
-                                                <?php } ?>
                                             </div>
                                             <?php
                                             }

@@ -72,11 +72,11 @@ $redirect_to = $this->redirect_to;
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label class="control-label" for="Kelas">Kelas <span class="text-danger">*</span></label>
+                                                    <label class="control-label" for="Jenis_Kelamin">Jenis Kelamin <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="">
-                                                        <input id="ctrl-Kelas"  value="<?php  echo $this->set_field_value('Kelas',""); ?>" type="text" placeholder="Enter Kelas"  required="" name="Kelas"  class="form-control " />
+                                                        <input id="ctrl-Jenis_Kelamin"  value="<?php  echo $this->set_field_value('Jenis_Kelamin',""); ?>" type="text" placeholder="Enter Jenis Kelamin"  required="" name="Jenis_Kelamin"  class="form-control " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -84,11 +84,11 @@ $redirect_to = $this->redirect_to;
                                             <div class="form-group ">
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <label class="control-label" for="TB">Tb <span class="text-danger">*</span></label>
+                                                        <label class="control-label" for="Kelas">Kelas <span class="text-danger">*</span></label>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="">
-                                                            <input id="ctrl-TB"  value="<?php  echo $this->set_field_value('TB',""); ?>" type="number" placeholder="Enter Tb" step="1"  required="" name="TB"  class="form-control " />
+                                                            <input id="ctrl-Kelas"  value="<?php  echo $this->set_field_value('Kelas',""); ?>" type="text" placeholder="Enter Kelas"  required="" name="Kelas"  class="form-control " />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -96,11 +96,11 @@ $redirect_to = $this->redirect_to;
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="BB">Bb <span class="text-danger">*</span></label>
+                                                            <label class="control-label" for="TB">Tb <span class="text-danger">*</span></label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="">
-                                                                <input id="ctrl-BB"  value="<?php  echo $this->set_field_value('BB',""); ?>" type="text" placeholder="Enter Bb"  required="" name="BB"  class="form-control " />
+                                                                <input id="ctrl-TB"  value="<?php  echo $this->set_field_value('TB',""); ?>" type="number" placeholder="Enter Tb" step="1"  required="" name="TB"  class="form-control " />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -108,11 +108,11 @@ $redirect_to = $this->redirect_to;
                                                     <div class="form-group ">
                                                         <div class="row">
                                                             <div class="col-sm-4">
-                                                                <label class="control-label" for="Goldar">Goldar <span class="text-danger">*</span></label>
+                                                                <label class="control-label" for="BB">Bb <span class="text-danger">*</span></label>
                                                             </div>
                                                             <div class="col-sm-8">
                                                                 <div class="">
-                                                                    <input id="ctrl-Goldar"  value="<?php  echo $this->set_field_value('Goldar',""); ?>" type="text" placeholder="Enter Goldar"  required="" name="Goldar"  class="form-control " />
+                                                                    <input id="ctrl-BB"  value="<?php  echo $this->set_field_value('BB',""); ?>" type="text" placeholder="Enter Bb"  required="" name="BB"  class="form-control " />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -120,11 +120,11 @@ $redirect_to = $this->redirect_to;
                                                         <div class="form-group ">
                                                             <div class="row">
                                                                 <div class="col-sm-4">
-                                                                    <label class="control-label" for="Anggota_tubuh">Anggota Tubuh <span class="text-danger">*</span></label>
+                                                                    <label class="control-label" for="Goldar">Goldar <span class="text-danger">*</span></label>
                                                                 </div>
                                                                 <div class="col-sm-8">
                                                                     <div class="">
-                                                                        <input id="ctrl-Anggota_tubuh"  value="<?php  echo $this->set_field_value('Anggota_tubuh',""); ?>" type="text" placeholder="Enter Anggota Tubuh"  required="" name="Anggota_tubuh"  class="form-control " />
+                                                                        <input id="ctrl-Goldar"  value="<?php  echo $this->set_field_value('Goldar',""); ?>" type="text" placeholder="Enter Goldar"  required="" name="Goldar"  class="form-control " />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -132,11 +132,27 @@ $redirect_to = $this->redirect_to;
                                                             <div class="form-group ">
                                                                 <div class="row">
                                                                     <div class="col-sm-4">
-                                                                        <label class="control-label" for="Masalah">Masalah <span class="text-danger">*</span></label>
+                                                                        <label class="control-label" for="Kepala">Kepala <span class="text-danger">*</span></label>
                                                                     </div>
                                                                     <div class="col-sm-8">
                                                                         <div class="">
-                                                                            <input id="ctrl-Masalah"  value="<?php  echo $this->set_field_value('Masalah',""); ?>" type="text" placeholder="Enter Masalah"  required="" name="Masalah"  class="form-control " />
+                                                                            <?php
+                                                                            $Kepala_options = Menu :: $Kepala;
+                                                                            if(!empty($Kepala_options)){
+                                                                            foreach($Kepala_options as $option){
+                                                                            $value = $option['value'];
+                                                                            $label = $option['label'];
+                                                                            //check if current option is checked option
+                                                                            $checked = $this->set_field_checked('Kepala', $value, "");
+                                                                            ?>
+                                                                            <label class="custom-control custom-radio custom-control-inline">
+                                                                                <input id="ctrl-Kepala" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Kepala" />
+                                                                                    <span class="custom-control-label"><?php echo $label ?></span>
+                                                                                </label>
+                                                                                <?php
+                                                                                }
+                                                                                }
+                                                                                ?>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -144,11 +160,27 @@ $redirect_to = $this->redirect_to;
                                                                 <div class="form-group ">
                                                                     <div class="row">
                                                                         <div class="col-sm-4">
-                                                                            <label class="control-label" for="Riwayat_kesehatan">Riwayat Kesehatan <span class="text-danger">*</span></label>
+                                                                            <label class="control-label" for="Thorax">Thorax <span class="text-danger">*</span></label>
                                                                         </div>
                                                                         <div class="col-sm-8">
                                                                             <div class="">
-                                                                                <input id="ctrl-Riwayat_kesehatan"  value="<?php  echo $this->set_field_value('Riwayat_kesehatan',""); ?>" type="text" placeholder="Enter Riwayat Kesehatan"  required="" name="Riwayat_kesehatan"  class="form-control " />
+                                                                                <?php
+                                                                                $Thorax_options = Menu :: $Kepala;
+                                                                                if(!empty($Thorax_options)){
+                                                                                foreach($Thorax_options as $option){
+                                                                                $value = $option['value'];
+                                                                                $label = $option['label'];
+                                                                                //check if current option is checked option
+                                                                                $checked = $this->set_field_checked('Thorax', $value, "");
+                                                                                ?>
+                                                                                <label class="custom-control custom-radio custom-control-inline">
+                                                                                    <input id="ctrl-Thorax" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Thorax" />
+                                                                                        <span class="custom-control-label"><?php echo $label ?></span>
+                                                                                    </label>
+                                                                                    <?php
+                                                                                    }
+                                                                                    }
+                                                                                    ?>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -156,27 +188,167 @@ $redirect_to = $this->redirect_to;
                                                                     <div class="form-group ">
                                                                         <div class="row">
                                                                             <div class="col-sm-4">
-                                                                                <label class="control-label" for="Jenis_Kelamin">Jenis Kelamin <span class="text-danger">*</span></label>
+                                                                                <label class="control-label" for="Abdomen">Abdomen <span class="text-danger">*</span></label>
                                                                             </div>
                                                                             <div class="col-sm-8">
                                                                                 <div class="">
-                                                                                    <input id="ctrl-Jenis_Kelamin"  value="<?php  echo $this->set_field_value('Jenis_Kelamin',""); ?>" type="text" placeholder="Enter Jenis Kelamin"  required="" name="Jenis_Kelamin"  class="form-control " />
+                                                                                    <?php
+                                                                                    $Abdomen_options = Menu :: $Kepala;
+                                                                                    if(!empty($Abdomen_options)){
+                                                                                    foreach($Abdomen_options as $option){
+                                                                                    $value = $option['value'];
+                                                                                    $label = $option['label'];
+                                                                                    //check if current option is checked option
+                                                                                    $checked = $this->set_field_checked('Abdomen', $value, "");
+                                                                                    ?>
+                                                                                    <label class="custom-control custom-radio custom-control-inline">
+                                                                                        <input id="ctrl-Abdomen" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Abdomen" />
+                                                                                            <span class="custom-control-label"><?php echo $label ?></span>
+                                                                                        </label>
+                                                                                        <?php
+                                                                                        }
+                                                                                        }
+                                                                                        ?>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group ">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-4">
+                                                                                    <label class="control-label" for="Extremitas">Extremitas <span class="text-danger">*</span></label>
+                                                                                </div>
+                                                                                <div class="col-sm-8">
+                                                                                    <div class="">
+                                                                                        <?php
+                                                                                        $Extremitas_options = Menu :: $Kepala;
+                                                                                        if(!empty($Extremitas_options)){
+                                                                                        foreach($Extremitas_options as $option){
+                                                                                        $value = $option['value'];
+                                                                                        $label = $option['label'];
+                                                                                        //check if current option is checked option
+                                                                                        $checked = $this->set_field_checked('Extremitas', $value, "");
+                                                                                        ?>
+                                                                                        <label class="custom-control custom-radio custom-control-inline">
+                                                                                            <input id="ctrl-Extremitas" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Extremitas" />
+                                                                                                <span class="custom-control-label"><?php echo $label ?></span>
+                                                                                            </label>
+                                                                                            <?php
+                                                                                            }
+                                                                                            }
+                                                                                            ?>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group ">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-4">
+                                                                                        <label class="control-label" for="Luka_terbuka">Luka Terbuka <span class="text-danger">*</span></label>
+                                                                                    </div>
+                                                                                    <div class="col-sm-8">
+                                                                                        <div class="">
+                                                                                            <?php
+                                                                                            $Luka_terbuka_options = Menu :: $Luka_terbuka;
+                                                                                            if(!empty($Luka_terbuka_options)){
+                                                                                            foreach($Luka_terbuka_options as $option){
+                                                                                            $value = $option['value'];
+                                                                                            $label = $option['label'];
+                                                                                            //check if current option is checked option
+                                                                                            $checked = $this->set_field_checked('Luka_terbuka', $value, "");
+                                                                                            ?>
+                                                                                            <label class="custom-control custom-radio custom-control-inline">
+                                                                                                <input id="ctrl-Luka_terbuka" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Luka_terbuka" />
+                                                                                                    <span class="custom-control-label"><?php echo $label ?></span>
+                                                                                                </label>
+                                                                                                <?php
+                                                                                                }
+                                                                                                }
+                                                                                                ?>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group ">
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-4">
+                                                                                            <label class="control-label" for="Patah_tulang">Patah Tulang <span class="text-danger">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-8">
+                                                                                            <div class="">
+                                                                                                <?php
+                                                                                                $Patah_tulang_options = Menu :: $Luka_terbuka;
+                                                                                                if(!empty($Patah_tulang_options)){
+                                                                                                foreach($Patah_tulang_options as $option){
+                                                                                                $value = $option['value'];
+                                                                                                $label = $option['label'];
+                                                                                                //check if current option is checked option
+                                                                                                $checked = $this->set_field_checked('Patah_tulang', $value, "");
+                                                                                                ?>
+                                                                                                <label class="custom-control custom-radio custom-control-inline">
+                                                                                                    <input id="ctrl-Patah_tulang" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Patah_tulang" />
+                                                                                                        <span class="custom-control-label"><?php echo $label ?></span>
+                                                                                                    </label>
+                                                                                                    <?php
+                                                                                                    }
+                                                                                                    }
+                                                                                                    ?>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group ">
+                                                                                        <div class="row">
+                                                                                            <div class="col-sm-4">
+                                                                                                <label class="control-label" for="Masalah">Masalah <span class="text-danger">*</span></label>
+                                                                                            </div>
+                                                                                            <div class="col-sm-8">
+                                                                                                <div class="">
+                                                                                                    <input id="ctrl-Masalah"  value="<?php  echo $this->set_field_value('Masalah',""); ?>" type="text" placeholder="Enter Masalah"  required="" name="Masalah"  class="form-control " />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="form-group ">
+                                                                                            <div class="row">
+                                                                                                <div class="col-sm-4">
+                                                                                                    <label class="control-label" for="Riwayat_kesehatan">Riwayat Kesehatan <span class="text-danger">*</span></label>
+                                                                                                </div>
+                                                                                                <div class="col-sm-8">
+                                                                                                    <div class="">
+                                                                                                        <input id="ctrl-Riwayat_kesehatan"  value="<?php  echo $this->set_field_value('Riwayat_kesehatan',""); ?>" type="text" placeholder="Enter Riwayat Kesehatan"  required="" name="Riwayat_kesehatan"  class="form-control " />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group ">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-sm-4">
+                                                                                                        <label class="control-label" for="Hasil_penunjang">Hasil Penunjang </label>
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-8">
+                                                                                                        <div class="">
+                                                                                                            <div class="dropzone " input="#ctrl-Hasil_penunjang" fieldname="Hasil_penunjang"    data-multiple="false" dropmsg="Choose files or drag and drop files to upload"    btntext="Browse" filesize="3" maximum="1">
+                                                                                                                <input name="Hasil_penunjang" id="ctrl-Hasil_penunjang" class="dropzone-input form-control" value="<?php  echo $this->set_field_value('Hasil_penunjang',""); ?>" type="text"  />
+                                                                                                                    <!--<div class="invalid-feedback animated bounceIn text-center">Please a choose file</div>-->
+                                                                                                                    <div class="dz-file-limit animated bounceIn text-center text-danger"></div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group form-submit-btn-holder text-center mt-3">
+                                                                                                <div class="form-ajax-status"></div>
+                                                                                                <button class="btn btn-primary" type="submit">
+                                                                                                    Submit
+                                                                                                    <i class="fa fa-send"></i>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </form>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="form-group form-submit-btn-holder text-center mt-3">
-                                                                        <div class="form-ajax-status"></div>
-                                                                        <button class="btn btn-primary" type="submit">
-                                                                            Submit
-                                                                            <i class="fa fa-send"></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
+                                                                </section>
