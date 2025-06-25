@@ -34,11 +34,11 @@ $redirect_to = $this->redirect_to;
                                 <div class="form-group ">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <label class="control-label" for="NISN">Nisn <span class="text-danger">*</span></label>
+                                            <label class="control-label" for="NISN">NISN <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="">
-                                                <input id="ctrl-NISN"  value="<?php  echo $this->set_field_value('NISN',""); ?>" type="text" placeholder="Enter Nisn" list="NISN_list"  required="" name="NISN"  class="form-control " />
+                                                <input id="ctrl-NISN"  value="<?php  echo $this->set_field_value('NISN',""); ?>" type="text" placeholder="Enter NISN" list="NISN_list"  required="" name="NISN"  class="form-control " />
                                                     <datalist id="NISN_list">
                                                         <?php 
                                                         $NISN_options = $comp_model -> peserta_smp_NISN_option_list();
@@ -112,11 +112,11 @@ $redirect_to = $this->redirect_to;
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="TTL">Ttl <span class="text-danger">*</span></label>
+                                                            <label class="control-label" for="TTL">TTL <span class="text-danger">*</span></label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="input-group">
-                                                                <input id="ctrl-TTL" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('TTL',""); ?>" type="datetime" name="TTL" placeholder="Enter Ttl" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
+                                                                <input id="ctrl-TTL" class="form-control datepicker  datepicker"  required="" value="<?php  echo $this->set_field_value('TTL',""); ?>" type="datetime" name="TTL" placeholder="Enter TTL" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
                                                                     <div class="input-group-append">
                                                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                                     </div>
@@ -164,11 +164,11 @@ $redirect_to = $this->redirect_to;
                                                             <div class="form-group ">
                                                                 <div class="row">
                                                                     <div class="col-sm-4">
-                                                                        <label class="control-label" for="SA">Sa </label>
+                                                                        <label class="control-label" for="SA">Nama SA </label>
                                                                     </div>
                                                                     <div class="col-sm-8">
                                                                         <div class="">
-                                                                            <input id="ctrl-SA"  value="<?php  echo $this->set_field_value('SA',""); ?>" type="text" placeholder="Enter Sa"  name="SA"  class="form-control " />
+                                                                            <input id="ctrl-SA"  value="<?php  echo $this->set_field_value('SA',""); ?>" type="text" placeholder="Enter Nama SA"  name="SA"  class="form-control " />
                                                                             </div>
                                                                         </div>
                                                                     </div>

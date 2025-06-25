@@ -21,7 +21,7 @@ $show_export_btn = $this->show_export_btn;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">View  Duta Uks</h4>
+                    <h4 class="record-title">View  Duta UKS</h4>
                 </div>
             </div>
         </div>
@@ -93,10 +93,10 @@ $show_export_btn = $this->show_export_btn;
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("duta_uks/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Jenis_Kelamin" 
-                                                data-title="Select a value ..." 
+                                                data-title="Enter Jenis Kelamin" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
-                                                data-type="select" 
+                                                data-type="radiolist" 
                                                 data-mode="popover" 
                                                 data-showbuttons="left" 
                                                 class="is-editable" >

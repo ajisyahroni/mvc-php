@@ -21,8 +21,8 @@ class SanitasiController extends SecureController{
 		$fields = array("id", 
 			"Tanggal_Inspeksi", 
 			"Jenis_kegiatan", 
-			"Toilet", 
-			"Peserta");
+			"Peserta", 
+			"Instruktur");
 		$pagination = $this->get_pagination(MAX_RECORD_COUNT); // get current pagination e.g array(page_number, page_limit)
 		//search table record
 		if(!empty($request->search)){
@@ -31,8 +31,8 @@ class SanitasiController extends SecureController{
 				sanitasi.id LIKE ? OR 
 				sanitasi.Tanggal_Inspeksi LIKE ? OR 
 				sanitasi.Jenis_kegiatan LIKE ? OR 
-				sanitasi.Toilet LIKE ? OR 
-				sanitasi.Peserta LIKE ?
+				sanitasi.Peserta LIKE ? OR 
+				sanitasi.Instruktur LIKE ?
 			)";
 			$search_params = array(
 				"%$text%","%$text%","%$text%","%$text%","%$text%"
@@ -89,8 +89,8 @@ class SanitasiController extends SecureController{
 		$fields = array("id", 
 			"Tanggal_Inspeksi", 
 			"Jenis_kegiatan", 
-			"Toilet", 
-			"Peserta");
+			"Peserta", 
+			"Instruktur");
 		if($value){
 			$db->where($rec_id, urldecode($value)); //select record based on field name
 		}
@@ -127,19 +127,19 @@ class SanitasiController extends SecureController{
 			$tablename = $this->tablename;
 			$request = $this->request;
 			//fillable fields
-			$fields = $this->fields = array("Tanggal_Inspeksi","Jenis_kegiatan","Toilet","Peserta");
+			$fields = $this->fields = array("Tanggal_Inspeksi","Jenis_kegiatan","Peserta","Instruktur");
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'Tanggal_Inspeksi' => 'required',
 				'Jenis_kegiatan' => 'required',
-				'Toilet' => 'required',
 				'Peserta' => 'required',
+				'Instruktur' => 'required',
 			);
 			$this->sanitize_array = array(
 				'Tanggal_Inspeksi' => 'sanitize_string',
 				'Jenis_kegiatan' => 'sanitize_string',
-				'Toilet' => 'sanitize_string',
 				'Peserta' => 'sanitize_string',
+				'Instruktur' => 'sanitize_string',
 			);
 			$this->filter_vals = true; //set whether to remove empty fields
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
@@ -169,20 +169,20 @@ class SanitasiController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		 //editable fields
-		$fields = $this->fields = array("id","Tanggal_Inspeksi","Jenis_kegiatan","Toilet","Peserta");
+		$fields = $this->fields = array("id","Tanggal_Inspeksi","Jenis_kegiatan","Peserta","Instruktur");
 		if($formdata){
 			$postdata = $this->format_request_data($formdata);
 			$this->rules_array = array(
 				'Tanggal_Inspeksi' => 'required',
 				'Jenis_kegiatan' => 'required',
-				'Toilet' => 'required',
 				'Peserta' => 'required',
+				'Instruktur' => 'required',
 			);
 			$this->sanitize_array = array(
 				'Tanggal_Inspeksi' => 'sanitize_string',
 				'Jenis_kegiatan' => 'sanitize_string',
-				'Toilet' => 'sanitize_string',
 				'Peserta' => 'sanitize_string',
+				'Instruktur' => 'sanitize_string',
 			);
 			$modeldata = $this->modeldata = $this->validate_form($postdata);
 			if($this->validated()){
@@ -226,7 +226,7 @@ class SanitasiController extends SecureController{
 		$this->rec_id = $rec_id;
 		$tablename = $this->tablename;
 		//editable fields
-		$fields = $this->fields = array("id","Tanggal_Inspeksi","Jenis_kegiatan","Toilet","Peserta");
+		$fields = $this->fields = array("id","Tanggal_Inspeksi","Jenis_kegiatan","Peserta","Instruktur");
 		$page_error = null;
 		if($formdata){
 			$postdata = array();
@@ -237,14 +237,14 @@ class SanitasiController extends SecureController{
 			$this->rules_array = array(
 				'Tanggal_Inspeksi' => 'required',
 				'Jenis_kegiatan' => 'required',
-				'Toilet' => 'required',
 				'Peserta' => 'required',
+				'Instruktur' => 'required',
 			);
 			$this->sanitize_array = array(
 				'Tanggal_Inspeksi' => 'sanitize_string',
 				'Jenis_kegiatan' => 'sanitize_string',
-				'Toilet' => 'sanitize_string',
 				'Peserta' => 'sanitize_string',
+				'Instruktur' => 'sanitize_string',
 			);
 			$this->filter_rules = true; //filter validation rules by excluding fields not in the formdata
 			$modeldata = $this->modeldata = $this->validate_form($postdata);

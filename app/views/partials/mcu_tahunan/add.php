@@ -15,7 +15,7 @@ $redirect_to = $this->redirect_to;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Add New Mcu Tahunan</h4>
+                    <h4 class="record-title">Add New MCU Tahunan</h4>
                 </div>
             </div>
         </div>
@@ -38,21 +38,24 @@ $redirect_to = $this->redirect_to;
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="">
-                                                <input id="ctrl-NISN"  value="<?php  echo $this->set_field_value('NISN',""); ?>" type="number" placeholder="Enter Nisn" step="1" list="NISN_list"  required="" name="NISN"  class="form-control " />
-                                                    <datalist id="NISN_list">
+                                            <select required=""  id="ctrl-NISN" name="NISN"  placeholder="Select a value ..."   class="selectize"  >
+                                                <option value="">Select a value ...</option>
                                                         <?php 
-                                                        $NISN_options = $comp_model -> mcu_tahunan_NISN_option_list();
+                                                        $NISN_options = $comp_model -> distinct_nisn();
                                                         if(!empty($NISN_options)){
                                                         foreach($NISN_options as $option){
                                                         $value = (!empty($option['value']) ? $option['value'] : null);
-                                                        $label = (!empty($option['label']) ? $option['label'] : $value);
+                                                        // XCUSTOMCODE
+                                                        $label = (!empty($option['label']) ? '(' . $option['scope'] . ') ' . $option['homebase'] . ' - ' . $option['label'] . ' ' . $option['nama'] : $value);
                                                         ?>
-                                                        <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+                                                        <option <?php echo $selected; ?> value="<?php echo $value; ?>">
+                                                            <?php echo $label; ?>
+                                                        </option>
                                                         <?php
                                                         }
                                                         }
                                                         ?>
-                                                    </datalist>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -352,3 +355,7 @@ $redirect_to = $this->redirect_to;
                                                                         </div>
                                                                     </div>
                                                                 </section>
+
+                                                                <!-- XCUSTOMCODE -->
+                                                                <script src="/assets/js/xcustomcode/cari_peserta.js" ></script>
+                                                                <script> XCustomCode.init() </script>

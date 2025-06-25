@@ -21,7 +21,7 @@ $show_export_btn = $this->show_export_btn;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">View  Peserta Karyawan</h4>
+                    <h4 class="record-title">View  Peserta Guru dan Karyawan</h4>
                 </div>
             </div>
         </div>
@@ -50,13 +50,13 @@ $show_export_btn = $this->show_export_btn;
                                         <td class="value"> <?php echo $data['id']; ?></td>
                                     </tr>
                                     <tr  class="td-NISN">
-                                        <th class="title"> Nisn: </th>
+                                        <th class="title"> NISN: </th>
                                         <td class="value">
                                             <span  data-value="<?php echo $data['NISN']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("peserta_karyawan/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="NISN" 
-                                                data-title="Enter Nisn" 
+                                                data-title="Enter NISN" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
                                                 data-type="text" 
@@ -104,14 +104,14 @@ $show_export_btn = $this->show_export_btn;
                                         </td>
                                     </tr>
                                     <tr  class="td-TTL">
-                                        <th class="title"> Ttl: </th>
+                                        <th class="title"> TTL: </th>
                                         <td class="value">
                                             <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                 data-value="<?php echo $data['TTL']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("peserta_karyawan/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="TTL" 
-                                                data-title="Enter Ttl" 
+                                                data-title="Enter TTL" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
                                                 data-type="flatdatetimepicker" 

@@ -21,7 +21,7 @@ $show_export_btn = $this->show_export_btn;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">View  Peserta Smp</h4>
+                    <h4 class="record-title">View  Peserta SMP</h4>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@ $show_export_btn = $this->show_export_btn;
                                         <td class="value"> <?php echo $data['id']; ?></td>
                                     </tr>
                                     <tr  class="td-NISN">
-                                        <th class="title"> Nisn: </th>
+                                        <th class="title"> NISN: </th>
                                         <td class="value">
                                             <a size="sm" class="btn btn-sm btn-primary page-modal" href="<?php print_link("kunjungan_uks/list/NISN/" . urlencode($data['NISN'])) ?>">
                                                 <i class="fa fa-eye"></i> <?php echo $data['NISN'] ?>
@@ -113,14 +113,14 @@ $show_export_btn = $this->show_export_btn;
                                         </td>
                                     </tr>
                                     <tr  class="td-TTL">
-                                        <th class="title"> Ttl: </th>
+                                        <th class="title"> TTL: </th>
                                         <td class="value">
                                             <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                 data-value="<?php echo $data['TTL']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("peserta_smp/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="TTL" 
-                                                data-title="Enter Ttl" 
+                                                data-title="Enter TTL" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
                                                 data-type="flatdatetimepicker" 
@@ -185,13 +185,13 @@ $show_export_btn = $this->show_export_btn;
                                         </td>
                                     </tr>
                                     <tr  class="td-SA">
-                                        <th class="title"> Sa: </th>
+                                        <th class="title"> Nama SA: </th>
                                         <td class="value">
                                             <span  data-value="<?php echo $data['SA']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("peserta_smp/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="SA" 
-                                                data-title="Enter Sa" 
+                                                data-title="Enter Nama SA" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
                                                 data-type="text" 

@@ -18,7 +18,7 @@ $redirect_to = $this->redirect_to;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">Edit  Duta Uks</h4>
+                    <h4 class="record-title">Edit  Duta UKS</h4>
                 </div>
             </div>
         </div>
@@ -65,53 +65,52 @@ $redirect_to = $this->redirect_to;
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="">
-                                                        <select required=""  id="ctrl-Jenis_Kelamin" name="Jenis_Kelamin"  placeholder="Select a value ..."    class="custom-select" >
-                                                            <option value="">Select a value ...</option>
-                                                            <?php
-                                                            $Jenis_Kelamin_options = Menu :: $Jenis_Kelamin;
-                                                            $field_value = $data['Jenis_Kelamin'];
-                                                            if(!empty($Jenis_Kelamin_options)){
-                                                            foreach($Jenis_Kelamin_options as $option){
-                                                            $value = $option['value'];
-                                                            $label = $option['label'];
-                                                            $selected = ( $value == $field_value ? 'selected' : null );
-                                                            ?>
-                                                            <option <?php echo $selected ?> value="<?php echo $value ?>">
-                                                                <?php echo $label ?>
-                                                            </option>                                   
+                                                        <?php
+                                                        $Jenis_Kelamin_options = Menu :: $Jenis_Kelamin;
+                                                        $field_value = $data['Jenis_Kelamin'];
+                                                        if(!empty($Jenis_Kelamin_options)){
+                                                        foreach($Jenis_Kelamin_options as $option){
+                                                        $value = $option['value'];
+                                                        $label = $option['label'];
+                                                        //check if value is among checked options
+                                                        $checked = $this->check_form_field_checked($field_value, $value);
+                                                        ?>
+                                                        <label class="custom-control custom-radio custom-control-inline">
+                                                            <input id="ctrl-Jenis_Kelamin" class="custom-control-input" <?php echo $checked ?>  value="<?php echo $value ?>" type="radio" required=""   name="Jenis_Kelamin" />
+                                                                <span class="custom-control-label"><?php echo $label ?></span>
+                                                            </label>
                                                             <?php
                                                             }
                                                             }
                                                             ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label class="control-label" for="No_HP">No Hp <span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <div class="">
-                                                        <input id="ctrl-No_HP"  value="<?php  echo $data['No_HP']; ?>" type="number" placeholder="Enter No Hp" step="1"  required="" name="No_HP"  class="form-control " />
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-ajax-status"></div>
-                                        <div class="form-group text-center">
-                                            <button class="btn btn-primary" type="submit">
-                                                Update
-                                                <i class="fa fa-send"></i>
-                                            </button>
-                                        </div>
-                                    </form>
+                                            <div class="form-group ">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label" for="No_HP">No Hp <span class="text-danger">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="">
+                                                            <input id="ctrl-No_HP"  value="<?php  echo $data['No_HP']; ?>" type="number" placeholder="Enter No Hp" step="1"  required="" name="No_HP"  class="form-control " />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-ajax-status"></div>
+                                            <div class="form-group text-center">
+                                                <button class="btn btn-primary" type="submit">
+                                                    Update
+                                                    <i class="fa fa-send"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>

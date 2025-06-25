@@ -102,7 +102,7 @@ $show_pagination = $this->show_pagination;
                     <div class="col-md-3 ">
                         <form method="get" action="<?php print_link($current_page) ?>" class="form filter-form">
                             <div class="card mb-3">
-                                <div class="card-header h4 h4">Filter by Kunjungan Uks Tanggal</div>
+                                <div class="card-header h4 h4">Filter by Kunjungan UKS Tanggal</div>
                                 <div class="p-2">
                                     <input class="form-control datepicker"  value="<?php echo $this->set_field_value('kunjungan_uks_Tanggal') ?>" type="datetime"  name="kunjungan_uks_Tanggal" placeholder="" data-enable-time="" data-date-format="Y-m-d" data-alt-format="M j, Y" data-inline="false" data-no-calendar="false" data-mode="range" />
                                     </div>
@@ -179,7 +179,7 @@ $show_pagination = $this->show_pagination;
                                                     <th  class="td-Tingkat"> Tingkat</th>
                                                     <th  class="td-Kelas"> Kelas</th>
                                                     <th  class="td-Jenis_Kelamin"> Jenis Kelamin</th>
-                                                    <th  class="td-Tanggal"> Tanggal kunjungan</th>
+                                                    <th  class="td-Tanggal"> Tanggal Kunjungan</th>
                                                     <th  class="td-Subjective"> Subjective</th>
                                                     <th  class="td-Objective"> Objective</th>
                                                     <th  class="td-Assesment"> Assesment</th>
@@ -280,7 +280,7 @@ $show_pagination = $this->show_pagination;
                                                                 data-pk="<?php echo $data['id'] ?>" 
                                                                 data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
                                                                 data-name="Tanggal" 
-                                                                data-title="Enter Tanggal kunjungan" 
+                                                                data-title="Enter Tanggal Kunjungan" 
                                                                 data-placement="left" 
                                                                 data-toggle="click" 
                                                                 data-type="flatdatetimepicker" 

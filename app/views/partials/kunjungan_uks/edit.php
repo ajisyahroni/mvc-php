@@ -149,11 +149,11 @@ $redirect_to = $this->redirect_to;
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <label class="control-label" for="Tanggal">Tanggal kunjungan <span class="text-danger">*</span></label>
+                                                            <label class="control-label" for="Tanggal">Tanggal Kunjungan <span class="text-danger">*</span></label>
                                                         </div>
                                                         <div class="col-sm-8">
                                                             <div class="input-group">
-                                                                <input id="ctrl-Tanggal" class="form-control datepicker  datepicker"  required="" value="<?php  echo $data['Tanggal']; ?>" type="datetime" name="Tanggal" placeholder="Enter Tanggal kunjungan" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
+                                                                <input id="ctrl-Tanggal" class="form-control datepicker  datepicker"  required="" value="<?php  echo $data['Tanggal']; ?>" type="datetime" name="Tanggal" placeholder="Enter Tanggal Kunjungan" data-enable-time="false" data-min-date="" data-max-date="" data-date-format="Y-m-d" data-alt-format="F j, Y" data-inline="false" data-no-calendar="false" data-mode="single" />
                                                                     <div class="input-group-append">
                                                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                                     </div>

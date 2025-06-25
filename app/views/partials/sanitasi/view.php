@@ -21,7 +21,7 @@ $show_export_btn = $this->show_export_btn;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">View  Sanitasi</h4>
+                    <h4 class="record-title">View  Pembinaan Lingkungan Sehat</h4>
                 </div>
             </div>
         </div>
@@ -87,25 +87,6 @@ $show_export_btn = $this->show_export_btn;
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr  class="td-Toilet">
-                                        <th class="title"> Toilet: </th>
-                                        <td class="value">
-                                            <span  data-source='<?php echo json_encode_quote(Menu :: $Toilet); ?>' 
-                                                data-value="<?php echo $data['Toilet']; ?>" 
-                                                data-pk="<?php echo $data['id'] ?>" 
-                                                data-url="<?php print_link("sanitasi/editfield/" . urlencode($data['id'])); ?>" 
-                                                data-name="Toilet" 
-                                                data-title="Enter Instruktur" 
-                                                data-placement="left" 
-                                                data-toggle="click" 
-                                                data-type="text" 
-                                                data-mode="popover" 
-                                                data-showbuttons="left" 
-                                                class="is-editable" >
-                                                <?php echo $data['Toilet']; ?> 
-                                            </span>
-                                        </td>
-                                    </tr>
                                     <tr  class="td-Peserta">
                                         <th class="title"> Peserta: </th>
                                         <td class="value">
@@ -121,6 +102,24 @@ $show_export_btn = $this->show_export_btn;
                                                 data-showbuttons="left" 
                                                 class="is-editable" >
                                                 <?php echo $data['Peserta']; ?> 
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr  class="td-Instruktur">
+                                        <th class="title"> Instruktur: </th>
+                                        <td class="value">
+                                            <span  data-value="<?php echo $data['Instruktur']; ?>" 
+                                                data-pk="<?php echo $data['id'] ?>" 
+                                                data-url="<?php print_link("sanitasi/editfield/" . urlencode($data['id'])); ?>" 
+                                                data-name="Instruktur" 
+                                                data-title="Enter Instruktur" 
+                                                data-placement="left" 
+                                                data-toggle="click" 
+                                                data-type="text" 
+                                                data-mode="popover" 
+                                                data-showbuttons="left" 
+                                                class="is-editable" >
+                                                <?php echo $data['Instruktur']; ?> 
                                             </span>
                                         </td>
                                     </tr>

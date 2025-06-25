@@ -115,14 +115,14 @@ $show_pagination = $this->show_pagination;
                                                 </th>
                                                 <th class="td-sno">#</th>
                                                 <th  class="td-id"> Id</th>
-                                                <th  class="td-NISN"> Nisn</th>
+                                                <th  class="td-NISN"> NISN</th>
                                                 <th  class="td-Nama"> Nama</th>
                                                 <th  class="td-Jenis_Kelamin"> Jenis Kelamin</th>
                                                 <th  class="td-Kelas"> Kelas</th>
                                                 <th  class="td-TTL"> Ttl</th>
                                                 <th  class="td-Alergi"> Alergi</th>
                                                 <th  class="td-Alamat"> Alamat</th>
-                                                <th  class="td-SA"> SA</th>
+                                                <th  class="td-SA"> Nama SA</th>
                                                 <th class="td-btn"></th>
                                             </tr>
                                         </thead>
@@ -203,7 +203,7 @@ $show_pagination = $this->show_pagination;
                                                             data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("peserta_sma/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="TTL" 
-                                                            data-title="Enter Ttl" 
+                                                            data-title="Enter TTL" 
                                                             data-placement="left" 
                                                             data-toggle="click" 
                                                             data-type="flatdatetimepicker" 
@@ -247,7 +247,7 @@ $show_pagination = $this->show_pagination;
                                                             data-pk="<?php echo $data['id'] ?>" 
                                                             data-url="<?php print_link("peserta_sma/editfield/" . urlencode($data['id'])); ?>" 
                                                             data-name="SA" 
-                                                            data-title="Enter Sa" 
+                                                            data-title="Enter Nama SA" 
                                                             data-placement="left" 
                                                             data-toggle="click" 
                                                             data-type="text" 

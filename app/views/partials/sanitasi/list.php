@@ -117,8 +117,8 @@ $show_pagination = $this->show_pagination;
                                                 <th  class="td-id"> Id</th>
                                                 <th  class="td-Tanggal_Inspeksi"> Tanggal </th>
                                                 <th  class="td-Jenis_kegiatan"> Jenis Kegiatan</th>
-                                                <th  class="td-Toilet"> Toilet</th>
                                                 <th  class="td-Peserta"> Peserta</th>
+                                                <th  class="td-Instruktur"> Instruktur</th>
                                                 <th class="td-btn"></th>
                                             </tr>
                                         </thead>
@@ -174,22 +174,6 @@ $show_pagination = $this->show_pagination;
                                                             <?php echo $data['Jenis_kegiatan']; ?> 
                                                         </span>
                                                     </td>
-                                                    <td class="td-Toilet">
-                                                        <span  data-source='<?php echo json_encode_quote(Menu :: $Toilet); ?>' 
-                                                            data-value="<?php echo $data['Toilet']; ?>" 
-                                                            data-pk="<?php echo $data['id'] ?>" 
-                                                            data-url="<?php print_link("sanitasi/editfield/" . urlencode($data['id'])); ?>" 
-                                                            data-name="Toilet" 
-                                                            data-title="Enter Instruktur" 
-                                                            data-placement="left" 
-                                                            data-toggle="click" 
-                                                            data-type="text" 
-                                                            data-mode="popover" 
-                                                            data-showbuttons="left" 
-                                                            class="is-editable" >
-                                                            <?php echo $data['Toilet']; ?> 
-                                                        </span>
-                                                    </td>
                                                     <td class="td-Peserta">
                                                         <span  data-value="<?php echo $data['Peserta']; ?>" 
                                                             data-pk="<?php echo $data['id'] ?>" 
@@ -203,6 +187,21 @@ $show_pagination = $this->show_pagination;
                                                             data-showbuttons="left" 
                                                             class="is-editable" >
                                                             <?php echo $data['Peserta']; ?> 
+                                                        </span>
+                                                    </td>
+                                                    <td class="td-Instruktur">
+                                                        <span  data-value="<?php echo $data['Instruktur']; ?>" 
+                                                            data-pk="<?php echo $data['id'] ?>" 
+                                                            data-url="<?php print_link("sanitasi/editfield/" . urlencode($data['id'])); ?>" 
+                                                            data-name="Instruktur" 
+                                                            data-title="Enter Instruktur" 
+                                                            data-placement="left" 
+                                                            data-toggle="click" 
+                                                            data-type="text" 
+                                                            data-mode="popover" 
+                                                            data-showbuttons="left" 
+                                                            class="is-editable" >
+                                                            <?php echo $data['Instruktur']; ?> 
                                                         </span>
                                                     </td>
                                                     <th class="td-btn">

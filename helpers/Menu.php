@@ -70,18 +70,6 @@ class Menu{
 		),
 		
 		array(
-			'path' => 'obat', 
-			'label' => 'Obat', 
-			'icon' => '<i class="fa fa-medkit "></i>'
-		),
-		
-		array(
-			'path' => 'duta_uks', 
-			'label' => 'Duta Uks', 
-			'icon' => '<i class="fa fa-weixin "></i>'
-		),
-		
-		array(
 			'path' => 'kunjungan_uks', 
 			'label' => 'Kunjungan UKS', 
 			'icon' => '<i class="fa fa-book "></i>'
@@ -94,9 +82,21 @@ class Menu{
 		),
 		
 		array(
-			'path' => 'app/cari_nisn_new.php', 
-			'label' => 'Cek NISN New', 
+			'path' => 'cek_nisn', 
+			'label' => 'Cek NISN', 
 			'icon' => '<i class="fa fa-key "></i>'
+		),
+		
+		array(
+			'path' => 'obat', 
+			'label' => 'Obat', 
+			'icon' => '<i class="fa fa-medkit "></i>'
+		),
+		
+		array(
+			'path' => 'duta_uks', 
+			'label' => 'Duta Uks', 
+			'icon' => '<i class="fa fa-weixin "></i>'
 		),
 		
 		array(
@@ -108,12 +108,6 @@ class Menu{
 		array(
 			'path' => 'roles', 
 			'label' => 'Roles', 
-			'icon' => ''
-		),
-		
-		array(
-			'path' => 'cek_nisn', 
-			'label' => 'Cek NISN', 
 			'icon' => ''
 		)
 	);
@@ -274,28 +268,6 @@ class Menu{
 		array(
 			"value" => "Penerapan Kawasan Tanpa Rokok, Narkoba, Kekerasan, dan Pornografi", 
 			"label" => "Penerapan Kawasan Tanpa Rokok, Narkoba, Kekerasan, dan Pornografi", 
-		),);
-		
-			public static $Toilet = array(
-		array(
-			"value" => "Terpisah", 
-			"label" => "Terpisah", 
-		),
-		array(
-			"value" => "Tersedia air", 
-			"label" => "Tersedia air", 
-		),
-		array(
-			"value" => "Tersedia sabun", 
-			"label" => "Tersedia sabun", 
-		),
-		array(
-			"value" => "Tidak licin", 
-			"label" => "Tidak licin", 
-		),
-		array(
-			"value" => "Tidak menggenang", 
-			"label" => "Tidak menggenang", 
 		),);
 		
 }

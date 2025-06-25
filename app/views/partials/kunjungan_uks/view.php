@@ -21,7 +21,7 @@ $show_export_btn = $this->show_export_btn;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">View  Kunjungan Uks</h4>
+                    <h4 class="record-title">View  Kunjungan UKS</h4>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@ $show_export_btn = $this->show_export_btn;
                                         <td class="value"> <?php echo $data['id']; ?></td>
                                     </tr>
                                     <tr  class="td-NISN">
-                                        <th class="title"> Nisn: </th>
+                                        <th class="title"> NISN: </th>
                                         <td class="value">
                                             <a size="sm" class="btn btn-sm btn-primary page-modal" href="<?php print_link("mcu_tahunan/list/NISN/" . urlencode($data['NISN'])) ?>">
                                                 <i class="fa fa-eye"></i> <?php echo $data['NISN'] ?>
@@ -113,14 +113,14 @@ $show_export_btn = $this->show_export_btn;
                                         </td>
                                     </tr>
                                     <tr  class="td-Tanggal">
-                                        <th class="title"> Tanggal kunjungan: </th>
+                                        <th class="title"> Tanggal Kunjungan: </th>
                                         <td class="value">
                                             <span  data-flatpickr="{ enableTime: false, minDate: '', maxDate: ''}" 
                                                 data-value="<?php echo $data['Tanggal']; ?>" 
                                                 data-pk="<?php echo $data['id'] ?>" 
                                                 data-url="<?php print_link("kunjungan_uks/editfield/" . urlencode($data['id'])); ?>" 
                                                 data-name="Tanggal" 
-                                                data-title="Enter Tanggal kunjungan" 
+                                                data-title="Enter Tanggal Kunjungan" 
                                                 data-placement="left" 
                                                 data-toggle="click" 
                                                 data-type="flatdatetimepicker" 

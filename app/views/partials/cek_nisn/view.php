@@ -21,7 +21,7 @@ $show_export_btn = $this->show_export_btn;
         <div class="container">
             <div class="row ">
                 <div class="col ">
-                    <h4 class="record-title">View  Cek Nisn</h4>
+                    <h4 class="record-title">View  Cek NISN</h4>
                 </div>
             </div>
         </div>

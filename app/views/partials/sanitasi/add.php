@@ -77,26 +77,11 @@ $redirect_to = $this->redirect_to;
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label class="control-label" for="Toilet">Instruktur <span class="text-danger">*</span></label>
+                                                    <label class="control-label" for="Peserta">Peserta <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <div class="">
-                                                        <input id="ctrl-Toilet"  value="<?php  echo $this->set_field_value('Toilet',""); ?>" type="text" placeholder="Enter Instruktur" list="Toilet_list"  required="" name="Toilet"  class="form-control " />
-                                                            <datalist id="Toilet_list">
-                                                                <?php
-                                                                $Toilet_options = Menu :: $Toilet;
-                                                                if(!empty($Toilet_options)){
-                                                                foreach($Toilet_options as $option){
-                                                                $value = $option['value'];
-                                                                $label = $option['label'];
-                                                                $selected = $this->set_field_selected('Toilet', $value, "");
-                                                                ?>
-                                                                <option><?php  echo $this->set_field_value('Toilet',""); ?></option>
-                                                                <?php
-                                                                }
-                                                                }
-                                                                ?>
-                                                            </datalist>
+                                                        <input id="ctrl-Peserta"  value="<?php  echo $this->set_field_value('Peserta',""); ?>" type="text" placeholder="Enter Peserta"  required="" name="Peserta"  class="form-control " />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -104,11 +89,11 @@ $redirect_to = $this->redirect_to;
                                             <div class="form-group ">
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <label class="control-label" for="Peserta">Peserta <span class="text-danger">*</span></label>
+                                                        <label class="control-label" for="Instruktur">Instruktur <span class="text-danger">*</span></label>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <div class="">
-                                                            <input id="ctrl-Peserta"  value="<?php  echo $this->set_field_value('Peserta',""); ?>" type="text" placeholder="Enter Peserta"  required="" name="Peserta"  class="form-control " />
+                                                            <input id="ctrl-Instruktur"  value="<?php  echo $this->set_field_value('Instruktur',""); ?>" type="text" placeholder="Enter Instruktur"  required="" name="Instruktur"  class="form-control " />
                                                             </div>
                                                         </div>
                                                     </div>
