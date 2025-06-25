@@ -41,11 +41,13 @@ $redirect_to = $this->redirect_to;
                                                 <select required=""  id="ctrl-NISN" name="NISN"  placeholder="Select a value ..."    class="selectize" >
                                                     <option value="">Select a value ...</option>
                                                     <?php 
-                                                    $NISN_options = $comp_model -> kunjungan_uks_NISN_option_list();
+                                                    // XCUSTOMCODE
+                                                    $NISN_options = $comp_model -> distinct_nisn();
                                                     if(!empty($NISN_options)){
                                                     foreach($NISN_options as $option){
                                                     $value = (!empty($option['value']) ? $option['value'] : null);
-                                                    $label = (!empty($option['label']) ? $option['label'] : $value);
+                                                    // XCUSTOMCODE
+                                                    $label = (!empty($option['label']) ? '(' . $option['scope'] . ') ' . $option['homebase'] . ' - ' . $option['label'] . ' ' . $option['nama'] : $value);
                                                     $selected = $this->set_field_selected('NISN',$value, "");
                                                     ?>
                                                     <option <?php echo $selected; ?> value="<?php echo $value; ?>">
@@ -218,3 +220,7 @@ $redirect_to = $this->redirect_to;
                                             </div>
                                         </div>
                                     </section>
+
+                                    <!-- XCUSTOMCODE -->
+                                    <script src="/assets/js/xcustomcode/cari_peserta.js" ></script>
+                                    <script> XCustomCode.init() </script>

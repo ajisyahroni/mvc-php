@@ -90,6 +90,15 @@ $show_pagination = $this->show_pagination;
                             ?>
                         </div>
                     </div>
+                    <div class="col-md-3" >
+                    <select id="x-filter-tanggal" class="form-control">
+                        <option > -- </option>
+                        <option value="Mingguan" >Mingguan</option>
+                        <option value="Bulanan" >Bulanan</option>
+                        <option value="Semester" >Semester</option>
+                    </select>
+                    
+                    </div>
                     <div class="col-md-3 ">
                         <form method="get" action="<?php print_link($current_page) ?>" class="form filter-form">
                             <div class="card mb-3">
@@ -440,3 +449,6 @@ $show_pagination = $this->show_pagination;
                                         </div>
                                     </div>
                                 </section>
+
+                                <!-- XCUSTOMCODE -->
+                                <script src="/assets/js/xcustomcode/filter_kunjungan_by_cutoff.js" ></script>

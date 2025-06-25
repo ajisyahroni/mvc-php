@@ -57,8 +57,8 @@ $current_page = $this->set_current_page_link();
                             datasets : [
                             {
                             label: 'Gender',
-                            borderColor:'rgba(255 , 255 , 255, 0.7)',
-                            backgroundColor:'rgba(0 , 128 , 192, 0.5)',
+                            // XCUSTOMCODE
+                            backgroundColor: ['#007bff', '#e83e8c'],
                             borderWidth:3,
                             data : <?php echo json_encode($chartdata['datasets'][0]); ?>,
                             }
@@ -112,7 +112,8 @@ $current_page = $this->set_current_page_link();
                             datasets : [
                             {
                             label: 'Dataset 1',
-                            backgroundColor:'rgba(0 , 128 , 128, 0.5)',
+                            // XCUSTOMCODE
+                            backgroundColor:[ 'rgb(54, 229, 235)', 'rgb(33, 122, 182)', 'rgb(188, 50, 223)' ],
                             borderWidth:3,
                             data : <?php echo json_encode($chartdata['datasets'][0]); ?>,
                             }
@@ -250,7 +251,8 @@ $current_page = $this->set_current_page_link();
                             datasets : [
                             {
                             label: 'Dataset 1',
-                            backgroundColor:'rgba(255 , 128 , 64, 0.5)',
+                            // XCUSTOMCODE
+                            backgroundColor:["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40", "#E7E9ED", "#8E44AD", "#3498DB", "#1ABC9C", "#2ECC71", "#F1C40F", "#E67E22", "#E74C3C", "#ECF0F1", "#95A5A6", "#34495E", "#D35400", "#C0392B", "#7F8C8D"],
                             borderWidth:3,
                             data : <?php echo json_encode($chartdata['datasets'][0]); ?>,
                             }

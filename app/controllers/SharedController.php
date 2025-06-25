@@ -212,4 +212,34 @@ class SharedController extends BaseController{
 		return $chart_data;
 	}
 
+	/**
+     * peserta_smp_NISN_option_list Model Action
+     * @return array
+     */
+	function distinct_nisn(){
+		$db = $this->GetModel();
+		$sqltext = "SELECT DISTINCT  'SMA' AS scope, NISN AS value , NISN AS label, Kelas AS homebase, Nama AS nama FROM peserta_sma ORDER BY scope, label, homebase, Nama";
+		$sqltext2 = "SELECT DISTINCT 'SMP' AS scope, NISN AS value , NISN AS label, Kelas AS homebase, Nama AS nama FROM peserta_smp ORDER BY scope, label, homebase, Nama";
+		$sqltext3 = "SELECT DISTINCT 'Karyawan' AS scope, NISN AS value , NISN AS label, Jabatan AS homebase, Nama AS nama FROM peserta_karyawan ORDER BY scope, label, homebase, Nama";
+		$queryparams = null;
+		$arr = array_merge(
+			$db->rawQuery($sqltext, $queryparams),
+			$db->rawQuery($sqltext2, $queryparams),
+			$db->rawQuery($sqltext3, $queryparams)
+		);
+		return $arr;
+	}
+
+	function cek_nisn($nisn){
+		$db = $this->GetModel();
+		
+		return [
+			'peserta_uks' => $db->rawQuery("SELECT NISN, Nama, Jenis_Kelamin as 'Jenis Kelamin', Kelas, TTL, Alergi, Alamat FROM peserta_uks WHERE NISN = " . "'$nisn'"), 
+			'peserta_smp' => $db->rawQuery("SELECT NISN, Nama, Jenis_Kelamin as 'Jenis Kelamin', Kelas, TTL, Alergi, Alamat, Inklusi, SA FROM peserta_smp WHERE NISN = " . "'$nisn'"), 
+			'peserta_sma' => $db->rawQuery("SELECT NISN, Nama, Jenis_Kelamin as 'Jenis Kelamin', Kelas, TTL, Alergi, Alamat, SA FROM peserta_sma WHERE NISN = " . "'$nisn'"), 
+			'mcu_tahunan' => $db->rawQuery("SELECT Tanggal, TB, BB, Goldar, Kepala, Thorax, Abdomen, Extremitas, Luka_terbuka as 'Luka terbuka', Patah_tulang as 'Patah tulang', Riwayat_kesehatan as 'Riwayat kesehatan', Masalah, Hasil_penunjang as 'Hasil penunjang' FROM mcu_tahunan WHERE NISN = " . "'$nisn'" . " ORDER BY Tanggal DESC"), 
+			'kunjungan_uks' => $db->rawQuery("SELECT Tanggal, Subjective, Objective, Assesment, Plan FROM kunjungan_uks WHERE NISN = " . "'$nisn'" . " ORDER BY Tanggal DESC"), 
+		];
+	}
+
 }
