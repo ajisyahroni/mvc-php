@@ -84,9 +84,9 @@ define("DEFAULT_EMAIL", "");
 define("DEFAULT_EMAIL_ACCOUNT_NAME", "");
 
 // Database Configuration Settings
-define("DB_HOST", "db");
+define("DB_HOST", "localhost");
 define("DB_USERNAME", "root");
-define("DB_PASSWORD", "root_password");
+define("DB_PASSWORD", "");
 define("DB_NAME", "hi_mulia");
 define("DB_TYPE", "mysql");
 define("DB_PORT", "");
